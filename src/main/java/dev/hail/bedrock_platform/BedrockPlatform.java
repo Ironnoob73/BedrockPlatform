@@ -1,5 +1,7 @@
 package dev.hail.bedrock_platform;
 
+import dev.hail.bedrock_platform.BlockExchangeRecipe.BERSerializer;
+import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
@@ -39,6 +41,8 @@ public class BedrockPlatform
             .displayItems((parameters, output) -> {
                 output.accept(BPItems.OBSIDIAN_WRENCH.get());
                 output.accept(BPBlocks.BEDROCK_PLATFORM_ITEM.get());
+                output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM_ITEM.get());
+                output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM_ITEM.get());
             }).build());
 
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)
@@ -48,6 +52,9 @@ public class BedrockPlatform
         BPBlocks.BLOCKS.register(modEventBus);
         BPItems.ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+
+        BERecipe.RECIPE_TYPES.register(modEventBus);
+        BERSerializer.RECIPE_SERIALIZERS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new BPEvents());
@@ -79,9 +86,6 @@ public class BedrockPlatform
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            // Some client setup code
-            LOGGER.info("HELLO FROM CLIENT SETUP");
-            LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
         }
     }
 }

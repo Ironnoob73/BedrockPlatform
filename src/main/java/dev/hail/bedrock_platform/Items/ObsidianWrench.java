@@ -2,14 +2,12 @@ package dev.hail.bedrock_platform.Items;
 
 import dev.hail.bedrock_platform.Data.BPTags;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,5 +47,9 @@ public class ObsidianWrench extends Item {
     }
     public boolean isEnchantable(@NotNull ItemStack itemstack) {
         return true;
+    }
+    @Override
+    public int getEnchantmentValue() {
+        return 1;
     }
 }

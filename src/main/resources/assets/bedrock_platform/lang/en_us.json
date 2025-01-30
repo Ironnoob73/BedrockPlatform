@@ -3,5 +3,7 @@
 
   "item.bedrock_platform.obsidian_wrench": "Oblivion Wrench",
 
-  "block.bedrock_platform.bedrock_platform": "Bedrock Platform"
+  "block.bedrock_platform.bedrock_platform": "Bedrock Platform",
+  "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",
+  "block.bedrock_platform.twill_bedrock_platform": "Twill Bedrock Platform"
 }

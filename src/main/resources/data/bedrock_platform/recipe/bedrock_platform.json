@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:bedrock_platform"
+  },
+  "ingredient": {
+    "item": "minecraft:stick"
+  },
+  "result": {
+    "id": "bedrock_platform:obsidian_wrench"
+  }
+}

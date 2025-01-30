@@ -3,5 +3,7 @@
 
   "item.bedrock_platform.obsidian_wrench": "湮灭扳手",
 
-  "block.bedrock_platform.bedrock_platform": "基岩平台"
+  "block.bedrock_platform.bedrock_platform": "基岩平台",
+  "block.bedrock_platform.luminous_bedrock_platform": "流光基岩平台",
+  "block.bedrock_platform.twill_bedrock_platform": "斜纹基岩平台"
 }

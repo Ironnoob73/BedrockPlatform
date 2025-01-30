@@ -1,0 +1,13 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "ingredient": {
+    "item": "minecraft:apple"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:diamond"
+  },
+  "state": {
+    "Name": "minecraft:dirt"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "carpet",
+  "key": {
+    "A": {
+      "item": "minecraft:sculk_shrieker"
+    },
+    "B": {
+      "item": "minecraft:end_crystal"
+    },
+    "C": {
+      "item": "minecraft:crying_obsidian"
+    }
+  },
+  "pattern": [
+    "A",
+    "B",
+    "C"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bedrock_platform:obsidian_wrench"
+  }
+}

@@ -58,7 +58,7 @@ public class BPEvents {
                 .orElse(null);
         // If there is a result, break the block and drop the result in the world.
         if (resultState != null) {
-            if (player != null && !player.isCreative())
+            if (player != null && !player.isCreative() && itemStack.getMaxStackSize() != 1)
                 itemStack.consume(1,player);
             level.setBlock(pos, resultState,11);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);

@@ -5,5 +5,7 @@
 
   "block.bedrock_platform.bedrock_platform": "Bedrock Platform",
   "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",
-  "block.bedrock_platform.twill_bedrock_platform": "Twill Bedrock Platform"
+  "block.bedrock_platform.twill_bedrock_platform": "Twill Bedrock Platform",
+
+  "item.bedrock_platform.sculk_rib": "Sculk Rib"
 }

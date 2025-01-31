@@ -11,10 +11,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredRegister;
-import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -32,7 +30,6 @@ public class BERecipe implements Recipe<BERInput> {
     public BERecipe(BlockState inputState, Ingredient inputItem, BlockState resultState) {
         this.inputState = inputState;
         this.inputItem = inputItem;
-        //this.result = result;
         this.resultState = resultState;
     }
     @Override
@@ -89,6 +86,6 @@ public class BERecipe implements Recipe<BERInput> {
             RECIPE_TYPES.register(
                     "right_click_block",
                     // We need the qualifying generic here due to generics being generics.
-                    () -> RecipeType.<BERecipe>simple(ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block_exchange"))
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block_exchange"))
             );
 }

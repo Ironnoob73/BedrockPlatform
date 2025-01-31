@@ -43,6 +43,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BEDROCK_PLATFORM_ITEM.get());
                 output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM_ITEM.get());
                 output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM_ITEM.get());
+                output.accept(BPItems.SCULK_RIB.get());
             }).build());
 
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)

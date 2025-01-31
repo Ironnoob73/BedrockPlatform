@@ -6,9 +6,6 @@
   "ingredient": {
     "item": "minecraft:netherite_scrap"
   },
-  "result": {
-    "id": "minecraft:stick"
-  },
   "result_state": {
     "Name": "bedrock_platform:bedrock_platform"
   }

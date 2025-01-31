@@ -20,14 +20,14 @@ public class BERSerializer implements RecipeSerializer<BERecipe> {
     public static final MapCodec<BERecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             BlockState.CODEC.fieldOf("state").forGetter(BERecipe::getInputState),
             Ingredient.CODEC.fieldOf("ingredient").forGetter(BERecipe::getInputItem),
-            ItemStack.CODEC.fieldOf("result").forGetter(BERecipe::getResult),
+            //ItemStack.CODEC.fieldOf("result").forGetter(BERecipe::getResult),
             BlockState.CODEC.fieldOf("result_state").forGetter(BERecipe::getResultState)
     ).apply(inst, BERecipe::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, BERecipe> STREAM_CODEC =
             StreamCodec.composite(
                     ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::getInputState,
                     Ingredient.CONTENTS_STREAM_CODEC, BERecipe::getInputItem,
-                    ItemStack.STREAM_CODEC, BERecipe::getResult,
+                    //ItemStack.STREAM_CODEC, BERecipe::getResult,
                     ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::getResultState,
                     BERecipe::new
             );

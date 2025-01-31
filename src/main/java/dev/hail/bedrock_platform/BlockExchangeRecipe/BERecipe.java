@@ -26,13 +26,13 @@ public class BERecipe implements Recipe<BERInput> {
     // Note that we now use an ingredient instead of an item stack for the input.
     private final BlockState inputState;
     private final Ingredient inputItem;
-    private final ItemStack result;
+    //private final ItemStack result;
     private final BlockState resultState;
     // Add a constructor that sets all properties.
-    public BERecipe(BlockState inputState, Ingredient inputItem, ItemStack result, BlockState resultState) {
+    public BERecipe(BlockState inputState, Ingredient inputItem, BlockState resultState) {
         this.inputState = inputState;
         this.inputItem = inputItem;
-        this.result = result;
+        //this.result = result;
         this.resultState = resultState;
     }
     @Override
@@ -50,12 +50,12 @@ public class BERecipe implements Recipe<BERInput> {
         return this.inputState == input.state() && this.inputItem.test(input.stack());
     }
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
-        return this.result;
+    public ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
+        return null;
     }
     @Override
-    public @NotNull ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
-        return this.result.copy();
+    public ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
+        return null;
     }
     public @NotNull BlockState assembleBlock(@NotNull BERInput input, HolderLookup.@NotNull Provider registries){
         return this.resultState;
@@ -73,9 +73,6 @@ public class BERecipe implements Recipe<BERInput> {
         return inputItem;
     }
 
-    public ItemStack getResult() {
-        return result;
-    }
     public BlockState getResultState() {
         return inputState;
     }

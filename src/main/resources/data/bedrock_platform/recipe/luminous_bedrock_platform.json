@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:bedrock_platform"
+  },
+  "ingredient": {
+    "item": "minecraft:nether_star"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:luminous_bedrock_platform"
+  }
+}

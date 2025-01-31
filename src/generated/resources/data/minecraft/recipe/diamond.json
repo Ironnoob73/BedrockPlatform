@@ -7,6 +7,9 @@
     "count": 1,
     "id": "minecraft:diamond"
   },
+  "result_state": {
+    "Name": "minecraft:dirt"
+  },
   "state": {
     "Name": "minecraft:dirt"
   }

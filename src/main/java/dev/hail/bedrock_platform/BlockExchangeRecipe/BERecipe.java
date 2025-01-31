@@ -11,8 +11,10 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -25,12 +27,13 @@ public class BERecipe implements Recipe<BERInput> {
     private final BlockState inputState;
     private final Ingredient inputItem;
     private final ItemStack result;
-
+    private final BlockState resultState;
     // Add a constructor that sets all properties.
-    public BERecipe(BlockState inputState, Ingredient inputItem, ItemStack result) {
+    public BERecipe(BlockState inputState, Ingredient inputItem, ItemStack result, BlockState resultState) {
         this.inputState = inputState;
         this.inputItem = inputItem;
         this.result = result;
+        this.resultState = resultState;
     }
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
@@ -54,6 +57,9 @@ public class BERecipe implements Recipe<BERInput> {
     public @NotNull ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
         return this.result.copy();
     }
+    public @NotNull BlockState assembleBlock(@NotNull BERInput input, HolderLookup.@NotNull Provider registries){
+        return this.resultState;
+    }
     @Override
     public RecipeType<?> getType() {
         return BLOCK_EXCHANGE.get();
@@ -69,6 +75,9 @@ public class BERecipe implements Recipe<BERInput> {
 
     public ItemStack getResult() {
         return result;
+    }
+    public BlockState getResultState() {
+        return inputState;
     }
     @Override
     public RecipeSerializer<?> getSerializer() {

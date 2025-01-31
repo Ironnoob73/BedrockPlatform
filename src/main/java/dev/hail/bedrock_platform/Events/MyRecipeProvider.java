@@ -24,7 +24,8 @@ public class MyRecipeProvider extends RecipeProvider {
                 // Our constructor parameters. This example adds the ever-popular dirt -> diamond conversion.
                 new ItemStack(Items.DIAMOND),
                 Blocks.DIRT.defaultBlockState(),
-                Ingredient.of(Items.APPLE)
+                Ingredient.of(Items.APPLE),
+                Blocks.GLASS.defaultBlockState()
         )
                 .unlockedBy("has_apple", has(Items.APPLE))
                 .save(output);

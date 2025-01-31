@@ -10,13 +10,18 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.valueproviders.UniformInt;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
@@ -35,6 +40,7 @@ public class BPEvents {
         BlockState blockState = level.getBlockState(pos);
         ItemStack itemStack = context.getItemInHand();
         RecipeManager recipes = level.getRecipeManager();
+        Player player = event.getPlayer();
         //if (itemStack.is(Items.NETHERITE_SCRAP) && level.getBlockState(pos).is(Blocks.BEDROCK)){
         //    blockExchange(BPBlocks.BEDROCK_PLATFORM.get().defaultBlockState(),player,blockpos,itemstack,level,event);
         //}
@@ -50,17 +56,23 @@ public class BPEvents {
                 .map(RecipeHolder::value)
                 .map(e -> e.assemble(input, level.registryAccess()))
                 .orElse(ItemStack.EMPTY);
+        BlockState resultState = optional
+                .map(RecipeHolder::value)
+                .map(e -> e.assembleBlock(input, level.registryAccess()))
+                .orElse(Blocks.STONE.defaultBlockState());
         // If there is a result, break the block and drop the result in the world.
-        if (!result.isEmpty()) {
-            level.removeBlock(pos, false);
+        if (!resultState.isEmpty()) {
+            if (player != null && !player.isCreative())
+                player.getItemInHand(InteractionHand.MAIN_HAND).consume(1,player);
+            level.setBlock(pos, resultState,11);
             // If the level is not a server level, don't spawn the entity.
-            if (!level.isClientSide()) {
-                ItemEntity entity = new ItemEntity(level,
+            //if (!level.isClientSide()) {
+            //    ItemEntity entity = new ItemEntity(level,
                         // Center of pos.
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        result);
-                level.addFreshEntity(entity);
-            }
+            //            pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+            //            result);
+            //    level.addFreshEntity(entity);
+            //}
             // Cancel the event to stop the interaction pipeline.
             event.cancelWithResult(ItemInteractionResult.sidedSuccess(level.isClientSide));
         }

@@ -1,12 +1,15 @@
 {
   "type": "bedrock_platform:block_exchange",
   "state": {
-    "Name": "bedrock_platform:bedrock_platform"
+    "Name": "minecraft:bedrock"
   },
   "ingredient": {
-    "item": "minecraft:stick"
+    "item": "minecraft:netherite_scrap"
   },
   "result": {
-    "id": "bedrock_platform:obsidian_wrench"
+    "id": "minecraft:stick"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:bedrock_platform"
   }
 }

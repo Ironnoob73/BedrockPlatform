@@ -2,6 +2,7 @@
   "bedrock_platform.name": "基岩平台",
 
   "item.bedrock_platform.obsidian_wrench": "湮灭扳手",
+  "item.bedrock_platform.obsidian_wrench.des": "用于破坏大部分功能性和方块和本模组提供的不可破坏方块。【直接右键方块】尝试将本模组转化后的方块还原为原版方块并返还原料，【潜行右键方块】尝试破坏并获取方块。可以附魔精准采集以破坏如末影箱需要精准采集获得的方块。被熔岩烧毁等行为破坏时会返还哭泣黑耀石、末地水晶、幽匿尖啸体各一个。",
 
   "block.bedrock_platform.bedrock_platform": "基岩平台",
   "block.bedrock_platform.luminous_bedrock_platform": "流光基岩平台",

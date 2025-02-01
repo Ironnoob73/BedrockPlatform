@@ -90,13 +90,8 @@ public class ObsidianWrench extends Item {
             level.setBlock(pos, resultState,11);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
             ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_REDUCTION.get(), UniformInt.of(1, 1));
-            if (!level.isClientSide()) {
-                ItemEntity entity = new ItemEntity(level,
-                        // Center of pos.
-                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
-                        result);
-                level.addFreshEntity(entity);
-            }
+            if (!player.isCreative())
+                player.getInventory().placeItemBackInInventory(result);
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;

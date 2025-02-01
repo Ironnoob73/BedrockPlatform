@@ -2,6 +2,7 @@
   "bedrock_platform.name": "Bedrock Platform",
 
   "item.bedrock_platform.obsidian_wrench": "Oblivion Wrench",
+  "item.bedrock_platform.obsidian_wrench.des": "Used to destroy most functional blocks and indestructible blocks provided by this mod. [Directly right-click the block] attempts to restore the blocks converted by this mod to the original blocks and return the raw materials. [Sneak right-click the block] attempts to destroy and obtain the block. You can enchant Silk Touch to destroy blocks such as Ender Chests that require Silk Touch. When destroyed by lava burning or other actions, one Crying Obsidian, one End Crystal, and one Sculk Shrieker will be returned.",
 
   "block.bedrock_platform.bedrock_platform": "Bedrock Platform",
   "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",

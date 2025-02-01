@@ -1,15 +1,15 @@
 package dev.hail.bedrock_platform;
 
+import com.mojang.logging.LogUtils;
 import dev.hail.bedrock_platform.BlockExchangeRecipe.BERSerializer;
 import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
+import dev.hail.bedrock_platform.BlockReductionRecipe.BRRSerializer;
+import dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
-import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
-
-import net.minecraft.client.Minecraft;
+import dev.hail.bedrock_platform.Particle.BPParticles;
+import dev.hail.bedrock_platform.Particle.BlockExchangeParticle;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -24,10 +24,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.slf4j.Logger;
 
 @Mod(BedrockPlatform.MODID)
 public class BedrockPlatform
@@ -54,8 +56,12 @@ public class BedrockPlatform
         BPItems.ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
+        BPParticles.PARTICLE_TYPES.register(modEventBus);
+
         BERecipe.RECIPE_TYPES.register(modEventBus);
         BERSerializer.RECIPE_SERIALIZERS.register(modEventBus);
+        BRRecipe.RECIPE_TYPES.register(modEventBus);
+        BRRSerializer.RECIPE_SERIALIZERS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new BPEvents());
@@ -78,15 +84,18 @@ public class BedrockPlatform
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        LOGGER.info("HELLO from server starting");
     }
-
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+        }
+        @SubscribeEvent
+        public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(BPParticles.BLOCK_EXCHANGE.get(), BlockExchangeParticle.BlockExchangeParticleProvider::new);
+            event.registerSpriteSet(BPParticles.BLOCK_REDUCTION.get(), BlockExchangeParticle.BlockReductionParticleProvider::new);
         }
     }
 }

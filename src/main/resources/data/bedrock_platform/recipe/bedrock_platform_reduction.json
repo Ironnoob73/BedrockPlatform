@@ -1,0 +1,16 @@
+{
+  "type": "bedrock_platform:block_reduction",
+  "state": {
+    "Name": "bedrock_platform:bedrock_platform"
+  },
+  "ingredient": {
+    "item": "bedrock_platform:obsidian_wrench"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:netherite_scrap"
+  },
+  "result_state": {
+    "Name": "minecraft:bedrock"
+  }
+}

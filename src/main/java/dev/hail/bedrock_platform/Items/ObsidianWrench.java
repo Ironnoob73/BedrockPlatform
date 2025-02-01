@@ -1,10 +1,10 @@
 package dev.hail.bedrock_platform.Items;
 
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERInput;
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
+import dev.hail.bedrock_platform.BlockReductionRecipe.BRRInput;
+import dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Data.BPTags;
+import dev.hail.bedrock_platform.Particle.BPParticles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -19,7 +19,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.ItemUtils;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -32,13 +31,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.Optional;
 
-import static dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe.BLOCK_EXCHANGE;
+import static dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe.BLOCK_REDUCTION;
 
 public class ObsidianWrench extends Item {
     public ObsidianWrench(Properties pProperties) {
         super(pProperties);
     }
-
     public @NotNull InteractionResult useOn(UseOnContext context) {
         Player player = context.getPlayer();
         BlockState state = context.getLevel()
@@ -47,9 +45,9 @@ public class ObsidianWrench extends Item {
         if (player!=null){
             if (player.isShiftKeyDown() && state.is(BPTags.OBSIDIAN_WRENCH_CAN_REMOVE)){
                 return onRemove(context);
-            }/*else if (!player.isShiftKeyDown()){
-                return onReExchange(context);
-            }*/
+            }else if (!player.isShiftKeyDown()){
+                return onReduction(context);
+            }
         }
         return super.useOn(context);
     }
@@ -63,38 +61,47 @@ public class ObsidianWrench extends Item {
         if (player != null && !player.isCreative())
             Block.getDrops(state, (ServerLevel) world, pos, world.getBlockEntity(pos), player, context.getItemInHand())
                     .forEach(itemStack -> player.getInventory().placeItemBackInInventory(itemStack));
+        ParticleUtils.spawnParticlesOnBlockFaces(world, pos, BPParticles.BLOCK_REDUCTION.get(), UniformInt.of(1, 1));
         state.spawnAfterBreak((ServerLevel) world, pos, ItemStack.EMPTY, context.getItemInHand().getEnchantmentLevel(world.holderOrThrow(Enchantments.SILK_TOUCH))==0);
         world.destroyBlock(pos, false);
         return InteractionResult.SUCCESS;
     }
-    /*private  InteractionResult onReExchange(UseOnContext context){
+    private  InteractionResult onReduction(UseOnContext context){
         Player player = context.getPlayer();
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
         ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
         RecipeManager recipes = level.getRecipeManager();
-        BERInput input = new BERInput(state, itemStack);
-        Optional<RecipeHolder<BERecipe>> optional = recipes.getRecipeFor(
-                // The recipe type.
-                BLOCK_EXCHANGE.get(),
+        BRRInput input = new BRRInput(state,itemStack);
+        Optional<RecipeHolder<BRRecipe>> optional = recipes.getRecipeFor(
+                BLOCK_REDUCTION.get(),
                 input,
                 level
         );
         BlockState resultState = optional
                 .map(RecipeHolder::value)
-                .map(e -> e.assembleBlock(input, level.registryAccess()))
+                .map(e -> e.assembleBlock(level.registryAccess()))
                 .orElse(null);
-        // If there is a result, break the block and drop the result in the world.
-        if (resultState != null) {
-            if (player != null && !player.isCreative() && itemStack.getMaxStackSize() != 1)
-                itemStack.consume(1,player);
+        ItemStack result = optional
+                .map(RecipeHolder::value)
+                .map(e -> e.assemble(input, level.registryAccess()))
+                .orElse(ItemStack.EMPTY);
+        if (resultState != null && !result.isEmpty()) {
             level.setBlock(pos, resultState,11);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
-            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.SCRAPE, UniformInt.of(3, 5));
+            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_REDUCTION.get(), UniformInt.of(1, 1));
+            if (!level.isClientSide()) {
+                ItemEntity entity = new ItemEntity(level,
+                        // Center of pos.
+                        pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5,
+                        result);
+                level.addFreshEntity(entity);
+            }
+            return InteractionResult.SUCCESS;
         }
-        return InteractionResult.SUCCESS;
-    }*/
+        return InteractionResult.PASS;
+    }
 
     public boolean isEnchantable(@NotNull ItemStack itemstack) {
         return true;

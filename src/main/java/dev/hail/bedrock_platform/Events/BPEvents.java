@@ -2,26 +2,23 @@ package dev.hail.bedrock_platform.Events;
 
 import dev.hail.bedrock_platform.BlockExchangeRecipe.BERInput;
 import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
-import net.minecraft.advancements.CriteriaTriggers;
+import dev.hail.bedrock_platform.Particle.BPParticles;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.ItemInteractionResult;
-import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.world.item.crafting.*;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
@@ -54,7 +51,7 @@ public class BPEvents {
         );
         BlockState resultState = optional
                 .map(RecipeHolder::value)
-                .map(e -> e.assembleBlock(input, level.registryAccess()))
+                .map(e -> e.assembleBlock(level.registryAccess()))
                 .orElse(null);
         // If there is a result, break the block and drop the result in the world.
         if (resultState != null) {
@@ -62,7 +59,7 @@ public class BPEvents {
                 itemStack.consume(1,player);
             level.setBlock(pos, resultState,11);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
-            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, ParticleTypes.SCRAPE, UniformInt.of(3, 5));
+            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_EXCHANGE.get(), UniformInt.of(1, 1));
             event.cancelWithResult(ItemInteractionResult.sidedSuccess(level.isClientSide));
         }
     }

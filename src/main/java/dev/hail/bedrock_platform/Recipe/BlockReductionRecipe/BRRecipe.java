@@ -1,9 +1,8 @@
-package dev.hail.bedrock_platform.BlockExchangeRecipe;
+package dev.hail.bedrock_platform.Recipe.BlockReductionRecipe;
 
 import dev.hail.bedrock_platform.BedrockPlatform;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
-import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -18,18 +17,20 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public class BERecipe implements Recipe<BERInput> {
+public class BRRecipe implements Recipe<BRRInput> {
     // https://docs.neoforged.net/docs/1.21.1/resources/server/recipes/#custom-recipes
     // An in-code representation of our recipe data. This can be basically anything you want.
     // Common things to have here is a processing time integer of some kind, or an experience reward.
     // Note that we now use an ingredient instead of an item stack for the input.
     private final BlockState inputState;
     private final Ingredient inputItem;
+    private final ItemStack result;
     private final BlockState resultState;
     // Add a constructor that sets all properties.
-    public BERecipe(BlockState inputState, Ingredient inputItem, BlockState resultState) {
+    public BRRecipe(BlockState inputState, Ingredient inputItem, ItemStack result, BlockState resultState) {
         this.inputState = inputState;
         this.inputItem = inputItem;
+        this.result = result;
         this.resultState = resultState;
     }
     @Override
@@ -43,23 +44,23 @@ public class BERecipe implements Recipe<BERInput> {
         return width * height >= 1;
     }
     @Override
-    public boolean matches(BERInput input, @NotNull Level level) {
-        return this.inputState == input.state() && this.inputItem.test(input.stack());
+    public boolean matches(@NotNull BRRInput input, @NotNull Level level) {
+        return this.inputState == input.state();
     }
     @Override
-    public ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
-        return null;
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
+        return this.result;
     }
     @Override
-    public ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
-        return null;
+    public @NotNull ItemStack assemble(@NotNull BRRInput input, HolderLookup.@NotNull Provider registries) {
+        return this.result.copy();
     }
-    public @NotNull BlockState assembleBlock(RegistryAccess registryAccess){
+    public @NotNull BlockState assembleBlock(HolderLookup.@NotNull Provider registries){
         return this.resultState;
     }
     @Override
     public RecipeType<?> getType() {
-        return BLOCK_EXCHANGE.get();
+        return BLOCK_REDUCTION.get();
     }
     public BlockState getInputState() {
         return inputState;
@@ -67,22 +68,25 @@ public class BERecipe implements Recipe<BERInput> {
     public Ingredient getInputItem() {
         return inputItem;
     }
+    public ItemStack getResult() {
+        return result;
+    }
     public BlockState getResultState() {
-        return inputState;
+        return resultState;
     }
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return BERSerializer.BLOCK_EXCHANGE.get();
+        return BRRSerializer.BLOCK_REDUCTION.get();
     }
 
     // Register
     public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES =
             DeferredRegister.create(Registries.RECIPE_TYPE, BedrockPlatform.MODID);
 
-    public static final Supplier<RecipeType<BERecipe>> BLOCK_EXCHANGE =
+    public static final Supplier<RecipeType<BRRecipe>> BLOCK_REDUCTION =
             RECIPE_TYPES.register(
-                    "block_ex",
+                    "block_re",
                     // We need the qualifying generic here due to generics being generics.
-                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block_exchange"))
+                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block_reduction"))
             );
 }

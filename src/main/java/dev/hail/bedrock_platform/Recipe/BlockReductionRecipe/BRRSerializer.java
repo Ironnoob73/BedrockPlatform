@@ -1,9 +1,8 @@
-package dev.hail.bedrock_platform.BlockReductionRecipe;
+package dev.hail.bedrock_platform.Recipe.BlockReductionRecipe;
 
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import dev.hail.bedrock_platform.BedrockPlatform;
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.RegistryFriendlyByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

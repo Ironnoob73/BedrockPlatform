@@ -1,12 +1,9 @@
 package dev.hail.bedrock_platform.Events;
 
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERInput;
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERInput;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleOptions;
-import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
@@ -25,7 +22,7 @@ import net.neoforged.neoforge.event.entity.player.UseItemOnBlockEvent;
 
 import java.util.Optional;
 
-import static dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe.BLOCK_EXCHANGE;
+import static dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe.BLOCK_EXCHANGE;
 
 public class BPEvents {
     @SubscribeEvent

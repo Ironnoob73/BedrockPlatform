@@ -29,22 +29,6 @@ public class BlockExchangeParticle extends TextureSheetParticle {
     public int getLightColor(float pPartialTick) {
         return 240;
     }
-    /*@Override
-    public void render(VertexConsumer pBuffer, Camera pRenderInfo, float pPartialTicks) {
-        this.alpha = 1.0F - Mth.clamp(((float)this.age + pPartialTicks) / (float)this.lifetime, 0.0F, 1.0F);
-        Quaternionf quaternionf = new Quaternionf();
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-        quaternionf.rotationY((float) -Math.PI);
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-        quaternionf.rotationX((float) Math.PI/2);
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-        quaternionf.rotationX((float) -Math.PI/2);
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-        quaternionf.rotationY((float) Math.PI/2);
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-        quaternionf.rotationY((float) -Math.PI/2);
-        this.renderRotatedQuad(pBuffer, pRenderInfo, quaternionf, pPartialTicks);
-    }*/
     @Override
     public void tick() {
         this.alpha -= 0.025F;

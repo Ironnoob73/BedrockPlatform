@@ -1,11 +1,10 @@
 package dev.hail.bedrock_platform.Items;
 
-import dev.hail.bedrock_platform.BlockReductionRecipe.BRRInput;
-import dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRInput;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Data.BPTags;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -31,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Collections;
 import java.util.Optional;
 
-import static dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe.BLOCK_REDUCTION;
+import static dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe.BLOCK_REDUCTION;
 
 public class ObsidianWrench extends Item {
     public ObsidianWrench(Properties pProperties) {

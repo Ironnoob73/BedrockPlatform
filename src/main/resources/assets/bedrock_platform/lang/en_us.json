@@ -7,5 +7,8 @@
   "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",
   "block.bedrock_platform.twill_bedrock_platform": "Twill Bedrock Platform",
 
-  "item.bedrock_platform.sculk_rib": "Sculk Rib"
+  "item.bedrock_platform.sculk_rib": "Sculk Rib",
+
+  "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
+  "recipe.bedrock_platform.block_reduction.title": "Block Reduction"
 }

@@ -1,10 +1,10 @@
 package dev.hail.bedrock_platform;
 
 import com.mojang.logging.LogUtils;
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERSerializer;
-import dev.hail.bedrock_platform.BlockExchangeRecipe.BERecipe;
-import dev.hail.bedrock_platform.BlockReductionRecipe.BRRSerializer;
-import dev.hail.bedrock_platform.BlockReductionRecipe.BRRecipe;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRSerializer;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;

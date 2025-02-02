@@ -1,0 +1,19 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "minecraft:end_portal_frame",
+    "Properties": {
+      "eye": "true",
+      "facing": "west"
+    }
+  },
+  "ingredient": {
+    "item": "bedrock_platform:ghast_tear_glass"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:encapsulated_end_portal_frame",
+    "Properties": {
+      "facing": "west"
+    }
+  }
+}

@@ -1,3 +1,7 @@
 {
-    "parent": "builtin/entity"
+  "parent": "minecraft:block/cube_all",
+  "gui_light": "front",
+  "textures": {
+    "all": "bedrock_platform:item/solid_end_void"
+  }
 }

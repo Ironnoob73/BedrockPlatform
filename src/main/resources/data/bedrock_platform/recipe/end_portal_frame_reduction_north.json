@@ -1,0 +1,19 @@
+{
+  "type": "bedrock_platform:block_reduction",
+  "state": {
+    "Name": "minecraft:end_portal_frame",
+    "Properties": {
+      "eye": "true"
+    }
+  },
+  "ingredient": {
+    "item": "bedrock_platform:obsidian_wrench"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:ender_eye"
+  },
+  "result_state": {
+    "Name": "minecraft:end_portal_frame"
+  }
+}

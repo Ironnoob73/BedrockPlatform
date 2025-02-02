@@ -7,7 +7,12 @@
   "block.bedrock_platform.bedrock_platform": "Bedrock Platform",
   "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",
   "block.bedrock_platform.twill_bedrock_platform": "Twill Bedrock Platform",
+  "block.bedrock_platform.orange_strong_interaction_tile": "Orange Strong Interaction Tile",
+  "block.bedrock_platform.cyan_strong_interaction_tile": "Cyan Strong Interaction Tile",
+  "block.bedrock_platform.purple_strong_interaction_tile": "Purple Strong Interaction Tile",
   "block.bedrock_platform.solid_end_void": "Solid End Void",
+  "block.bedrock_platform.ghast_tear_glass": "Ghast Tear Glass",
+  "block.bedrock_platform.encapsulated_end_portal_frame": "Encapsulated End Portal Frame",
 
   "item.bedrock_platform.sculk_rib": "Sculk Rib",
 

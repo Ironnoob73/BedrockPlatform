@@ -12,6 +12,7 @@ import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import dev.hail.bedrock_platform.Particle.BlockExchangeParticle;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.TheEndGatewayRenderer;
 import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -50,7 +51,12 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BEDROCK_PLATFORM_ITEM.get());
                 output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM_ITEM.get());
                 output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM_ITEM.get());
+                output.accept(BPBlocks.ORANGE_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.CYAN_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.PURPLE_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.SOLID_END_VOID_ITEM.get());
+                output.accept(BPBlocks.GHAST_TEAR_GLASS_ITEM.get());
+                output.accept(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME_ITEM.get());
                 output.accept(BPItems.SCULK_RIB.get());
             }).build());
 

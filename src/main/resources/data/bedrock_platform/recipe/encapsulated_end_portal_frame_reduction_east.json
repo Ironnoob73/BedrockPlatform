@@ -1,0 +1,23 @@
+{
+  "type": "bedrock_platform:block_reduction",
+  "state": {
+    "Name": "bedrock_platform:encapsulated_end_portal_frame",
+    "Properties": {
+      "facing": "east"
+    }
+  },
+  "ingredient": {
+    "item": "bedrock_platform:obsidian_wrench"
+  },
+  "result": {
+    "count": 1,
+    "id": "bedrock_platform:ghast_tear_glass"
+  },
+  "result_state": {
+    "Name": "minecraft:end_portal_frame",
+    "Properties": {
+      "eye": "true",
+      "facing": "east"
+    }
+  }
+}

@@ -57,6 +57,12 @@
 
     "#c:chests",
 
-    "bedrock_platform:bedrock_platform"
+    "bedrock_platform:bedrock_platform",
+    "bedrock_platform:luminous_bedrock_platform",
+    "bedrock_platform:twill_bedrock_platform",
+    "bedrock_platform:orange_strong_interaction_tile",
+    "bedrock_platform:cyan_strong_interaction_tile",
+    "bedrock_platform:purple_strong_interaction_tile",
+    "bedrock_platform:solid_end_void"
   ]
 }

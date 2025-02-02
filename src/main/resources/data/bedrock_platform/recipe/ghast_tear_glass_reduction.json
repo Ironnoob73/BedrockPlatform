@@ -1,0 +1,16 @@
+{
+  "type": "bedrock_platform:block_reduction",
+  "state": {
+    "Name": "bedrock_platform:ghast_tear_glass_platform"
+  },
+  "ingredient": {
+    "item": "bedrock_platform:obsidian_wrench"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:ghast_tear"
+  },
+  "result_state": {
+    "Name": "minecraft:glass"
+  }
+}

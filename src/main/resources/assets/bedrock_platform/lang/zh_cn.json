@@ -7,7 +7,12 @@
   "block.bedrock_platform.bedrock_platform": "基岩平台",
   "block.bedrock_platform.luminous_bedrock_platform": "流光基岩平台",
   "block.bedrock_platform.twill_bedrock_platform": "斜纹基岩平台",
+  "block.bedrock_platform.orange_strong_interaction_tile": "橙色强相互作用地砖",
+  "block.bedrock_platform.cyan_strong_interaction_tile": "青色强相互作用地砖",
+  "block.bedrock_platform.purple_strong_interaction_tile": "紫色强相互作用地砖",
   "block.bedrock_platform.solid_end_void": "固态终末虚空",
+  "block.bedrock_platform.ghast_tear_glass": "恶魂之泪玻璃",
+  "block.bedrock_platform.encapsulated_end_portal_frame": "封装的末地传送门框架",
 
   "item.bedrock_platform.sculk_rib": "幽匿肋骨",
 

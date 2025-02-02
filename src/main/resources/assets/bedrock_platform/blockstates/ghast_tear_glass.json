@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/ghast_tear_glass"
+    }
+  }
+}

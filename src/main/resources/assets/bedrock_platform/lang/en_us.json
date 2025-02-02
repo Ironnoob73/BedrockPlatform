@@ -16,6 +16,14 @@
 
   "item.bedrock_platform.sculk_rib": "Sculk Rib",
 
+  "block.bedrock_platform.red_strong_interaction_tile": "Red Strong Interaction Tile",
+  "block.bedrock_platform.yellow_strong_interaction_tile": "Yellow Strong Interaction Tile",
+  "block.bedrock_platform.green_strong_interaction_tile": "Green Strong Interaction Tile",
+  "block.bedrock_platform.blue_strong_interaction_tile": "Blue Strong Interaction Tile",
+  "block.bedrock_platform.white_strong_interaction_tile": "White Strong Interaction Tile",
+  "block.bedrock_platform.gray_strong_interaction_tile": "Gray Strong Interaction Tile",
+  "block.bedrock_platform.black_strong_interaction_tile": "Black Strong Interaction Tile",
+
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction"
 }

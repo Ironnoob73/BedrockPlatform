@@ -63,6 +63,13 @@
     "bedrock_platform:orange_strong_interaction_tile",
     "bedrock_platform:cyan_strong_interaction_tile",
     "bedrock_platform:purple_strong_interaction_tile",
-    "bedrock_platform:solid_end_void"
+    "bedrock_platform:solid_end_void",
+    "bedrock_platform:red_strong_interaction_tile",
+    "bedrock_platform:yellow_strong_interaction_tile",
+    "bedrock_platform:green_strong_interaction_tile",
+    "bedrock_platform:blue_strong_interaction_tile",
+    "bedrock_platform:white_strong_interaction_tile",
+    "bedrock_platform:gray_strong_interaction_tile",
+    "bedrock_platform:black_strong_interaction_tile"
   ]
 }

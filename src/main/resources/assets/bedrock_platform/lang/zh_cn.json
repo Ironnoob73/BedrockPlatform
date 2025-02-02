@@ -16,6 +16,14 @@
 
   "item.bedrock_platform.sculk_rib": "幽匿肋骨",
 
+  "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
+  "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",
+  "block.bedrock_platform.green_strong_interaction_tile": "绿色强相互作用地砖",
+  "block.bedrock_platform.blue_strong_interaction_tile": "蓝色强相互作用地砖",
+  "block.bedrock_platform.white_strong_interaction_tile": "白色强相互作用地砖",
+  "block.bedrock_platform.gray_strong_interaction_tile": "灰色强相互作用地砖",
+  "block.bedrock_platform.black_strong_interaction_tile": "黑色强相互作用地砖",
+
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原"
 }

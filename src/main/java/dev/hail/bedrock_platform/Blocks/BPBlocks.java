@@ -104,9 +104,58 @@ public class BPBlocks {
 
     public static final DeferredBlock<Block> ENCAPSULATED_END_PORTAL_FRAME = BLOCKS.register("encapsulated_end_portal_frame",()->new EncapsulatedEndPortalFrame(
             BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.STONE)
+                    .mapColor(MapColor.COLOR_PURPLE)
                     .strength(-1.0F, 3600000.0F)
                     .isValidSpawn(Blocks::never)));
     public static final DeferredItem<BlockItem> ENCAPSULATED_END_PORTAL_FRAME_ITEM = BPItems.ITEMS.registerSimpleBlockItem("encapsulated_end_portal_frame", ENCAPSULATED_END_PORTAL_FRAME, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> RED_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("red_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_RED)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> RED_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("red_strong_interaction_tile", RED_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> YELLOW_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("yellow_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> YELLOW_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("yellow_strong_interaction_tile", YELLOW_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> GREEN_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("green_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_GREEN)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> GREEN_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("green_strong_interaction_tile", GREEN_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> BLUE_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("blue_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_BLUE)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> BLUE_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("blue_strong_interaction_tile", BLUE_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> WHITE_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("white_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> WHITE_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("white_strong_interaction_tile", WHITE_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> GRAY_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("gray_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_GRAY)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> GRAY_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("gray_strong_interaction_tile", GRAY_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> BLACK_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("black_strong_interaction_tile",
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.TERRACOTTA_BLACK)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never));
+    public static final DeferredItem<BlockItem> BLACK_STRONG_INTERACTION_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("black_strong_interaction_tile", BLACK_STRONG_INTERACTION_TILE, new Item.Properties().rarity(Rarity.RARE));
 
 }

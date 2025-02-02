@@ -58,6 +58,13 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GHAST_TEAR_GLASS_ITEM.get());
                 output.accept(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME_ITEM.get());
                 output.accept(BPItems.SCULK_RIB.get());
+                output.accept(BPBlocks.RED_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.YELLOW_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.GREEN_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.BLUE_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.WHITE_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.GRAY_STRONG_INTERACTION_TILE_ITEM.get());
+                output.accept(BPBlocks.BLACK_STRONG_INTERACTION_TILE_ITEM.get());
             }).build());
 
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)

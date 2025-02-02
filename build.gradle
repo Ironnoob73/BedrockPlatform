@@ -57,7 +57,16 @@ runs {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+sourceSets {
+    main {
+        java {
+            exclude 'dev/hail/bedrock_platform/_datagen/**'
+            }
+        resources {
+            srcDir 'src/generated/resources'
+        }
+    }
+}
 
 configurations {
     runtimeClasspath.extendsFrom localRuntime

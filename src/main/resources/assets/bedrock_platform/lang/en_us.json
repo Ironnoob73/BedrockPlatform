@@ -28,8 +28,10 @@
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 
-  "bedrock_platform.configuration.solidVoidRenderEndPortal": "Solid End Void Render End Portal",
-  "bedrock_platform.configuration.solidVoidRenderEndPortal.tooltip": "Renders the Solid End Void using the End Portal visual effect. If disabled, the block model will be used instead. Disable this option if it conflicts with other Renderers. Requires reloading resources.",
+  "death.attack.strongInteractionExplosion": "%1$s dedicated his life to the use of strong interacting materials.",
+
+  "bedrock_platform.configuration.solid_void_render_end_portal": "Solid End Void Render End Portal",
+  "bedrock_platform.configuration.solid_void_render_end_portal.tooltip": "Renders the Solid End Void using the End Portal visual effect. If disabled, the block model will be used instead. Disable this option if it conflicts with other Renderers. Requires reloading resources.",
 
   "pack.bp_fusion.name": "BP - Fusion support",
   "pack.bp_fusion.des": "Need Fusion installed",

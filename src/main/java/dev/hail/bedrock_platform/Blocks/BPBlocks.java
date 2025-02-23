@@ -108,6 +108,7 @@ public class BPBlocks {
     public static final DeferredBlock<Block> ENCAPSULATED_END_PORTAL_FRAME = BLOCKS.register("encapsulated_end_portal_frame",()->new EncapsulatedEndPortalFrame(
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
+                    .sound(SoundType.GLASS)
                     .noOcclusion()
                     .strength(-1.0F, 3600000.0F)
                     .isValidSpawn(Blocks::never)));

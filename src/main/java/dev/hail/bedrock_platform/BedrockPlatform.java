@@ -89,7 +89,9 @@ public class BedrockPlatform
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new BPEvents());
 
-        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC_C);
+        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC_S);
         modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 

@@ -28,8 +28,10 @@
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 
-  "bedrock_platform.configuration.solidVoidRenderEndPortal": "固态终末虚空渲染末地传送门",
-  "bedrock_platform.configuration.solidVoidRenderEndPortal.tooltip": "使用末地传送门视觉效果渲染固态终末虚空，关闭后将使用方块模型渲染该方块。如果与光影等发生冲突请关闭该选项。需要重载资源。",
+  "death.attack.strongInteractionExplosion": "%1$s为利用强互作用力材料而献身。",
+
+  "bedrock_platform.configuration.solid_void_render_end_portal": "固态终末虚空渲染末地传送门",
+  "bedrock_platform.configuration.solid_void_render_end_portal.tooltip": "使用末地传送门视觉效果渲染固态终末虚空，关闭后将使用方块模型渲染该方块。如果与光影等发生冲突请关闭该选项。需要重载资源。",
 
   "pack.bp_fusion.name": "基岩平台 - Fusion 支持",
   "pack.bp_fusion.des": "Fusion纹理连接支持。需要安装Fusion",

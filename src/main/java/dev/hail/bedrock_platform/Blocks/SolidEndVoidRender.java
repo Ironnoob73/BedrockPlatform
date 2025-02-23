@@ -2,6 +2,7 @@ package dev.hail.bedrock_platform.Blocks;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.hail.bedrock_platform.Config;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
@@ -16,7 +17,8 @@ public class SolidEndVoidRender implements BlockEntityRenderer<SolidEndVoidBE> {
     @Override
     public void render(@NotNull SolidEndVoidBE blockEntity, float partialTick, PoseStack stack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         Matrix4f matrix4f = stack.last().pose();
-        this.renderCube(blockEntity, matrix4f, bufferSource.getBuffer(this.renderType()));
+        if (Config.solidVoidRenderEndPortal)
+            this.renderCube(blockEntity, matrix4f, bufferSource.getBuffer(this.renderType()));
     }
 
     private void renderCube(SolidEndVoidBE pBlockEntity, Matrix4f pPose, VertexConsumer pConsumer) {

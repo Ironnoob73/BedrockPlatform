@@ -1,0 +1,56 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/block",
+	"textures": {
+		"0": "bedrock_platform:block/sculk_rib_block_side",
+		"1": "bedrock_platform:block/sculk_rib_block_top",
+		"2": "bedrock_platform:block/sculk_rib_block_bottom",
+		"particle": "bedrock_platform:block/sculk_rib_block_side"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [5, 16, 11],
+			"faces": {
+				"north": {"uv": [11, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [5, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 11, 16], "texture": "#0"},
+				"up": {"uv": [0, 0, 5, 11], "texture": "#1"},
+				"down": {"uv": [0, 5, 5, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [5, 0, 0],
+			"to": [16, 16, 5],
+			"faces": {
+				"north": {"uv": [0, 0, 11, 16], "texture": "#0"},
+				"east": {"uv": [11, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [5, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [5, 0, 16, 5], "texture": "#1"},
+				"down": {"uv": [5, 11, 16, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [0, 0, 11],
+			"to": [11, 16, 16],
+			"faces": {
+				"north": {"uv": [5, 0, 16, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 11, 16], "texture": "#0"},
+				"west": {"uv": [11, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [0, 11, 11, 16], "texture": "#1"},
+				"down": {"uv": [0, 0, 11, 5], "texture": "#2"}
+			}
+		},
+		{
+			"from": [11, 0, 5],
+			"to": [16, 16, 16],
+			"faces": {
+				"east": {"uv": [0, 0, 11, 16], "texture": "#0"},
+				"south": {"uv": [11, 0, 16, 16], "texture": "#0"},
+				"west": {"uv": [5, 0, 16, 16], "texture": "#0"},
+				"up": {"uv": [11, 5, 16, 16], "texture": "#1"},
+				"down": {"uv": [11, 0, 16, 11], "texture": "#2"}
+			}
+		}
+	]
+}

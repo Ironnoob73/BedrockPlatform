@@ -1,5 +1,6 @@
 package dev.hail.bedrock_platform.Blocks;
 
+import dev.hail.bedrock_platform.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;

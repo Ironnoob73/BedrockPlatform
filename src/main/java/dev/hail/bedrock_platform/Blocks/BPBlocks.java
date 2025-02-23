@@ -9,10 +9,12 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -93,6 +95,7 @@ public class BPBlocks {
 
     public static final DeferredBlock<Block> GHAST_TEAR_GLASS = BLOCKS.register("ghast_tear_glass",()->new TransparentBlock(
             BlockBehaviour.Properties.ofLegacyCopy(Blocks.GLASS)
+                    .instrument(NoteBlockInstrument.HAT)
                     .mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()
                     .lightLevel(l->7)
@@ -105,9 +108,21 @@ public class BPBlocks {
     public static final DeferredBlock<Block> ENCAPSULATED_END_PORTAL_FRAME = BLOCKS.register("encapsulated_end_portal_frame",()->new EncapsulatedEndPortalFrame(
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.COLOR_PURPLE)
+                    .noOcclusion()
                     .strength(-1.0F, 3600000.0F)
                     .isValidSpawn(Blocks::never)));
     public static final DeferredItem<BlockItem> ENCAPSULATED_END_PORTAL_FRAME_ITEM = BPItems.ITEMS.registerSimpleBlockItem("encapsulated_end_portal_frame", ENCAPSULATED_END_PORTAL_FRAME, new Item.Properties().rarity(Rarity.RARE));
+
+    public static final DeferredBlock<Block> SCULK_RIB_BLOCK = BLOCKS.register("sculk_rib_block",()->new SculkRibBlock(
+            BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.SAND)
+                    .instrument(NoteBlockInstrument.XYLOPHONE)
+                    .requiresCorrectToolForDrops()
+                    .strength(55.0F, 1200.0F)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.BONE_BLOCK)
+                    .isValidSpawn(Blocks::never)));
+    public static final DeferredItem<BlockItem> SCULK_RIB_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("sculk_rib_block", SCULK_RIB_BLOCK);
 
     public static final DeferredBlock<Block> RED_STRONG_INTERACTION_TILE = BLOCKS.registerSimpleBlock("red_strong_interaction_tile",
             BlockBehaviour.Properties.of()

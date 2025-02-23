@@ -1,0 +1,13 @@
+{
+    "pack": {
+        "pack_format": 34,
+        "description": [
+            {
+                "translate": "pack.bp_fusion.des"
+            }
+        ]
+    },
+    "fusion": {
+        "overrides_folder": "fusion"
+    }
+}

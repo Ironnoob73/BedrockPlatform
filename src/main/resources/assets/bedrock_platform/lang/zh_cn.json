@@ -15,6 +15,7 @@
   "block.bedrock_platform.encapsulated_end_portal_frame": "封装的末地传送门框架",
 
   "item.bedrock_platform.sculk_rib": "幽匿肋骨",
+  "block.bedrock_platform.sculk_rib_block": "幽匿肋骨块",
 
   "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
   "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",
@@ -25,5 +26,15 @@
   "block.bedrock_platform.black_strong_interaction_tile": "黑色强相互作用地砖",
 
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
-  "recipe.bedrock_platform.block_reduction.title": "方块还原"
+  "recipe.bedrock_platform.block_reduction.title": "方块还原",
+
+  "bedrock_platform.configuration.solidVoidRenderEndPortal": "固态终末虚空渲染末地传送门",
+  "bedrock_platform.configuration.solidVoidRenderEndPortal.tooltip": "使用末地传送门视觉效果渲染固态终末虚空，关闭后将使用方块模型渲染该方块。如果与光影等发生冲突请关闭该选项。需要重载资源。",
+
+  "pack.bp_fusion.name": "基岩平台 - Fusion 支持",
+  "pack.bp_fusion.des": "Fusion纹理连接支持。需要安装Fusion",
+  "pack.bp_mcpatcher.name": "基岩平台 - Mcpatcher 支持",
+  "pack.bp_mcpatcher.des": "Mcpatcher纹理连接支持。需要安装Optifine或Continuity",
+  "pack.bp_ctm.name": "基岩平台 - CTM 支持",
+  "pack.bp_ctm.des": "CTM纹理连接支持。需要安装ConnectedTexturesMod"
 }

@@ -1,5 +1,8 @@
 {
+  "parent": "minecraft:block/cube_all",
+  "gui_light": "front",
   "textures": {
-    "particle": "minecraft:block/crying_obsidian"
+    "all": "bedrock_platform:block/solid_end_void",
+    "particle": "bedrock_platform:block/solid_end_void"
   }
 }

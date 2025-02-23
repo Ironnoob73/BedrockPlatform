@@ -1,0 +1,22 @@
+{
+  "type": "bedrock_platform:block_reduction",
+  "state": {
+    "Name": "minecraft:sculk_shrieker",
+    "Properties": {
+      "can_summon": "true"
+    }
+  },
+  "ingredient": {
+    "item": "bedrock_platform:obsidian_wrench"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:echo_shard"
+  },
+  "result_state": {
+    "Name": "minecraft:sculk_shrieker",
+    "Properties": {
+      "can_summon": "false"
+    }
+  }
+}

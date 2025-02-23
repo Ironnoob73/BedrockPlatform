@@ -1,25 +1,23 @@
 package dev.hail.bedrock_platform;
 
 import com.mojang.logging.LogUtils;
-import dev.hail.bedrock_platform.Blocks.SolidEndVoidBE;
-import dev.hail.bedrock_platform.Blocks.SolidEndVoidRender;
-import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
-import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
-import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRSerializer;
-import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
+import dev.hail.bedrock_platform.Blocks.SolidEndVoidRender;
 import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import dev.hail.bedrock_platform.Particle.BlockExchangeParticle;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.blockentity.TheEndGatewayRenderer;
-import net.minecraft.client.renderer.blockentity.TheEndPortalRenderer;
-import net.minecraft.core.registries.BuiltInRegistries;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
+import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRSerializer;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.packs.PackType;
+import net.minecraft.server.packs.repository.Pack;
+import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.block.Blocks;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -31,7 +29,10 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.neoforged.neoforge.client.gui.ConfigurationScreen;
+import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -57,6 +58,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.SOLID_END_VOID_ITEM.get());
                 output.accept(BPBlocks.GHAST_TEAR_GLASS_ITEM.get());
                 output.accept(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME_ITEM.get());
+                output.accept(BPBlocks.SCULK_RIB_BLOCK_ITEM.get());
                 output.accept(BPItems.SCULK_RIB.get());
                 output.accept(BPBlocks.RED_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.YELLOW_STRONG_INTERACTION_TILE_ITEM.get());
@@ -70,6 +72,7 @@ public class BedrockPlatform
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)
     {
         modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::packSetup);
 
         BPBlocks.BLOCKS.register(modEventBus);
         BPBlocks.BLOCK_ENTITY_TYPES.register(modEventBus);
@@ -86,19 +89,36 @@ public class BedrockPlatform
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new BPEvents());
 
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC);
+        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
     }
 
+    public void packSetup(AddPackFindersEvent event) {
+        event.addPackFinders(
+                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_fusion"),
+                PackType.CLIENT_RESOURCES,
+                Component.translatable("pack.bp_fusion.name"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP);
+        event.addPackFinders(
+                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_mcpatcher"),
+                PackType.CLIENT_RESOURCES,
+                Component.translatable("pack.bp_mcpatcher.name"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP);
+        event.addPackFinders(
+                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_ctm"),
+                PackType.CLIENT_RESOURCES,
+                Component.translatable("pack.bp_ctm.name"),
+                PackSource.BUILT_IN,
+                false,
+                Pack.Position.TOP);
+
+    }
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        LOGGER.info("HELLO FROM COMMON SETUP");
-
-        if (Config.logDirtBlock)
-            LOGGER.info("DIRT BLOCK >> {}", BuiltInRegistries.BLOCK.getKey(Blocks.DIRT));
-
-        LOGGER.info(Config.magicNumberIntroduction + Config.magicNumber);
-
-        Config.items.forEach((item) -> LOGGER.info("ITEM >> {}", item.toString()));
     }
 
     @SubscribeEvent

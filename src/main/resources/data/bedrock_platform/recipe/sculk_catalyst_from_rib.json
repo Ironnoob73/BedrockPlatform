@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:sculk_rib_block"
+  },
+  "ingredient": {
+    "item": "minecraft:echo_shard"
+  },
+  "result_state": {
+    "Name": "minecraft:sculk_catalyst"
+  }
+}

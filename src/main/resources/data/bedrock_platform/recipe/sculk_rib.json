@@ -3,11 +3,11 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "minecraft:sculk_catalyst"
+      "item": "bedrock_platform:sculk_rib_block"
     }
   ],
   "result": {
-    "count": 9,
+    "count": 8,
     "id": "bedrock_platform:sculk_rib"
   }
 }

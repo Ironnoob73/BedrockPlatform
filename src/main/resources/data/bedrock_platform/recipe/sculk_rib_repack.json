@@ -4,11 +4,14 @@
   "key": {
     "#": {
       "item": "bedrock_platform:sculk_rib"
+    },
+    "@": {
+      "item": "minecraft:echo_shard"
     }
   },
   "pattern": [
     "###",
-    "###",
+    "#@#",
     "###"
   ],
   "result": {

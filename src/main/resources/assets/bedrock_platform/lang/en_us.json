@@ -17,6 +17,8 @@
   "item.bedrock_platform.sculk_rib": "Sculk Rib",
   "block.bedrock_platform.sculk_rib_block": "Sculk Rib Block",
 
+  "item.bedrock_platform.enchant_dust": "Enchant Dust",
+
   "block.bedrock_platform.red_strong_interaction_tile": "Red Strong Interaction Tile",
   "block.bedrock_platform.yellow_strong_interaction_tile": "Yellow Strong Interaction Tile",
   "block.bedrock_platform.green_strong_interaction_tile": "Green Strong Interaction Tile",
@@ -25,6 +27,28 @@
   "block.bedrock_platform.gray_strong_interaction_tile": "Gray Strong Interaction Tile",
   "block.bedrock_platform.black_strong_interaction_tile": "Black Strong Interaction Tile",
 
+  "block.bedrock_platform.red_strong_interaction_block": "Red Strong Interaction Block",
+  "block.bedrock_platform.orange_strong_interaction_block": "Orange Strong Interaction Block",
+  "block.bedrock_platform.yellow_strong_interaction_block": "Yellow Strong Interaction Block",
+  "block.bedrock_platform.green_strong_interaction_block": "Green Strong Interaction Block",
+  "block.bedrock_platform.cyan_strong_interaction_block": "cyan Strong Interaction Block",
+  "block.bedrock_platform.blue_strong_interaction_block": "Blue Strong Interaction Block",
+  "block.bedrock_platform.purple_strong_interaction_block": "Purple Strong Interaction Block",
+  "block.bedrock_platform.white_strong_interaction_block": "White Strong Interaction Block",
+  "block.bedrock_platform.gray_strong_interaction_block": "Gray Strong Interaction Block",
+  "block.bedrock_platform.black_strong_interaction_block": "Black Strong Interaction Block",
+
+  "block.bedrock_platform.red_slick_strong_interaction_block": "Red Slick Strong Interaction Block",
+  "block.bedrock_platform.orange_slick_strong_interaction_block": "Orange Slick Strong Interaction Block",
+  "block.bedrock_platform.yellow_slick_strong_interaction_block": "Yellow Slick Strong Interaction Block",
+  "block.bedrock_platform.green_slick_strong_interaction_block": "Green Slick Strong Interaction Block",
+  "block.bedrock_platform.cyan_slick_strong_interaction_block": "cyan Slick Strong Interaction Block",
+  "block.bedrock_platform.blue_slick_strong_interaction_block": "Blue Slick Strong Interaction Block",
+  "block.bedrock_platform.purple_slick_strong_interaction_block": "Purple Slick Strong Interaction Block",
+  "block.bedrock_platform.white_slick_strong_interaction_block": "White Slick Strong Interaction Block",
+  "block.bedrock_platform.gray_slick_strong_interaction_block": "Gray Slick Strong Interaction Block",
+  "block.bedrock_platform.black_slick_strong_interaction_block": "Black Slick Strong Interaction Block",
+
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 
@@ -32,6 +56,10 @@
 
   "bedrock_platform.configuration.solid_void_render_end_portal": "Solid End Void Render End Portal",
   "bedrock_platform.configuration.solid_void_render_end_portal.tooltip": "Renders the Solid End Void using the End Portal visual effect. If disabled, the block model will be used instead. Disable this option if it conflicts with other Renderers. Requires reloading resources.",
+  "bedrock_platform.configuration.strong_interaction_explodes_radius":"Strong Interactions Explodes radius",
+  "bedrock_platform.configuration.strong_interaction_explodes_radius.tooltip":"Defines the destruction range of Strong Interaction Explosions. Too large value may cause performance issues.\nDefault value: 10.0",
+  "bedrock_platform.configuration.strong_interaction_produce_radius":"Strong Interactions Produce radius",
+  "bedrock_platform.configuration.strong_interaction_produce_radius.tooltip":"Defines the range of Strong Interaction Blocks generated during Strong Interaction Explosion. Too large value may cause performance issues.\nDefault value: 5.0",
 
   "pack.bp_fusion.name": "BP - Fusion support",
   "pack.bp_fusion.des": "Need Fusion installed",

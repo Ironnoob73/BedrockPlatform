@@ -1,6 +1,7 @@
 package dev.hail.bedrock_platform.Events;
 
 import com.google.common.collect.Sets;
+import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -168,7 +169,7 @@ public class StrongInteractionExplosion extends Explosion {
     }
     protected void onExplosionHit(BlockState pState, BlockPos pPos) {
         if (pState.isAir()) {
-            level.setBlock(pPos, Blocks.NETHERITE_BLOCK.defaultBlockState(), 3);
+            level.setBlock(pPos, BPBlocks.BLACK_STRONG_INTERACTION_BLOCK.get().defaultBlockState(), 3);
         }
     }
 }

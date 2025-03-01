@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/orange_strong_interaction_block"
+    }
+  }
+}

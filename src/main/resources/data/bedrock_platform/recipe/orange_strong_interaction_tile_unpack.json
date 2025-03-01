@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bedrock_platform:orange_strong_interaction_tile"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "id": "bedrock_platform:orange_strong_interaction_block"
+  }
+}

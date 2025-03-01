@@ -17,6 +17,8 @@
   "item.bedrock_platform.sculk_rib": "幽匿肋骨",
   "block.bedrock_platform.sculk_rib_block": "幽匿肋骨块",
 
+  "item.bedrock_platform.enchant_dust": "附魔尘",
+
   "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
   "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",
   "block.bedrock_platform.green_strong_interaction_tile": "绿色强相互作用地砖",
@@ -25,6 +27,28 @@
   "block.bedrock_platform.gray_strong_interaction_tile": "灰色强相互作用地砖",
   "block.bedrock_platform.black_strong_interaction_tile": "黑色强相互作用地砖",
 
+  "block.bedrock_platform.red_strong_interaction_block": "红色强相互作用方块",
+  "block.bedrock_platform.orange_strong_interaction_block": "橙色强相互作用方块",
+  "block.bedrock_platform.yellow_strong_interaction_block": "黄色强相互作用方块",
+  "block.bedrock_platform.green_strong_interaction_block": "绿色强相互作用方块",
+  "block.bedrock_platform.cyan_strong_interaction_block": "青色强相互作用方块",
+  "block.bedrock_platform.blue_strong_interaction_block": "蓝色强相互作用方块",
+  "block.bedrock_platform.purple_strong_interaction_block": "紫色强相互作用方块",
+  "block.bedrock_platform.white_strong_interaction_block": "白色强相互作用方块",
+  "block.bedrock_platform.gray_strong_interaction_block": "灰色强相互作用方块",
+  "block.bedrock_platform.black_strong_interaction_block": "黑色强相互作用方块",
+
+  "block.bedrock_platform.red_slick_strong_interaction_block": "红色光滑强相互作用方块",
+  "block.bedrock_platform.orange_slick_strong_interaction_block": "橙色光滑强相互作用方块",
+  "block.bedrock_platform.yellow_slick_strong_interaction_block": "黄色光滑强相互作用方块",
+  "block.bedrock_platform.green_slick_strong_interaction_block": "绿色光滑强相互作用方块",
+  "block.bedrock_platform.cyan_slick_strong_interaction_block": "青色光滑强相互作用方块",
+  "block.bedrock_platform.blue_slick_strong_interaction_block": "蓝色光滑强相互作用方块",
+  "block.bedrock_platform.purple_slick_strong_interaction_block": "紫色光滑强相互作用方块",
+  "block.bedrock_platform.white_slick_strong_interaction_block": "白色光滑强相互作用方块",
+  "block.bedrock_platform.gray_slick_strong_interaction_block": "灰色光滑强相互作用方块",
+  "block.bedrock_platform.black_slick_strong_interaction_block": "黑色光滑强相互作用方块",
+
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 
@@ -32,6 +56,10 @@
 
   "bedrock_platform.configuration.solid_void_render_end_portal": "固态终末虚空渲染末地传送门",
   "bedrock_platform.configuration.solid_void_render_end_portal.tooltip": "使用末地传送门视觉效果渲染固态终末虚空，关闭后将使用方块模型渲染该方块。如果与光影等发生冲突请关闭该选项。需要重载资源。",
+  "bedrock_platform.configuration.strong_interaction_explodes_radius":"强相互作用爆炸半径",
+  "bedrock_platform.configuration.strong_interaction_explodes_radius.tooltip":"定义强相互作用爆炸时的破坏范围，过大值可能造成性能问题。\n默认值：10.0",
+  "bedrock_platform.configuration.strong_interaction_produce_radius":"强相互作用爆炸生产半径",
+  "bedrock_platform.configuration.strong_interaction_produce_radius.tooltip":"定义强相互作用爆炸时生成强相互作用方块的范围，过大值可能造成性能问题。\n默认值：5.0",
 
   "pack.bp_fusion.name": "基岩平台 - Fusion 支持",
   "pack.bp_fusion.des": "Fusion纹理连接支持。需要安装Fusion",

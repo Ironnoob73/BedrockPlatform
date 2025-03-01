@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "minecraft:obsidian"
+  },
+  "ingredient": {
+    "item": "bedrock_platform:enchant_dust"
+  },
+  "result_state": {
+    "Name": "minecraft:crying_obsidian"
+  }
+}

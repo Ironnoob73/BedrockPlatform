@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/red_slick_strong_interaction_block"
+    }
+  }
+}

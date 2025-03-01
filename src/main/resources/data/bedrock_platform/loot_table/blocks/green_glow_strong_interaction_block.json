@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "bedrock_platform:green_glow_strong_interaction_block"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "bedrock_platform:green_glow_strong_interaction_tile"
+}

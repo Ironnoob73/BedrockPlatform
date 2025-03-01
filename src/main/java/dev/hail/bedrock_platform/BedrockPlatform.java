@@ -88,6 +88,17 @@ public class BedrockPlatform
                 output.accept(BPBlocks.WHITE_SLICK_STRONG_INTERACTION_BLOCK_ITEM.get());
                 output.accept(BPBlocks.GRAY_SLICK_STRONG_INTERACTION_BLOCK_ITEM.get());
                 output.accept(BPBlocks.BLACK_SLICK_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.RED_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.ORANGE_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.YELLOW_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GREEN_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.CYAN_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLUE_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.PURPLE_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.WHITE_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GRAY_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLACK_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GRAY_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
             }).build());
 
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/gray_glow_strong_interaction_block"
+    }
+  }
+}

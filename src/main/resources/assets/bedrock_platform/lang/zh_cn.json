@@ -49,6 +49,17 @@
   "block.bedrock_platform.gray_slick_strong_interaction_block": "灰色光滑强相互作用方块",
   "block.bedrock_platform.black_slick_strong_interaction_block": "黑色光滑强相互作用方块",
 
+  "block.bedrock_platform.red_glow_strong_interaction_block": "红色发光强相互作用方块",
+  "block.bedrock_platform.orange_glow_strong_interaction_block": "橙色发光强相互作用方块",
+  "block.bedrock_platform.yellow_glow_strong_interaction_block": "黄色发光强相互作用方块",
+  "block.bedrock_platform.green_glow_strong_interaction_block": "绿色发光强相互作用方块",
+  "block.bedrock_platform.cyan_glow_strong_interaction_block": "青色发光强相互作用方块",
+  "block.bedrock_platform.blue_glow_strong_interaction_block": "蓝色发光强相互作用方块",
+  "block.bedrock_platform.purple_glow_strong_interaction_block": "紫色发光强相互作用方块",
+  "block.bedrock_platform.white_glow_strong_interaction_block": "白色发光强相互作用方块",
+  "block.bedrock_platform.gray_glow_strong_interaction_block": "灰色发光强相互作用方块",
+  "block.bedrock_platform.black_glow_strong_interaction_block": "黑色发光强相互作用方块",
+
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 

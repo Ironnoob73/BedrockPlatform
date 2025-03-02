@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_glow_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:gold_ingot"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:yellow_glow_strong_interaction_block"
+  }
+}

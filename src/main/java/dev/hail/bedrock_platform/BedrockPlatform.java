@@ -62,6 +62,7 @@ public class BedrockPlatform
                 output.accept(BPItems.SCULK_RIB.get());
                 output.accept(BPBlocks.SCULK_RIB_BLOCK_ITEM.get());
                 output.accept(BPItems.ENCHANT_DUST.get());
+                output.accept(BPItems.BLUE_ICE_CUBE.get());
                 output.accept(BPBlocks.RED_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.YELLOW_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.GREEN_STRONG_INTERACTION_TILE_ITEM.get());
@@ -98,7 +99,26 @@ public class BedrockPlatform
                 output.accept(BPBlocks.WHITE_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
                 output.accept(BPBlocks.GRAY_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
                 output.accept(BPBlocks.BLACK_GLOW_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.RED_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.ORANGE_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.YELLOW_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GREEN_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.CYAN_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLUE_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.PURPLE_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.WHITE_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
                 output.accept(BPBlocks.GRAY_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLACK_TWILL_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.RED_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.ORANGE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.YELLOW_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GREEN_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.CYAN_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLUE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.PURPLE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.WHITE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.GRAY_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
+                output.accept(BPBlocks.BLACK_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM.get());
             }).build());
 
     public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)

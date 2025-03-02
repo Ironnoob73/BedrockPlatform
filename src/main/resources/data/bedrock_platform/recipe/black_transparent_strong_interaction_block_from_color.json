@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:blaze_powder"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:black_transparent_strong_interaction_block"
+  }
+}

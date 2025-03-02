@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:cyan_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "bedrock_platform:blue_ice_cube"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:cyan_slick_strong_interaction_block"
+  }
+}

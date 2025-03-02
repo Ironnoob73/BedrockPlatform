@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_slick_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:quartz"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:white_slick_strong_interaction_block"
+  }
+}

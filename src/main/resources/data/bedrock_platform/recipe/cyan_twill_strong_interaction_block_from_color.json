@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:cyan_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:wind_charge"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:cyan_twill_strong_interaction_block"
+  }
+}

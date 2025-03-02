@@ -18,6 +18,7 @@
   "block.bedrock_platform.sculk_rib_block": "幽匿肋骨块",
 
   "item.bedrock_platform.enchant_dust": "附魔尘",
+  "item.bedrock_platform.blue_ice_cube": "小蓝冰块",
 
   "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
   "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",
@@ -59,6 +60,28 @@
   "block.bedrock_platform.white_glow_strong_interaction_block": "白色发光强相互作用方块",
   "block.bedrock_platform.gray_glow_strong_interaction_block": "灰色发光强相互作用方块",
   "block.bedrock_platform.black_glow_strong_interaction_block": "黑色发光强相互作用方块",
+
+  "block.bedrock_platform.red_twill_strong_interaction_block": "红色加速强相互作用方块",
+  "block.bedrock_platform.orange_twill_strong_interaction_block": "橙色加速强相互作用方块",
+  "block.bedrock_platform.yellow_twill_strong_interaction_block": "黄色加速强相互作用方块",
+  "block.bedrock_platform.green_twill_strong_interaction_block": "绿色加速强相互作用方块",
+  "block.bedrock_platform.cyan_twill_strong_interaction_block": "青色加速强相互作用方块",
+  "block.bedrock_platform.blue_twill_strong_interaction_block": "蓝色加速强相互作用方块",
+  "block.bedrock_platform.purple_twill_strong_interaction_block": "紫色加速强相互作用方块",
+  "block.bedrock_platform.white_twill_strong_interaction_block": "白色加速强相互作用方块",
+  "block.bedrock_platform.gray_twill_strong_interaction_block": "灰色加速强相互作用方块",
+  "block.bedrock_platform.black_twill_strong_interaction_block": "黑色加速强相互作用方块",
+
+  "block.bedrock_platform.red_transparent_strong_interaction_block": "红色透明强相互作用方块",
+  "block.bedrock_platform.orange_transparent_strong_interaction_block": "橙色透明强相互作用方块",
+  "block.bedrock_platform.yellow_transparent_strong_interaction_block": "黄色透明强相互作用方块",
+  "block.bedrock_platform.green_transparent_strong_interaction_block": "绿色透明强相互作用方块",
+  "block.bedrock_platform.cyan_transparent_strong_interaction_block": "青色透明强相互作用方块",
+  "block.bedrock_platform.blue_transparent_strong_interaction_block": "蓝色透明强相互作用方块",
+  "block.bedrock_platform.purple_transparent_strong_interaction_block": "紫色透明强相互作用方块",
+  "block.bedrock_platform.white_transparent_strong_interaction_block": "白色透明强相互作用方块",
+  "block.bedrock_platform.gray_transparent_strong_interaction_block": "灰色透明强相互作用方块",
+  "block.bedrock_platform.black_transparent_strong_interaction_block": "黑色透明强相互作用方块",
 
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",

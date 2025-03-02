@@ -313,10 +313,124 @@ public class BPBlocks {
                     .lightLevel(l->15));
     public static final DeferredItem<BlockItem> BLACK_GLOW_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("black_glow_strong_interaction_block", BLACK_GLOW_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
 
+    public static final DeferredBlock<Block> RED_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("red_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_RED)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> RED_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("red_twill_strong_interaction_block", RED_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> ORANGE_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("orange_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_ORANGE)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> ORANGE_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("orange_twill_strong_interaction_block", ORANGE_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> YELLOW_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("yellow_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> YELLOW_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("yellow_twill_strong_interaction_block", YELLOW_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> GREEN_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("green_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_GREEN)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> GREEN_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("green_twill_strong_interaction_block", GREEN_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> CYAN_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("cyan_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_CYAN)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> CYAN_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("cyan_twill_strong_interaction_block", CYAN_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> BLUE_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("blue_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_BLUE)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> BLUE_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("blue_twill_strong_interaction_block", BLUE_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> PURPLE_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("purple_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_PURPLE)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> PURPLE_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("purple_twill_strong_interaction_block", PURPLE_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> WHITE_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("white_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> WHITE_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("white_twill_strong_interaction_block", WHITE_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
     public static final DeferredBlock<Block> GRAY_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("gray_twill_strong_interaction_block",
             BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
                     .mapColor(MapColor.TERRACOTTA_GRAY)
                     .friction(0.4F));
     public static final DeferredItem<BlockItem> GRAY_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("gray_twill_strong_interaction_block", GRAY_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> BLACK_TWILL_STRONG_INTERACTION_BLOCK = BLOCKS.registerSimpleBlock("black_twill_strong_interaction_block",
+            BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_BLACK)
+                    .friction(0.4F));
+    public static final DeferredItem<BlockItem> BLACK_TWILL_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("black_twill_strong_interaction_block", BLACK_TWILL_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> RED_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("red_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_RED)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> RED_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("red_transparent_strong_interaction_block", RED_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> ORANGE_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("orange_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_ORANGE)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> ORANGE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("orange_transparent_strong_interaction_block", ORANGE_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> YELLOW_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("yellow_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_YELLOW)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> YELLOW_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("yellow_transparent_strong_interaction_block", YELLOW_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> GREEN_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("green_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_GREEN)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> GREEN_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("green_transparent_strong_interaction_block", GREEN_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> CYAN_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("cyan_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_CYAN)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> CYAN_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("cyan_transparent_strong_interaction_block", CYAN_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> BLUE_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("blue_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_BLUE)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> BLUE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("blue_transparent_strong_interaction_block", BLUE_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> PURPLE_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("purple_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_PURPLE)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> PURPLE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("purple_transparent_strong_interaction_block", PURPLE_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> WHITE_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("white_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_WHITE)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> WHITE_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("white_transparent_strong_interaction_block", WHITE_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> GRAY_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("gray_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_GRAY)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> GRAY_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("gray_transparent_strong_interaction_block", GRAY_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
+
+    public static final DeferredBlock<Block> BLACK_TRANSPARENT_STRONG_INTERACTION_BLOCK = BLOCKS.register("black_transparent_strong_interaction_block",
+            ()->new TransparentBlock(BlockBehaviour.Properties.ofLegacyCopy(Blocks.BEDROCK)
+                    .mapColor(MapColor.TERRACOTTA_BLACK)
+                    .noOcclusion()));
+    public static final DeferredItem<BlockItem> BLACK_TRANSPARENT_STRONG_INTERACTION_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("black_transparent_strong_interaction_block", BLACK_TRANSPARENT_STRONG_INTERACTION_BLOCK, new Item.Properties().rarity(Rarity.UNCOMMON));
 
 }

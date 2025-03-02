@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "bedrock_platform:blue_ice_cube"
+    },
+    {
+      "item": "bedrock_platform:blue_ice_cube"
+    },
+    {
+      "item": "bedrock_platform:blue_ice_cube"
+    },
+    {
+      "item": "bedrock_platform:blue_ice_cube"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:blue_ice"
+  }
+}

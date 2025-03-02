@@ -107,6 +107,28 @@
     "bedrock_platform:purple_glow_strong_interaction_block",
     "bedrock_platform:white_glow_strong_interaction_block",
     "bedrock_platform:gray_glow_strong_interaction_block",
-    "bedrock_platform:black_glow_strong_interaction_block"
+    "bedrock_platform:black_glow_strong_interaction_block",
+
+    "bedrock_platform:red_twill_strong_interaction_block",
+    "bedrock_platform:orange_twill_strong_interaction_block",
+    "bedrock_platform:yellow_twill_strong_interaction_block",
+    "bedrock_platform:green_twill_strong_interaction_block",
+    "bedrock_platform:cyan_twill_strong_interaction_block",
+    "bedrock_platform:blue_twill_strong_interaction_block",
+    "bedrock_platform:purple_twill_strong_interaction_block",
+    "bedrock_platform:white_twill_strong_interaction_block",
+    "bedrock_platform:gray_twill_strong_interaction_block",
+    "bedrock_platform:black_twill_strong_interaction_block",
+
+    "bedrock_platform:red_transparent_strong_interaction_block",
+    "bedrock_platform:orange_transparent_strong_interaction_block",
+    "bedrock_platform:yellow_transparent_strong_interaction_block",
+    "bedrock_platform:green_transparent_strong_interaction_block",
+    "bedrock_platform:cyan_transparent_strong_interaction_block",
+    "bedrock_platform:blue_transparent_strong_interaction_block",
+    "bedrock_platform:purple_transparent_strong_interaction_block",
+    "bedrock_platform:white_transparent_strong_interaction_block",
+    "bedrock_platform:gray_transparent_strong_interaction_block",
+    "bedrock_platform:black_transparent_strong_interaction_block"
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_glow_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:copper_ingot"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:orange_glow_strong_interaction_block"
+  }
+}

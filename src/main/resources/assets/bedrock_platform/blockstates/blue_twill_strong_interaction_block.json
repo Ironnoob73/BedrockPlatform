@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/blue_twill_strong_interaction_block"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_transparent_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:redstone"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:red_transparent_strong_interaction_block"
+  }
+}

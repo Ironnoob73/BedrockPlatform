@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:black_twill_strong_interaction_block"
+  },
+  "ingredient": {
+    "item": "minecraft:amethyst_shard"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:purple_twill_strong_interaction_block"
+  }
+}

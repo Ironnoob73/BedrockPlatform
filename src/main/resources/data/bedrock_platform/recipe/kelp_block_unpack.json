@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "bedrock_platform:kelp_block"
+  },
+  "result": {
+    "count": 9,
+    "id": "minecraft:kelp"
+  }
+}

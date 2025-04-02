@@ -63,6 +63,9 @@ public class BedrockPlatform
                 output.accept(BPBlocks.SCULK_RIB_BLOCK_ITEM.get());
                 output.accept(BPItems.ENCHANT_DUST.get());
                 output.accept(BPItems.BLUE_ICE_CUBE.get());
+                output.accept(BPBlocks.GEODE_MOSAIC_TILE_ITEM.get());
+                output.accept(BPBlocks.KELP_BLOCK_ITEM.get());
+                output.accept(BPBlocks.STONE_TORCH_ITEM.get());
                 output.accept(BPBlocks.RED_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.YELLOW_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.GREEN_STRONG_INTERACTION_TILE_ITEM.get());

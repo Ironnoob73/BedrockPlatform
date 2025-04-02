@@ -20,6 +20,11 @@
   "item.bedrock_platform.enchant_dust": "Enchant Dust",
   "item.bedrock_platform.blue_ice_cube": "Blue Ice Cube",
 
+  "block.bedrock_platform.geode_mosaic_tile": "Geode Mosaic Tile",
+  "block.bedrock_platform.kelp_block": "Kelp Block",
+
+  "block.bedrock_platform.stone_torch": "Stone Torch",
+
   "block.bedrock_platform.red_strong_interaction_tile": "Red Strong Interaction Tile",
   "block.bedrock_platform.yellow_strong_interaction_tile": "Yellow Strong Interaction Tile",
   "block.bedrock_platform.green_strong_interaction_tile": "Green Strong Interaction Tile",
@@ -71,6 +76,17 @@
   "block.bedrock_platform.white_twill_strong_interaction_block": "White Speed-up Strong Interaction Block",
   "block.bedrock_platform.gray_twill_strong_interaction_block": "Gray Speed-up Strong Interaction Block",
   "block.bedrock_platform.black_twill_strong_interaction_block": "Black Speed-up Strong Interaction Block",
+
+  "block.bedrock_platform.red_transparent_strong_interaction_block": "Red Transparent StrongInteraction Block",
+  "block.bedrock_platform.orange_transparent_strong_interaction_block": "Orange Transparent StrongInteraction Block",
+  "block.bedrock_platform.yellow_transparent_strong_interaction_block": "Yellow Transparent StrongInteraction Block",
+  "block.bedrock_platform.green_transparent_strong_interaction_block": "Green Transparent StrongInteraction Block",
+  "block.bedrock_platform.cyan_transparent_strong_interaction_block": "Cyan Transparent StrongInteraction Block",
+  "block.bedrock_platform.blue_transparent_strong_interaction_block": "Blue Transparent StrongInteraction Block",
+  "block.bedrock_platform.purple_transparent_strong_interaction_block": "Purple Transparent StrongInteraction Block",
+  "block.bedrock_platform.white_transparent_strong_interaction_block": "White Transparent StrongInteraction Block",
+  "block.bedrock_platform.gray_transparent_strong_interaction_block": "Gray Transparent StrongInteraction Block",
+  "block.bedrock_platform.black_transparent_strong_interaction_block": "Black Transparent StrongInteraction Block",
 
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",

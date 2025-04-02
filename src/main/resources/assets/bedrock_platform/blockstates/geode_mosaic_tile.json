@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/geode_mosaic_tile"
+    }
+  }
+}

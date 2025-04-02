@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "bedrock_platform:block/kelp_block_top",
+    "side": "bedrock_platform:block/kelp_block_side"
+  }
+}

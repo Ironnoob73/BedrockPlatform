@@ -20,6 +20,11 @@
   "item.bedrock_platform.enchant_dust": "附魔尘",
   "item.bedrock_platform.blue_ice_cube": "小蓝冰块",
 
+  "block.bedrock_platform.geode_mosaic_tile": "晶洞马赛克地砖",
+  "block.bedrock_platform.kelp_block": "海带块",
+
+  "block.bedrock_platform.stone_torch": "石头火把",
+
   "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
   "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",
   "block.bedrock_platform.green_strong_interaction_tile": "绿色强相互作用地砖",

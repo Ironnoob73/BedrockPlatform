@@ -1,5 +1,6 @@
 {
   "values":[
-    "bedrock_platform:sculk_rib_block"
+    "bedrock_platform:sculk_rib_block",
+    "bedrock_platform:geode_mosaic_tile"
   ]
 }

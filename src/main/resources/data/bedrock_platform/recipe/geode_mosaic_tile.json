@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "X": {
+      "item": "minecraft:smooth_basalt"
+    },
+    "O": {
+      "item": "minecraft:calcite"
+    }
+  },
+  "pattern": [
+    "XO",
+    "OX"
+  ],
+  "result": {
+    "count": 4,
+    "id": "bedrock_platform:geode_mosaic_tile"
+  }
+}

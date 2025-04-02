@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "waterlogged=false": {
+      "model": "bedrock_platform:block/stone_torch"
+    },
+    "waterlogged=true": {
+      "model": "bedrock_platform:block/stone_torch_off"
+    }
+  }
+}

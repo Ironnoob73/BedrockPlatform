@@ -1,19 +1,36 @@
 {
-  "variants": {
-    "facing=east": {
-      "model": "bedrock_platform:block/amethyst_wall_candle"
+  "multipart": [
+    {
+      "when": {"AND": [{"OR": [{ "light": "5|6|7|8|9|10|11|12|13|14|15"}, { "waterlogged": "true" }]}, { "facing": "east"}]},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle"}
     },
-    "facing=north": {
-      "model": "bedrock_platform:block/amethyst_wall_candle",
-      "y": 270
+    {
+      "when": { "light": "0|1|2|3|4", "waterlogged": "false", "facing": "east"},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle_off"}
     },
-    "facing=south": {
-      "model": "bedrock_platform:block/amethyst_wall_candle",
-      "y": 90
+    {
+      "when": {"AND": [{"OR": [{ "light": "5|6|7|8|9|10|11|12|13|14|15"}, { "waterlogged": "true" }]}, { "facing": "north"}]},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle", "y": 270}
     },
-    "facing=west": {
-      "model": "bedrock_platform:block/amethyst_wall_candle",
-      "y": 180
+    {
+      "when": { "light": "0|1|2|3|4", "waterlogged": "false", "facing": "north"},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle_off", "y": 270}
+    },
+    {
+      "when": {"AND": [{"OR": [{ "light": "5|6|7|8|9|10|11|12|13|14|15"}, { "waterlogged": "true" }]}, { "facing": "south"}]},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle", "y": 90}
+    },
+    {
+      "when": { "light": "0|1|2|3|4", "waterlogged": "false", "facing": "south"},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle_off", "y": 90}
+    },
+    {
+      "when": {"AND": [{"OR": [{ "light": "5|6|7|8|9|10|11|12|13|14|15"}, { "waterlogged": "true" }]}, { "facing": "west"}]},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle", "y": 180}
+    },
+    {
+      "when": { "light": "0|1|2|3|4", "waterlogged": "false", "facing": "west"},
+      "apply": { "model": "bedrock_platform:block/amethyst_wall_candle_off", "y": 180}
     }
-  }
+  ]
 }

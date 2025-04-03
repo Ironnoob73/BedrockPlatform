@@ -461,15 +461,15 @@ public class BPBlocks {
     public static final DeferredItem<StandingAndWallBlockItem> DEEPSLATE_TORCH_ITEM = BPItems.ITEMS.register("deepslate_torch",()->new StandingAndWallBlockItem(DEEPSLATE_TORCH.get(), DEEPSLATE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     public static final DeferredBlock<TorchBlock> AMETHYST_CANDLE = BLOCKS.register("amethyst_candle",
-            ()->new UnderwaterTorchBlock(
+            ()->new AmethystCandleBlock(
                     ParticleTypes.GLOW,
-                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(l->15).sound(SoundType.AMETHYST)
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(AmethystCandleBlock::getLight).sound(SoundType.AMETHYST)
             )
     );
     public static final DeferredBlock<WallTorchBlock> AMETHYST_WALL_CANDLE = BLOCKS.register("amethyst_wall_candle",
-            ()->new UnderwaterTorchBlock.WallUnderwaterTorchBlock(
+            ()->new AmethystCandleBlock.AmethystWallCandleBlock(
                     ParticleTypes.GLOW,
-                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(l->15).sound(SoundType.AMETHYST)
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(AmethystCandleBlock::getLight).sound(SoundType.AMETHYST)
             )
     );
     public static final DeferredItem<StandingAndWallBlockItem> AMETHYST_CANDLE_ITEM = BPItems.ITEMS.register("amethyst_candle",()->new StandingAndWallBlockItem(AMETHYST_CANDLE.get(), AMETHYST_WALL_CANDLE.get(), new Item.Properties(), Direction.DOWN));

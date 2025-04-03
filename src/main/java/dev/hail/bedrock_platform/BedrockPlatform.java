@@ -7,6 +7,7 @@ import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import dev.hail.bedrock_platform.Particle.BlockExchangeParticle;
+import dev.hail.bedrock_platform.Particle.BrighterFlameParticle;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
 import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRSerializer;
@@ -66,6 +67,8 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_MOSAIC_TILE_ITEM.get());
                 output.accept(BPBlocks.KELP_BLOCK_ITEM.get());
                 output.accept(BPBlocks.STONE_TORCH_ITEM.get());
+                output.accept(BPBlocks.DEEPSLATE_TORCH_ITEM.get());
+                output.accept(BPBlocks.AMETHYST_CANDLE_ITEM.get());
                 output.accept(BPBlocks.RED_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.YELLOW_STRONG_INTERACTION_TILE_ITEM.get());
                 output.accept(BPBlocks.GREEN_STRONG_INTERACTION_TILE_ITEM.get());
@@ -191,8 +194,11 @@ public class BedrockPlatform
         }
         @SubscribeEvent
         public static void registerParticleProviders(RegisterParticleProvidersEvent event) {
-            event.registerSpriteSet(BPParticles.BLOCK_EXCHANGE.get(), BlockExchangeParticle.BlockExchangeParticleProvider::new);
-            event.registerSpriteSet(BPParticles.BLOCK_REDUCTION.get(), BlockExchangeParticle.BlockReductionParticleProvider::new);
+            event.registerSpriteSet(BPParticles.BLOCK_EXCHANGE.get(), (p) -> new BlockExchangeParticle.Provider(p, false));
+            event.registerSpriteSet(BPParticles.BLOCK_REDUCTION.get(), (p) -> new BlockExchangeParticle.Provider(p, true));
+
+            event.registerSpriteSet(BPParticles.STONE_TORCH_FLAME.get(), (p) -> new BrighterFlameParticle.Provider(p,false));
+            event.registerSpriteSet(BPParticles.DEEPSLATE_TORCH_FLAME.get(), (p) -> new BrighterFlameParticle.Provider(p,true));
         }
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

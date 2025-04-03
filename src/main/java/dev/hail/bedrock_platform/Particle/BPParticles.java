@@ -14,4 +14,9 @@ public class BPParticles{
             "block_exchange",() -> new SimpleParticleType(false));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BLOCK_REDUCTION = PARTICLE_TYPES.register(
             "block_reduction",() -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> STONE_TORCH_FLAME = PARTICLE_TYPES.register(
+            "stone_torch_flame",() -> new SimpleParticleType(false));
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DEEPSLATE_TORCH_FLAME = PARTICLE_TYPES.register(
+            "deepslate_torch_flame",() -> new SimpleParticleType(false));
 }

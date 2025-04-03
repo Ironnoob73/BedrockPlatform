@@ -6,7 +6,7 @@
       "tag": "minecraft:coals"
     },
     "|": {
-      "tag": "c:cobblestones/normal"
+      "tag": "c:cobblestones/deepslate"
     }
   },
   "pattern": [
@@ -15,6 +15,6 @@
   ],
   "result": {
     "count": 4,
-    "id": "bedrock_platform:stone_torch"
+    "id": "bedrock_platform:deepslate_torch"
   }
 }

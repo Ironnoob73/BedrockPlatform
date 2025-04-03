@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "bedrock_platform:block/amethyst_wall_candle"
+    },
+    "facing=north": {
+      "model": "bedrock_platform:block/amethyst_wall_candle",
+      "y": 270
+    },
+    "facing=south": {
+      "model": "bedrock_platform:block/amethyst_wall_candle",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "bedrock_platform:block/amethyst_wall_candle",
+      "y": 180
+    }
+  }
+}

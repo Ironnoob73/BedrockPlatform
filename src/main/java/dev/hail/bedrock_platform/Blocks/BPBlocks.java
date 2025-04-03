@@ -13,7 +13,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
-import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -440,15 +439,38 @@ public class BPBlocks {
 
     public static final DeferredBlock<TorchBlock> STONE_TORCH = BLOCKS.register("stone_torch",
             ()->new SolidTorchBlock(
-                    ParticleTypes.FLAME,
-                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.STONE),false
             )
     );
     public static final DeferredBlock<WallTorchBlock> STONE_WALL_TORCH = BLOCKS.register("stone_wall_torch",
             ()->new SolidTorchBlock.SolidWallTorchBlock(
-                    ParticleTypes.FLAME,
-                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.STONE).pushReaction(PushReaction.DESTROY)
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.STONE),false
             )
     );
     public static final DeferredItem<StandingAndWallBlockItem> STONE_TORCH_ITEM = BPItems.ITEMS.register("stone_torch",()->new StandingAndWallBlockItem(STONE_TORCH.get(), STONE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    public static final DeferredBlock<TorchBlock> DEEPSLATE_TORCH = BLOCKS.register("deepslate_torch",
+            ()->new SolidTorchBlock(
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.DEEPSLATE),true
+            )
+    );
+    public static final DeferredBlock<WallTorchBlock> DEEPSLATE_WALL_TORCH = BLOCKS.register("deepslate_wall_torch",
+            ()->new SolidTorchBlock.SolidWallTorchBlock(
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.DEEPSLATE),true
+            )
+    );
+    public static final DeferredItem<StandingAndWallBlockItem> DEEPSLATE_TORCH_ITEM = BPItems.ITEMS.register("deepslate_torch",()->new StandingAndWallBlockItem(DEEPSLATE_TORCH.get(), DEEPSLATE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+
+    public static final DeferredBlock<TorchBlock> AMETHYST_CANDLE = BLOCKS.register("amethyst_candle",
+            ()->new UnderwaterTorchBlock(
+                    ParticleTypes.GLOW,
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(l->15).sound(SoundType.AMETHYST)
+            )
+    );
+    public static final DeferredBlock<WallTorchBlock> AMETHYST_WALL_CANDLE = BLOCKS.register("amethyst_wall_candle",
+            ()->new UnderwaterTorchBlock.WallUnderwaterTorchBlock(
+                    ParticleTypes.GLOW,
+                    BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(l->15).sound(SoundType.AMETHYST)
+            )
+    );
+    public static final DeferredItem<StandingAndWallBlockItem> AMETHYST_CANDLE_ITEM = BPItems.ITEMS.register("amethyst_candle",()->new StandingAndWallBlockItem(AMETHYST_CANDLE.get(), AMETHYST_WALL_CANDLE.get(), new Item.Properties(), Direction.DOWN));
 }

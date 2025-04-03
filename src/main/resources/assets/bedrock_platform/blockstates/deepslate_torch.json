@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "waterlogged=false": {
+      "model": "bedrock_platform:block/deepslate_torch"
+    },
+    "waterlogged=true": {
+      "model": "bedrock_platform:block/deepslate_torch_off"
+    }
+  }
+}

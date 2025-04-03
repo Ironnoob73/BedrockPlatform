@@ -67,6 +67,7 @@
     "bedrock_platform:solid_end_void",
     "bedrock_platform:encapsulated_end_portal_frame",
     "bedrock_platform:sculk_rib_block",
+    "bedrock_platform:geode_mosaic_tile",
 
     "bedrock_platform:red_strong_interaction_tile",
     "bedrock_platform:yellow_strong_interaction_tile",

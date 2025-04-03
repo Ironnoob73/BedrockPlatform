@@ -24,6 +24,8 @@
   "block.bedrock_platform.kelp_block": "Kelp Block",
 
   "block.bedrock_platform.stone_torch": "Stone Torch",
+  "block.bedrock_platform.deepslate_torch": "Deepslate Torch",
+  "block.bedrock_platform.amethyst_candle": "Amethyst Candle",
 
   "block.bedrock_platform.red_strong_interaction_tile": "Red Strong Interaction Tile",
   "block.bedrock_platform.yellow_strong_interaction_tile": "Yellow Strong Interaction Tile",

@@ -1,0 +1,12 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "bedrock_platform:permanently_wetted_farmland"
+  },
+  "ingredient": {
+    "item": "minecraft:glow_lichen"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:glow_permanently_wetted_farmland"
+  }
+}

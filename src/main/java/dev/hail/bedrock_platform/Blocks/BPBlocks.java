@@ -1,13 +1,19 @@
 package dev.hail.bedrock_platform.Blocks;
 
 import dev.hail.bedrock_platform.Items.BPItems;
+import dev.hail.bedrock_platform.Items.TooltipTorchItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.Direction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.StandingAndWallBlockItem;
+import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -17,6 +23,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
+import java.util.List;
 import java.util.function.Supplier;
 
 import static dev.hail.bedrock_platform.BedrockPlatform.MODID;
@@ -429,13 +436,21 @@ public class BPBlocks {
             BlockBehaviour.Properties.of()
                     .mapColor(MapColor.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
-                    .strength(25.0F, 100.0F)
+                    .isValidSpawn(Blocks::never)
+                    .strength(10.0F, 100.0F)
                     .sound(SoundType.DEEPSLATE));
     public static final DeferredItem<BlockItem> GEODE_MOSAIC_TILE_ITEM = BPItems.ITEMS.registerSimpleBlockItem("geode_mosaic_tile", GEODE_MOSAIC_TILE);
 
     public static final DeferredBlock<KelpBlock> KELP_BLOCK = BLOCKS.register("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
     public static final DeferredItem<BlockItem> KELP_BLOCK_ITEM = BPItems.ITEMS.registerSimpleBlockItem("kelp_block", KELP_BLOCK);
+
+    public static final DeferredBlock<PermanentlyWettedFarmlandBlock> PERMANENTLY_WETTED_FARMLAND = BLOCKS.register("permanently_wetted_farmland",
+            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
+    public static final DeferredItem<BlockItem> PERMANENTLY_WETTED_FARMLAND_ITEM = BPItems.ITEMS.registerSimpleBlockItem("permanently_wetted_farmland", PERMANENTLY_WETTED_FARMLAND);
+    public static final DeferredBlock<PermanentlyWettedFarmlandBlock> GLOW_PERMANENTLY_WETTED_FARMLAND = BLOCKS.register("glow_permanently_wetted_farmland",
+            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND).lightLevel(l->8)));
+    public static final DeferredItem<BlockItem> GLOW_PERMANENTLY_WETTED_FARMLAND_ITEM = BPItems.ITEMS.registerSimpleBlockItem("glow_permanently_wetted_farmland", GLOW_PERMANENTLY_WETTED_FARMLAND);
 
     public static final DeferredBlock<TorchBlock> STONE_TORCH = BLOCKS.register("stone_torch",
             ()->new SolidTorchBlock(
@@ -447,7 +462,7 @@ public class BPBlocks {
                     BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.STONE),false
             )
     );
-    public static final DeferredItem<StandingAndWallBlockItem> STONE_TORCH_ITEM = BPItems.ITEMS.register("stone_torch",()->new StandingAndWallBlockItem(STONE_TORCH.get(), STONE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    public static final DeferredItem<StandingAndWallBlockItem> STONE_TORCH_ITEM = BPItems.ITEMS.register("stone_torch", ()->new TooltipTorchItem(STONE_TORCH.get(), STONE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
     public static final DeferredBlock<TorchBlock> DEEPSLATE_TORCH = BLOCKS.register("deepslate_torch",
             ()->new SolidTorchBlock(
                     BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.DEEPSLATE),true
@@ -458,7 +473,7 @@ public class BPBlocks {
                     BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(p -> SeaPickleBlock.isDead(p) ? 15 : 0).sound(SoundType.DEEPSLATE),true
             )
     );
-    public static final DeferredItem<StandingAndWallBlockItem> DEEPSLATE_TORCH_ITEM = BPItems.ITEMS.register("deepslate_torch",()->new StandingAndWallBlockItem(DEEPSLATE_TORCH.get(), DEEPSLATE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
+    public static final DeferredItem<StandingAndWallBlockItem> DEEPSLATE_TORCH_ITEM = BPItems.ITEMS.register("deepslate_torch", ()->new TooltipTorchItem(DEEPSLATE_TORCH.get(), DEEPSLATE_WALL_TORCH.get(), new Item.Properties(), Direction.DOWN));
 
     public static final DeferredBlock<TorchBlock> AMETHYST_CANDLE = BLOCKS.register("amethyst_candle",
             ()->new AmethystCandleBlock(
@@ -472,5 +487,5 @@ public class BPBlocks {
                     BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(AmethystCandleBlock::getLight).sound(SoundType.AMETHYST)
             )
     );
-    public static final DeferredItem<StandingAndWallBlockItem> AMETHYST_CANDLE_ITEM = BPItems.ITEMS.register("amethyst_candle",()->new StandingAndWallBlockItem(AMETHYST_CANDLE.get(), AMETHYST_WALL_CANDLE.get(), new Item.Properties(), Direction.DOWN));
+    public static final DeferredItem<StandingAndWallBlockItem> AMETHYST_CANDLE_ITEM = BPItems.ITEMS.register("amethyst_candle",()->new TooltipTorchItem(AMETHYST_CANDLE.get(), AMETHYST_WALL_CANDLE.get(), new Item.Properties(), Direction.DOWN));
 }

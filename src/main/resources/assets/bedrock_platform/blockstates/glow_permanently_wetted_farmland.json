@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bedrock_platform:block/glow_permanently_wetted_farmland"
+    }
+  }
+}

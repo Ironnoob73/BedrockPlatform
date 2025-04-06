@@ -1,0 +1,15 @@
+{
+  "type": "bedrock_platform:block_exchange",
+  "state": {
+    "Name": "minecraft:farmland",
+    "Properties": {
+      "moisture": "7"
+    }
+  },
+  "ingredient": {
+    "item": "minecraft:slime_ball"
+  },
+  "result_state": {
+    "Name": "bedrock_platform:permanently_wetted_farmland"
+  }
+}

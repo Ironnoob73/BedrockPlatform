@@ -1,10 +1,14 @@
 package dev.hail.bedrock_platform.Items;
 
+import com.google.common.collect.Lists;
 import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRInput;
 import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Data.BPTags;
 import dev.hail.bedrock_platform.Particle.BPParticles;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,10 +18,7 @@ import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemUtils;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeManager;
@@ -28,6 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe.BLOCK_REDUCTION;
@@ -106,10 +108,25 @@ public class ObsidianWrench extends Item {
     }
 
     @Override
-    public void onDestroyed(ItemEntity pItemEntity) {
+    public void onDestroyed(@NotNull ItemEntity pItemEntity) {
         var DestoryResult = new java.util.HashSet<>(Collections.singleton(new ItemStack(Items.CRYING_OBSIDIAN)));
         DestoryResult.add(new ItemStack(Items.END_CRYSTAL));
         DestoryResult.add(new ItemStack(Items.SCULK_SHRIEKER));
         ItemUtils.onContainerDestroyed(pItemEntity, DestoryResult);
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+        List<Component> list = Lists.newArrayList();
+        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip").withStyle(ChatFormatting.GRAY));
+        list.add(Component.empty());
+        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_0").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_1").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_2").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_3").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_4").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_5").withStyle(ChatFormatting.BLUE)));
+        pTooltipComponents.addAll(list);
     }
 }

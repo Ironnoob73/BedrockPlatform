@@ -66,6 +66,8 @@ public class BedrockPlatform
                 output.accept(BPItems.BLUE_ICE_CUBE.get());
                 output.accept(BPBlocks.GEODE_MOSAIC_TILE_ITEM.get());
                 output.accept(BPBlocks.KELP_BLOCK_ITEM.get());
+                output.accept(BPBlocks.PERMANENTLY_WETTED_FARMLAND_ITEM.get());
+                output.accept(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND_ITEM.get());
                 output.accept(BPBlocks.STONE_TORCH_ITEM.get());
                 output.accept(BPBlocks.DEEPSLATE_TORCH_ITEM.get());
                 output.accept(BPBlocks.AMETHYST_CANDLE_ITEM.get());

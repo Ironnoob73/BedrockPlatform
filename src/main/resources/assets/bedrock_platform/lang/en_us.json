@@ -2,7 +2,13 @@
   "bedrock_platform.name": "Bedrock Platform",
 
   "item.bedrock_platform.obsidian_wrench": "Oblivion Wrench",
-  "item.bedrock_platform.obsidian_wrench.des": "Used to destroy most functional blocks and indestructible blocks provided by this mod. [Directly right-click the block] attempts to restore the blocks converted by this mod to the original blocks and return the raw materials. [Sneak right-click the block] attempts to destroy and obtain the block. You can enchant Silk Touch to destroy blocks such as Ender Chests that require Silk Touch. When destroyed by lava burning or other actions, one Crying Obsidian, one End Crystal, and one Sculk Shrieker will be returned.",
+  "item.bedrock_platform.obsidian_wrench.tooltip": "Used to destroy most functional blocks and indestructible blocks provided by this mod.",
+  "item.bedrock_platform.obsidian_wrench.tooltip_0": "Directly use on a block:",
+  "item.bedrock_platform.obsidian_wrench.tooltip_1": "Attempts to restore the blocks converted by this mod to the original blocks and return the raw materials.",
+  "item.bedrock_platform.obsidian_wrench.tooltip_2": "Sneak and use on a block:",
+  "item.bedrock_platform.obsidian_wrench.tooltip_3": "Attempts to destroy and obtain the block. Can enchant Silk Touch to destroy blocks such as Ender Chests that require Silk Touch.",
+  "item.bedrock_platform.obsidian_wrench.tooltip_4": "Destroyed by lava burning or other actions:",
+  "item.bedrock_platform.obsidian_wrench.tooltip_5": "One Crying Obsidian, one End Crystal, and one Sculk Shrieker will be returned.",
 
   "block.bedrock_platform.bedrock_platform": "Bedrock Platform",
   "block.bedrock_platform.luminous_bedrock_platform": "Luminous Bedrock Platform",
@@ -22,10 +28,22 @@
 
   "block.bedrock_platform.geode_mosaic_tile": "Geode Mosaic Tile",
   "block.bedrock_platform.kelp_block": "Kelp Block",
+  "block.bedrock_platform.permanently_wetted_farmland": "Permanently Wetted Farmland",
+  "block.bedrock_platform.glow_permanently_wetted_farmland": "Glow Permanently Wetted Farmland",
 
   "block.bedrock_platform.stone_torch": "Stone Torch",
   "block.bedrock_platform.deepslate_torch": "Deepslate Torch",
+  "block.bedrock_platform.stone_torch.tooltip": "Not destroyed by water flow. Does not glow in water.",
   "block.bedrock_platform.amethyst_candle": "Amethyst Candle",
+  "block.bedrock_platform.amethyst_candle.tooltip": "Only glows in dark and damp places.",
+  "block.bedrock_platform.amethyst_candle.tooltip_0": "When waterlogged:",
+  "block.bedrock_platform.amethyst_candle.tooltip_1": "Emits a light level of 15.",
+  "block.bedrock_platform.amethyst_candle.tooltip_2": "When the dimension does not evaporate water and has no ambient light:",
+  "block.bedrock_platform.amethyst_candle.tooltip_3": "When below altitude 0:",
+  "block.bedrock_platform.amethyst_candle.tooltip_4": "When above altitude 0 and under altitude 64:",
+  "block.bedrock_platform.amethyst_candle.tooltip_5": "Brightness decreases with increasing altitude.",
+  "block.bedrock_platform.amethyst_candle.tooltip_6": "Other cases:",
+  "block.bedrock_platform.amethyst_candle.tooltip_7": "Doesn't emit light.",
 
   "block.bedrock_platform.red_strong_interaction_tile": "Red Strong Interaction Tile",
   "block.bedrock_platform.yellow_strong_interaction_tile": "Yellow Strong Interaction Tile",

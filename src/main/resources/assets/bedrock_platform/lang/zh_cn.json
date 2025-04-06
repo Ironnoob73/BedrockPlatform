@@ -2,7 +2,13 @@
   "bedrock_platform.name": "基岩平台",
 
   "item.bedrock_platform.obsidian_wrench": "湮灭扳手",
-  "item.bedrock_platform.obsidian_wrench.des": "用于破坏大部分功能性和方块和本模组提供的不可破坏方块。【直接右键方块】尝试将本模组转化后的方块还原为原版方块并返还原料，【潜行右键方块】尝试破坏并获取方块。可以附魔精准采集以破坏如末影箱需要精准采集获得的方块。被熔岩烧毁等行为破坏时会返还哭泣黑耀石、末地水晶、幽匿尖啸体各一个。",
+  "item.bedrock_platform.obsidian_wrench.tooltip": "用于破坏大部分功能性和方块和本模组提供的不可破坏方块。",
+  "item.bedrock_platform.obsidian_wrench.tooltip_0": "直接在方块上使用：",
+  "item.bedrock_platform.obsidian_wrench.tooltip_1": "尝试将本模组转化后的方块还原为原版方块并返还原料。",
+  "item.bedrock_platform.obsidian_wrench.tooltip_2": "潜行并在方块上使用：",
+  "item.bedrock_platform.obsidian_wrench.tooltip_3": "尝试破坏并获取方块。可以附魔精准采集以破坏如末影箱需要精准采集获得的方块。",
+  "item.bedrock_platform.obsidian_wrench.tooltip_4": "被熔岩烧毁等行为破坏时：",
+  "item.bedrock_platform.obsidian_wrench.tooltip_5": "返还哭泣黑耀石、末地水晶、幽匿尖啸体各一个。",
 
   "block.bedrock_platform.bedrock_platform": "基岩平台",
   "block.bedrock_platform.luminous_bedrock_platform": "流光基岩平台",
@@ -22,10 +28,22 @@
 
   "block.bedrock_platform.geode_mosaic_tile": "晶洞马赛克地砖",
   "block.bedrock_platform.kelp_block": "海带块",
+  "block.bedrock_platform.permanently_wetted_farmland": "永久湿润耕地",
+  "block.bedrock_platform.glow_permanently_wetted_farmland": "发光永久湿润耕地",
 
   "block.bedrock_platform.stone_torch": "石头火把",
   "block.bedrock_platform.deepslate_torch": "深板岩火把",
+  "block.bedrock_platform.stone_torch.tooltip": "不会被水冲掉，在水中不发光。",
   "block.bedrock_platform.amethyst_candle": "紫水晶蜡烛",
+  "block.bedrock_platform.amethyst_candle.tooltip": "只在阴暗潮湿处发光。",
+  "block.bedrock_platform.amethyst_candle.tooltip_0": "当含水时：",
+  "block.bedrock_platform.amethyst_candle.tooltip_1": "发出亮度为15的光。",
+  "block.bedrock_platform.amethyst_candle.tooltip_2": "当所处维度不会蒸发水且无环境光：",
+  "block.bedrock_platform.amethyst_candle.tooltip_3": "当处于0层以下：",
+  "block.bedrock_platform.amethyst_candle.tooltip_4": "当处于0层以上64层以下：",
+  "block.bedrock_platform.amethyst_candle.tooltip_5": "亮度随高度增加而减少。",
+  "block.bedrock_platform.amethyst_candle.tooltip_6": "其他情况：",
+  "block.bedrock_platform.amethyst_candle.tooltip_7": "不发光。",
 
   "block.bedrock_platform.red_strong_interaction_tile": "红色强相互作用地砖",
   "block.bedrock_platform.yellow_strong_interaction_tile": "黄色强相互作用地砖",

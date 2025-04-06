@@ -1,11 +1,12 @@
 package dev.hail.bedrock_platform.Items;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.component.ItemLore;
-import net.neoforged.neoforge.client.model.IModelBuilder;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 

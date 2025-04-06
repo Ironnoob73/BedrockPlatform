@@ -48,7 +48,6 @@ public class Plugin implements IModPlugin {
     {
         registration.addRecipes(BERCategory.TYPE, this.getRecipes(BERecipe.BLOCK_EXCHANGE.get()));
         registration.addRecipes(BRRCategory.TYPE, this.getRecipes(BRRecipe.BLOCK_REDUCTION.get()));
-        registration.addIngredientInfo(new ItemStack(BPItems.OBSIDIAN_WRENCH.get()), VanillaTypes.ITEM_STACK, Component.translatable("item.bedrock_platform.obsidian_wrench.des"));
     }
 
     @Override

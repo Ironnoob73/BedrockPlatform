@@ -1,4 +1,4 @@
-package dev.hail.bedrock_platform.Blocks;
+package dev.hail.bedrock_platform.Blocks.SolidEnd;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -15,7 +15,7 @@ import org.joml.Matrix4f;
 @OnlyIn(Dist.CLIENT)
 public class SolidEndVoidRender implements BlockEntityRenderer<SolidEndVoidBE> {
     @Override
-    public void render(@NotNull SolidEndVoidBE blockEntity, float partialTick, PoseStack stack, MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
+    public void render(@NotNull SolidEndVoidBE blockEntity, float partialTick, PoseStack stack, @NotNull MultiBufferSource bufferSource, int packedLight, int packedOverlay) {
         Matrix4f matrix4f = stack.last().pose();
         if (Config.solidVoidRenderEndPortal)
             this.renderCube(blockEntity, matrix4f, bufferSource.getBuffer(this.renderType()));

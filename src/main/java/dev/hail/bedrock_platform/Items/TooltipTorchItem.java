@@ -22,9 +22,9 @@ public class TooltipTorchItem extends StandingAndWallBlockItem {
     @Override
     public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
-        if (pStack.is(BPBlocks.STONE_TORCH_ITEM) || pStack.is(BPBlocks.DEEPSLATE_TORCH_ITEM)){
+        if (pStack.is(BPBlocks.STONE_TORCH.getItem()) || pStack.is(BPBlocks.DEEPSLATE_TORCH.getItem())){
             pTooltipComponents.add(Component.translatable("block.bedrock_platform.stone_torch.tooltip").withStyle(ChatFormatting.GRAY));
-        }else if(pStack.is(BPBlocks.AMETHYST_CANDLE_ITEM)){
+        }else if(pStack.is(BPBlocks.AMETHYST_CANDLE.getItem())){
             List<Component> list = Lists.newArrayList();
             list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip").withStyle(ChatFormatting.GRAY));
             list.add(Component.empty());

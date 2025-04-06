@@ -1,4 +1,4 @@
-package dev.hail.bedrock_platform.Blocks;
+package dev.hail.bedrock_platform.Blocks.Light;
 
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import net.minecraft.core.BlockPos;

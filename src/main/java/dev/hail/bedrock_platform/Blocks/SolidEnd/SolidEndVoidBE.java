@@ -1,6 +1,6 @@
-package dev.hail.bedrock_platform.Blocks;
+package dev.hail.bedrock_platform.Blocks.SolidEnd;
 
-import dev.hail.bedrock_platform.Config;
+import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.block.Block;

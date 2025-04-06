@@ -31,7 +31,7 @@ public class BERCategory implements IRecipeCategory<BERecipe> {
     public BERCategory(IGuiHelper helper)
     {
         this.background = helper.drawableBuilder(Constants.RECIPE_GUI_VANILLA, 0, 168, 125, 18).build();
-        this.icon = helper.createDrawableItemStack(new ItemStack(BPBlocks.BEDROCK_PLATFORM_ITEM.get()));
+        this.icon = helper.createDrawableItemStack(new ItemStack(BPBlocks.BEDROCK_PLATFORM.asItem()));
     }
     @Override
     public RecipeType<BERecipe> getRecipeType()

@@ -1,0 +1,7 @@
+{
+  "values": {
+    "bedrock_platform:amethyst_lantern": {
+      "next_oxidation_stage": "bedrock_platform:exposed_amethyst_lantern"
+    }
+  }
+}

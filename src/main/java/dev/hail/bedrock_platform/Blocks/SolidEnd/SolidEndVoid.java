@@ -1,4 +1,4 @@
-package dev.hail.bedrock_platform.Blocks;
+package dev.hail.bedrock_platform.Blocks.SolidEnd;
 
 import dev.hail.bedrock_platform.Config;
 import net.minecraft.core.BlockPos;

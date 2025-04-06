@@ -169,7 +169,7 @@ public class StrongInteractionExplosion extends Explosion {
     }
     protected void onExplosionHit(BlockState pState, BlockPos pPos) {
         if (pState.isAir()) {
-            level.setBlock(pPos, BPBlocks.BLACK_STRONG_INTERACTION_BLOCK.get().defaultBlockState(), 3);
+            level.setBlock(pPos, BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().get().defaultBlockState(), 3);
         }
     }
 }

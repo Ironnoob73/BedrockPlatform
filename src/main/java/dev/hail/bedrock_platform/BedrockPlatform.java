@@ -214,12 +214,7 @@ public class BedrockPlatform
         }
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-            event.registerBlockEntityRenderer(
-                    // The block entity type to register the renderer for.
-                    BPBlocks.SOLID_END_VOID_BE.get(),
-                    // A function of BlockEntityRendererProvider.Context to BlockEntityRenderer.
-                    context -> new SolidEndVoidRender()
-            );
+            event.registerBlockEntityRenderer(BPBlocks.SOLID_END_VOID_BE.get(), context -> new SolidEndVoidRender());
         }
     }
 }

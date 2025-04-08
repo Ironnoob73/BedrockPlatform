@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "bedrock_platform:block/luminous_bedrock_platform"
-    }
-  }
-}

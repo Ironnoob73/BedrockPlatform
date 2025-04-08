@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "bedrock_platform:block/solid_end_void"
-    }
-  }
-}

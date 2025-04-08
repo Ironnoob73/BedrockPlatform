@@ -1,9 +1,7 @@
 package dev.hail.bedrock_platform.Blocks;
 
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TransparentBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 
@@ -53,11 +51,10 @@ public class StrongInteractionBlockSet {
         private DeferredBlock<Block> TWILL;
         private DeferredBlock<Block> TRANSPARENT;
         private Set<DeferredBlock<? extends Block>> blockCache = new HashSet<>();
-        BlockBehaviour.Properties tile = BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK);
         public Builder(String id, MapColor color) {
             this.id = id;
             this.color = color;
-            this.BASE = BPBlocks.registerWithUncommonItem(id + "_strong_interaction_block", () -> new Block(tile.mapColor(color)));
+            this.BASE = BPBlocks.registerWithUncommonItem(id + "_strong_interaction_block", () -> new Block(BPBlocks.bedrockLike().mapColor(color)));
         }
         public Builder defaultSet(){
             tile().slick().glow().twill().transparent();
@@ -65,27 +62,27 @@ public class StrongInteractionBlockSet {
         }
 
         public Builder tile() {
-            this.TILE = BPBlocks.registerWithRareItem(id + "_strong_interaction_tile", () -> new Block(tile.mapColor(color)));
+            this.TILE = BPBlocks.registerWithRareItem(id + "_strong_interaction_tile", () -> new Block(BPBlocks.bedrockLike().mapColor(color)));
             blockCache.add(TILE);
             return this;
         }
         public Builder slick() {
-            this.SLICK = BPBlocks.registerWithUncommonItem(id + "_slick_strong_interaction_block", () -> new Block(tile.mapColor(color).friction(1F)));
+            this.SLICK = BPBlocks.registerWithUncommonItem(id + "_slick_strong_interaction_block", () -> new Block(BPBlocks.bedrockLike().mapColor(color).friction(1F)));
             blockCache.add(SLICK);
             return this;
         }
         public Builder glow() {
-            this.GLOW = BPBlocks.registerWithUncommonItem(id + "_glow_strong_interaction_block", () -> new Block(tile.mapColor(color).lightLevel(l->15)));
+            this.GLOW = BPBlocks.registerWithUncommonItem(id + "_glow_strong_interaction_block", () -> new Block(BPBlocks.bedrockLike().mapColor(color).lightLevel(l->15)));
             blockCache.add(GLOW);
             return this;
         }
         public Builder twill() {
-            this.TWILL = BPBlocks.registerWithUncommonItem(id + "_twill_strong_interaction_block", () -> new Block(tile.mapColor(color).friction(0.4F)));
+            this.TWILL = BPBlocks.registerWithUncommonItem(id + "_twill_strong_interaction_block", () -> new Block(BPBlocks.bedrockLike().mapColor(color).friction(0.4F)));
             blockCache.add(TWILL);
             return this;
         }
         public Builder transparent() {
-            this.TRANSPARENT = BPBlocks.registerWithUncommonItem(id + "_transparent_strong_interaction_block", () -> new TransparentBlock(tile.mapColor(color).noOcclusion()));
+            this.TRANSPARENT = BPBlocks.registerWithUncommonItem(id + "_transparent_strong_interaction_block", () -> new TransparentBlock(BPBlocks.bedrockLike().mapColor(color).noOcclusion()));
             blockCache.add(TRANSPARENT);
             return this;
         }

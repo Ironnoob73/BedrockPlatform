@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "bedrock_platform:block/twill_bedrock_platform"
-    }
-  }
-}

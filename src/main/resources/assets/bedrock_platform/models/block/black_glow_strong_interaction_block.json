@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "bedrock_platform:block/black_glow_strong_interaction_block"
-  }
-}

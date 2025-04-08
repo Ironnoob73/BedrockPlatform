@@ -1,5 +1,6 @@
 package dev.hail.bedrock_platform.Blocks;
 
+import com.mojang.serialization.MapCodec;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleBlock;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleLogic;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.TorchBlockSet;
@@ -28,19 +29,25 @@ public class BPBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
     static BlockBehaviour.StatePredicate block_never = (pState, pLevel, pPos) -> false;
+    public static BlockBehaviour.Properties bedrockLike(){
+        return BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.STONE)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(-1.0F, 3600000.0F)
+                    .isValidSpawn(Blocks::never);
+    }
 
     public static final DeferredBlock<Block> BEDROCK_PLATFORM = registerWithItem("bedrock_platform",
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK),
-            new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant());
+            bedrockLike(), new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant());
     public static final DeferredBlock<Block> LUMINOUS_BEDROCK_PLATFORM = registerWithItem("luminous_bedrock_platform",
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).mapColor(MapColor.QUARTZ).lightLevel(l->15),
+            bedrockLike().mapColor(MapColor.QUARTZ).lightLevel(l->15),
             new Item.Properties().rarity(Rarity.RARE).fireResistant());
     public static final DeferredBlock<Block> TWILL_BEDROCK_PLATFORM = registerWithItem("twill_bedrock_platform",
-            BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).mapColor(MapColor.TERRACOTTA_YELLOW),
+            bedrockLike().mapColor(MapColor.TERRACOTTA_YELLOW),
             new Item.Properties().rarity(Rarity.RARE).fireResistant());
 
-    public static final DeferredBlock<SolidEndVoid> SOLID_END_VOID = registerWithItem("solid_end_void",
-            ()->new SolidEndVoid(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK).mapColor(MapColor.COLOR_BLACK).lightLevel(l->15)),
+    public static final DeferredBlock<Block> SOLID_END_VOID = registerWithItem("solid_end_void",
+            ()->new SolidEndVoid(bedrockLike().mapColor(MapColor.COLOR_BLACK).lightLevel(l->15)),
             new Item.Properties().rarity(Rarity.EPIC));
     public static final Supplier<BlockEntityType<SolidEndVoidBE>> SOLID_END_VOID_BE = BLOCK_ENTITY_TYPES.register(
             "solid_end_void_entity",
@@ -57,7 +64,7 @@ public class BPBlocks {
                     .isSuffocating(block_never)
                     .isViewBlocking(block_never)));
     public static final DeferredBlock<Block> ENCAPSULATED_END_PORTAL_FRAME = registerWithRareItem("encapsulated_end_portal_frame",
-            ()->new EncapsulatedEndPortalFrame(BlockBehaviour.Properties.ofFullCopy(Blocks.BEDROCK)
+            ()->new EncapsulatedEndPortalFrame(bedrockLike()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .sound(SoundType.GLASS).noOcclusion()));
     public static final DeferredBlock<Block> SCULK_RIB_BLOCK = registerWithItem("sculk_rib_block",()->new SculkRibBlock(
@@ -98,11 +105,11 @@ public class BPBlocks {
                     .isValidSpawn(Blocks::never)
                     .strength(10.0F, 100.0F)
                     .sound(SoundType.DEEPSLATE));
-    public static final DeferredBlock<KelpBlock> KELP_BLOCK = registerWithItem("kelp_block",
+    public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
-    public static final DeferredBlock<PermanentlyWettedFarmlandBlock> PERMANENTLY_WETTED_FARMLAND = registerWithItem("permanently_wetted_farmland",
+    public static final DeferredBlock<Block> PERMANENTLY_WETTED_FARMLAND = registerWithItem("permanently_wetted_farmland",
             ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
-    public static final DeferredBlock<PermanentlyWettedFarmlandBlock> GLOW_PERMANENTLY_WETTED_FARMLAND = registerWithItem("glow_permanently_wetted_farmland",
+    public static final DeferredBlock<Block> GLOW_PERMANENTLY_WETTED_FARMLAND = registerWithItem("glow_permanently_wetted_farmland",
             ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND).lightLevel(l->8)));
 
     public static final TorchBlockSet STONE_TORCH = TorchBlockSet
@@ -145,6 +152,7 @@ public class BPBlocks {
             .builder("weathered_",WeatheringCopper.WeatherState.WEATHERED,Blocks.WEATHERED_COPPER_GRATE).build();
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
+
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "all": "bedrock_platform:block/cyan_transparent_strong_interaction_block"
-  }
-}

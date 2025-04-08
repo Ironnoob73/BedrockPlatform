@@ -20,7 +20,7 @@ public class MyRecipeProvider extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput output) {
-        /*new BERBuilder(
+        new BERBuilder(
                 // Our constructor parameters. This example adds the ever-popular dirt -> diamond conversion.
                 new ItemStack(Items.DIAMOND),
                 Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.CLOCKWISE_90),
@@ -28,7 +28,7 @@ public class MyRecipeProvider extends RecipeProvider {
                 Blocks.GLASS.defaultBlockState()
         )
                 .unlockedBy("has_apple", has(Items.APPLE))
-                .save(output);*/
+                .save(output);
         // other recipe builders here
     }
 }

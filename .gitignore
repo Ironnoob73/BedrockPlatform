@@ -27,4 +27,4 @@ repo
 
 src/source/
 
-*.psd
+src/generated/

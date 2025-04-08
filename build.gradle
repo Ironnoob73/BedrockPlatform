@@ -59,10 +59,6 @@ runs {
 
 sourceSets {
     main {
-        java {
-            exclude 'dev/hail/bedrock_platform/_datagen/**'
-            exclude 'dev/hail/bedrock_platform/Datagen/**'
-            }
         resources {
             srcDir 'src/generated/resources'
         }
@@ -124,4 +120,8 @@ idea {
         downloadSources = true
         downloadJavadoc = true
     }
+}
+
+jar{
+    exclude 'dev/hail/bedrock_platform/Datagen'
 }

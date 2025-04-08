@@ -41,8 +41,8 @@ public class DatagenHandler {
         }
 
         private void genDefault(DeferredItem<Item> item){
-            singleTexture(item.getRegisteredName(), gItemModel, "layer0",
-                    ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "item/" + item.getRegisteredName()));
+            singleTexture(item.getId().getPath(), gItemModel, "layer0",
+                    ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "item/" + item.getId().getPath()));
         }
     }
 }

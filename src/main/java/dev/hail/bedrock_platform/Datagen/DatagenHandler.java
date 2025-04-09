@@ -2,6 +2,7 @@ package dev.hail.bedrock_platform.Datagen;
 
 import dev.hail.bedrock_platform.BedrockPlatform;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
+import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystLanternBlock;
 import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import dev.hail.bedrock_platform.Items.BPItems;
 import net.minecraft.core.HolderLookup;
@@ -28,6 +29,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
+import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -86,10 +88,17 @@ public class DatagenHandler {
             genDefault(BPItems.SCULK_RIB);
             genDefault(BPItems.ENCHANT_DUST);
             genDefault(BPItems.BLUE_ICE_CUBE);
+            genBlockItem(BPBlocks.STONE_TORCH.getItem());
+            genBlockItem(BPBlocks.DEEPSLATE_TORCH.getItem());
+            genBlockItem(BPBlocks.AMETHYST_CANDLE.getItem());
         }
         private void genDefault(DeferredItem<Item> item){
             singleTexture(item.getId().getPath(), gItemModel, "layer0",
                     BedrockPlatform.modResLocation("item/" + item.getId().getPath()));
+        }
+        private void genBlockItem(DeferredItem<Item> item){
+            singleTexture(item.getId().getPath(), gItemModel, "layer0",
+                    BedrockPlatform.modResLocation("block/" + item.getId().getPath()));
         }
     }
 
@@ -110,6 +119,10 @@ public class DatagenHandler {
             genKelpBlockWithItem();
             genBlockItemWithSpecialModel(BPBlocks.PERMANENTLY_WETTED_FARMLAND);
             genBlockItemWithSpecialModel(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND);
+            genAmethystLanternBlockItem(BPBlocks.AMETHYST_LANTERN.getUnwaxed(),"copper_grate");
+            genAmethystLanternBlockItem(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed(),"exposed_copper_grate");
+            genAmethystLanternBlockItem(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed(),"weathered_copper_grate");
+            genAmethystLanternBlockItem(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed(),"oxidized_copper_grate");
         }
         protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
             simpleBlockWithItem(block.get(), cubeAll(block.get()));
@@ -120,6 +133,12 @@ public class DatagenHandler {
         protected void genKelpBlockWithItem(){
             simpleBlockWithItem(BPBlocks.KELP_BLOCK.get(), models().cubeColumn(BPBlocks.KELP_BLOCK.getId().getPath(),
                     getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_side"), getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_end")));
+        }
+        protected void genAmethystLanternBlockItem(DeferredBlock<Block> block, String outer){
+            simpleBlockItem(block.get(), models().withExistingParent(block.getId().getPath(),
+                    BedrockPlatform.modResLocation("block/template_amethyst_lantern"))
+                    .texture("outer", ResourceLocation.withDefaultNamespace("block/" + outer))
+                    .texture("torch", BedrockPlatform.modResLocation("block/amethyst_candle")).renderType("translucent"));
         }
         protected void genSISet(StrongInteractionBlockSet color){
             genCubeAllBlockWithItem(color.getBaseBlock());
@@ -238,6 +257,98 @@ public class DatagenHandler {
                     Items.SLIME_BALL, BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().defaultBlockState(), output);
             genBothRecipe(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get(), Items.GLOW_LICHEN,
                     BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get(), output);
+            for (int w = 0; w < 2; w++){
+                genBothRecipeWithModPath(
+                        "amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.WAXED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.WAXED_EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.WAXED_WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                genBothRecipeWithModPath(
+                        "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
+                        "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
+                        Blocks.WAXED_OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
+                        BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                        BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                for (int i = 0; i < 16; i++){
+                    genBRRecipe(BPBlocks.AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.WAXED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.WAXED_EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.WAXED_WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                    genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
+                                    .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
+                            BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                            Blocks.WAXED_OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
+                            .save(output, "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                }
+            }
         }
         protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
             genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);

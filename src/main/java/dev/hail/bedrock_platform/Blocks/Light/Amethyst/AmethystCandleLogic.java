@@ -2,6 +2,7 @@ package dev.hail.bedrock_platform.Blocks.Light.Amethyst;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -22,12 +23,10 @@ public interface AmethystCandleLogic {
         }
         return result < 0 ? 0 : Math.min(result, 15);
     }
-    static int getLightFromEnvironment(BlockPlaceContext pContext) {
-        LevelAccessor levelaccessor = pContext.getLevel();
-        BlockPos blockpos = pContext.getClickedPos();
+    static int getLightFromEnvironment(Level level, BlockPos blockPos) {
         int light = 0;
-        if(!levelaccessor.dimensionType().ultraWarm() && !(levelaccessor.dimensionType().ambientLight() > 0)){
-            light = AmethystCandleLogic.getLightFromHeight(blockpos.getY());
+        if(!level.dimensionType().ultraWarm() && !(level.dimensionType().ambientLight() > 0)){
+            light = AmethystCandleLogic.getLightFromHeight(blockPos.getY());
         }
         return light;
     }

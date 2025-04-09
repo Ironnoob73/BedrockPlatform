@@ -1,6 +1,10 @@
 package dev.hail.bedrock_platform.Events;
 
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
+import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleBlock;
+import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleLogic;
+import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystLanternBlock;
+import dev.hail.bedrock_platform.Blocks.Light.Amethyst.WaxedAmethystLanternBlock;
 import dev.hail.bedrock_platform.Config;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERInput;
@@ -40,6 +44,7 @@ import javax.annotation.Nullable;
 import java.util.Optional;
 
 import static dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe.BLOCK_EXCHANGE;
+import static net.minecraft.world.level.block.Block.UPDATE_ALL;
 
 public class BPEvents {
     @SubscribeEvent
@@ -55,10 +60,8 @@ public class BPEvents {
         if (player != null) {
             itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
         }
-        // Create an input and query the recipe.
         BERInput input = new BERInput(blockState, itemStack);
         Optional<RecipeHolder<BERecipe>> optional = recipes.getRecipeFor(
-                // The recipe type.
                 BLOCK_EXCHANGE.get(),
                 input,
                 level
@@ -67,11 +70,13 @@ public class BPEvents {
                 .map(RecipeHolder::value)
                 .map(e -> e.assembleBlock(level.registryAccess()))
                 .orElse(null);
-        // If there is a result, break the block and drop the result in the world.
         if (resultState != null) {
             if (player != null && !player.isCreative() && itemStack.getMaxStackSize() != 1)
                 itemStack.consume(1,player);
-            level.setBlock(pos, resultState,11);
+            if (resultState.getBlock() instanceof AmethystLanternBlock || resultState.getBlock() instanceof WaxedAmethystLanternBlock){
+                resultState = resultState.setValue(AmethystCandleBlock.LIGHT, AmethystCandleLogic.getLightFromEnvironment(level, pos));
+            }
+            level.setBlock(pos, resultState, UPDATE_ALL);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
             ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_EXCHANGE.get(), UniformInt.of(1, 1));
             event.cancelWithResult(ItemInteractionResult.sidedSuccess(level.isClientSide));

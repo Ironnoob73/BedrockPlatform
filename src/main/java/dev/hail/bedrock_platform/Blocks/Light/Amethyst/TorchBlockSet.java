@@ -27,14 +27,14 @@ public class TorchBlockSet {
     public DeferredBlock<WallTorchBlock> getWall() {
         return builder.WALL;
     }
-    public DeferredItem<TooltipTorchItem> getItem() {
+    public DeferredItem<Item> getItem() {
         return builder.ITEM;
     }
 
     public static class Builder {
         private final DeferredBlock<TorchBlock> STAND;
         private final DeferredBlock<WallTorchBlock> WALL;
-        private final DeferredItem<TooltipTorchItem> ITEM;
+        private final DeferredItem<Item> ITEM;
         public Builder(String id, boolean candle, Supplier<TorchBlock> standTorch, Supplier<WallTorchBlock> wallTorch) {
             this.STAND = BPBlocks.BLOCKS.register(!candle ? id + "_torch" : id + "_candle", standTorch);
             this.WALL = BPBlocks.BLOCKS.register(!candle ? id + "_wall_torch" : id + "_wall_candle", wallTorch);

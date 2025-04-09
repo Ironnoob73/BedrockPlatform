@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "bedrock_platform:block/amethyst_candle"
-  }
-}

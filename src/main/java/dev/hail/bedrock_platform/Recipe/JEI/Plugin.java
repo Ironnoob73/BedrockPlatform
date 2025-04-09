@@ -32,7 +32,7 @@ public class Plugin implements IModPlugin {
     @Override
     public @NotNull ResourceLocation getPluginUid()
     {
-        return ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID,"plugin");
+        return BedrockPlatform.modResLocation("plugin");
     }
 
     @Override

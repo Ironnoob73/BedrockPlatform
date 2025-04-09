@@ -27,6 +27,7 @@ public class SculkRibBlock extends Block implements SimpleWaterloggedBlock {
 
     public SculkRibBlock(Properties properties) {
         super(properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
     }
 
     @Override

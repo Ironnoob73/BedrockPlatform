@@ -26,6 +26,7 @@ public class UnderwaterTorchBlock extends TorchBlock implements SimpleWaterlogge
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public UnderwaterTorchBlock(SimpleParticleType particleType, Properties properties) {
         super(particleType, properties);
+        this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
     }
     @Nullable
     @Override
@@ -58,6 +59,7 @@ public class UnderwaterTorchBlock extends TorchBlock implements SimpleWaterlogge
         public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
         public WallUnderwaterTorchBlock(SimpleParticleType particleType, Properties properties) {
             super(particleType, properties);
+            this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, Boolean.FALSE));
         }
         @Nullable
         @Override

@@ -10,11 +10,17 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
@@ -67,6 +73,7 @@ public class DatagenHandler {
         generator.addProvider(event.includeClient(), new ModelProvider(output, helper));
         generator.addProvider(event.includeClient(), new StateProvider(output, helper));
         generator.addProvider(event.includeServer(), new LootProvider(output, lookupProvider));
+        generator.addProvider(event.includeServer(), new MyRecipeProvider(output, lookupProvider));
     }
 
     public static class ModelProvider extends ItemModelProvider {
@@ -82,7 +89,7 @@ public class DatagenHandler {
         }
         private void genDefault(DeferredItem<Item> item){
             singleTexture(item.getId().getPath(), gItemModel, "layer0",
-                    ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "item/" + item.getId().getPath()));
+                    BedrockPlatform.modResLocation("item/" + item.getId().getPath()));
         }
     }
 
@@ -100,7 +107,7 @@ public class DatagenHandler {
             }
             genBlockItemWithSpecialModel(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME);
             genBlockItemWithSpecialModel(BPBlocks.SCULK_RIB_BLOCK);
-            genColumnBlockWithItem(BPBlocks.KELP_BLOCK);
+            genKelpBlockWithItem();
             genBlockItemWithSpecialModel(BPBlocks.PERMANENTLY_WETTED_FARMLAND);
             genBlockItemWithSpecialModel(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND);
         }
@@ -110,9 +117,9 @@ public class DatagenHandler {
         protected void genTransparentBlockWithItem(DeferredBlock<Block> block){
             simpleBlockWithItem(block.get(), models().cubeAll(getBlockId(block), blockTexture(block.get())).renderType("translucent"));
         }
-        protected void genColumnBlockWithItem(DeferredBlock<Block> block){
-            simpleBlockWithItem(block.get(), models().cubeColumn(block.getId().getPath(),
-                    getBlockTexture(getBlockId(block) + "_side"), getBlockTexture(getBlockId(block) + "_end")));
+        protected void genKelpBlockWithItem(){
+            simpleBlockWithItem(BPBlocks.KELP_BLOCK.get(), models().cubeColumn(BPBlocks.KELP_BLOCK.getId().getPath(),
+                    getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_side"), getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_end")));
         }
         protected void genSISet(StrongInteractionBlockSet color){
             genCubeAllBlockWithItem(color.getBaseBlock());
@@ -134,7 +141,7 @@ public class DatagenHandler {
             return block.getId().getPath();
         }
         protected ResourceLocation getBlockTexture(String blockId){
-            return ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block/" + blockId);
+            return BedrockPlatform.modResLocation("block/" + blockId);
         }
     }
 
@@ -184,6 +191,104 @@ public class DatagenHandler {
                     .stream()
                     .map(DeferredHolder::value)
                     .collect(Collectors.toList());
+        }
+    }
+
+    public static class MyRecipeProvider extends RecipeProvider {
+        public MyRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
+            super(output, lookupProvider);
+        }
+        @Override
+        protected void buildRecipes(@NotNull RecipeOutput output) {
+            genBothRecipe(Blocks.BEDROCK, Items.NETHERITE_SCRAP, BPBlocks.BEDROCK_PLATFORM.get(), output);
+            genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.GOLD_INGOT, BPBlocks.TWILL_BEDROCK_PLATFORM.get(), output);
+            genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.NETHER_STAR, BPBlocks.LUMINOUS_BEDROCK_PLATFORM.get(), output);
+            genBothRecipe(Blocks.GLASS, Items.GHAST_TEAR, BPBlocks.GHAST_TEAR_GLASS.get(), output);
+            genBothRecipeWithModPath("reinforced_deepslate","reinforced_deepslate_reduction",
+                    Blocks.DEEPSLATE.defaultBlockState(), BPItems.SCULK_RIB.get(), Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), output);
+            genBothRecipeWithModPath("crying_obsidian","crying_obsidian_reduction",
+                    Blocks.OBSIDIAN.defaultBlockState(), BPItems.ENCHANT_DUST.get(), Blocks.CRYING_OBSIDIAN.defaultBlockState(), output);
+            genBothRecipeWithModPath("sculk_shrieker_reactive","sculk_shrieker_disable",
+                    Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true), Items.ECHO_SHARD,
+                    Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false), output);
+            genBothRecipeWithModPath("sculk_shrieker_waterlogged_reactive","sculk_shrieker_waterlogged_disable",
+                    Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true)
+                            .setValue(SculkShriekerBlock.WATERLOGGED,true), Items.ECHO_SHARD,
+                    Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false)
+                            .setValue(SculkShriekerBlock.WATERLOGGED,true), output);
+            for (int i = 0; i < 4; i++){
+                genBRRecipe(
+                        Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,true),
+                        Items.ENDER_EYE.getDefaultInstance(),
+                        Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,false))
+                        .save(output, BedrockPlatform.modResLocation("end_portal_frame_" + Rotation.values()[i].getSerializedName() + "_reduction"));
+                genBothRecipeWithModPath(
+                        "encapsulated_end_portal_frame_" + Rotation.values()[i].getSerializedName(),
+                        "encapsulated_end_portal_frame_" + Rotation.values()[i].getSerializedName() + "_reduction",
+                        Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,true),
+                        BPBlocks.GHAST_TEAR_GLASS.asItem(),
+                        BPBlocks.ENCAPSULATED_END_PORTAL_FRAME.get().defaultBlockState().rotate(Rotation.values()[i]), output);
+            }
+            genBothRecipeWithModPath("sculk_catalyst_from_rib","sculk_rib_block_from_reduction",
+                    BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState(), Items.ECHO_SHARD, Blocks.SCULK_CATALYST.defaultBlockState(), output);
+            for (StrongInteractionBlockSet color : colorSIList) {
+                genSISet(color,output);
+            }
+            genBothRecipeWithState(Blocks.FARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE,7),
+                    Items.SLIME_BALL, BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().defaultBlockState(), output);
+            genBothRecipe(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get(), Items.GLOW_LICHEN,
+                    BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get(), output);
+        }
+        protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
+            genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
+            genBothRecipe(color.getBaseBlock().get(), Items.GLOWSTONE_DUST, color.getGlow().get(), output);
+            genBothRecipe(color.getBaseBlock().get(), Items.WIND_CHARGE, color.getTwill().get(), output);
+            genBothRecipe(color.getBaseBlock().get(), Items.BLAZE_POWDER, color.getTransparent().get(), output);
+            if (color != BPBlocks.BLACK_SI_BLOCK_SET){
+                genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().get().defaultBlockState(),
+                        StrongInteractionBlockSet.returnColorMaterial(color),
+                        color.getBaseBlock().get().defaultBlockState())
+                        .save(output, BuiltInRegistries.ITEM.getKey(color.getBaseBlock().asItem()) + "_dye");
+                genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getGlow().get().defaultBlockState(),
+                        StrongInteractionBlockSet.returnColorMaterial(color),
+                        color.getGlow().get().defaultBlockState())
+                        .save(output, BuiltInRegistries.ITEM.getKey(color.getGlow().asItem()) + "_dye");
+                genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getTwill().get().defaultBlockState(),
+                        StrongInteractionBlockSet.returnColorMaterial(color),
+                        color.getTwill().get().defaultBlockState())
+                        .save(output, BuiltInRegistries.ITEM.getKey(color.getTwill().asItem()) + "_dye");
+                genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getTransparent().get().defaultBlockState(),
+                        StrongInteractionBlockSet.returnColorMaterial(color),
+                        color.getTransparent().get().defaultBlockState())
+                        .save(output, BuiltInRegistries.ITEM.getKey(color.getTransparent().asItem()) + "_dye");
+            }
+        }
+
+        protected void genBothRecipe(Block inputBlock, Item ingredient, Block outputBlock, RecipeOutput output){
+            genBothRecipeWithState(inputBlock.defaultBlockState(), ingredient, outputBlock.defaultBlockState(), output);
+        }
+        protected void genBothRecipeWithState(BlockState inputBlock, Item ingredient, BlockState outputBlock, RecipeOutput output){
+            genBERecipe(inputBlock, ingredient, outputBlock).save(output);
+            genBRRecipe(outputBlock, ingredient.getDefaultInstance(), inputBlock).save(output, BuiltInRegistries.ITEM.getKey(outputBlock.getBlock().asItem()) + "_reduction");
+        }
+        protected void genBothRecipeWithModPath(String path0, String path1, BlockState inputBlock, Item ingredient, BlockState outputBlock, RecipeOutput output){
+            genBERecipe(inputBlock, ingredient, outputBlock).save(output, BedrockPlatform.modResLocation(path0));
+            genBRRecipe(outputBlock, ingredient.getDefaultInstance(), inputBlock).save(output, BedrockPlatform.modResLocation(path1));
+        }
+        protected MyRecipeBuilder.BERBuilder genBERecipe(BlockState inputBlock, Item ingredient, BlockState outputBlock){
+            return new MyRecipeBuilder.BERBuilder(
+                    new ItemStack(outputBlock.getBlock()),
+                    inputBlock,
+                    Ingredient.of(ingredient),
+                    outputBlock);
+        }
+        protected MyRecipeBuilder.BRRBuilder genBRRecipe(BlockState inputBlock, ItemStack resultItem, BlockState outputBlock){
+            return new MyRecipeBuilder.BRRBuilder(
+                    new ItemStack(outputBlock.getBlock()),
+                    inputBlock,
+                    Ingredient.of(BPItems.OBSIDIAN_WRENCH),
+                    resultItem,
+                    outputBlock);
         }
     }
 }

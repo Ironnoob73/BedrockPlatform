@@ -17,15 +17,15 @@ import java.util.function.Supplier;
 
 public class BERSerializer implements RecipeSerializer<BERecipe> {
     public static final MapCodec<BERecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
-            BlockState.CODEC.fieldOf("state").forGetter(BERecipe::getInputState),
-            Ingredient.CODEC.fieldOf("ingredient").forGetter(BERecipe::getInputItem),
-            BlockState.CODEC.fieldOf("result_state").forGetter(BERecipe::getResultState)
+            BlockState.CODEC.fieldOf("state").forGetter(BERecipe::inputState),
+            Ingredient.CODEC.fieldOf("ingredient").forGetter(BERecipe::inputItem),
+            BlockState.CODEC.fieldOf("result_state").forGetter(BERecipe::resultState)
     ).apply(inst, BERecipe::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, BERecipe> STREAM_CODEC =
             StreamCodec.composite(
-                    ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::getInputState,
-                    Ingredient.CONTENTS_STREAM_CODEC, BERecipe::getInputItem,
-                    ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::getResultState,
+                    ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::inputState,
+                    Ingredient.CONTENTS_STREAM_CODEC, BERecipe::inputItem,
+                    ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BERecipe::resultState,
                     BERecipe::new
             );
 

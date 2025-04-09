@@ -1,5 +1,7 @@
 package dev.hail.bedrock_platform.Blocks;
 
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.TransparentBlock;
 import net.minecraft.world.level.material.MapColor;
@@ -93,5 +95,28 @@ public class StrongInteractionBlockSet {
             this.blockCache = null;
             return blockSet;
         }
+    }
+
+    public static Item returnColorMaterial(StrongInteractionBlockSet color){
+        if (color.equals(BPBlocks.RED_SI_BLOCK_SET)) {
+            return Items.REDSTONE;
+        } else if (color.equals(BPBlocks.ORANGE_SI_BLOCK_SET)) {
+            return Items.COPPER_INGOT;
+        } else if (color.equals(BPBlocks.YELLOW_SI_BLOCK_SET)) {
+            return Items.GOLD_INGOT;
+        } else if (color.equals(BPBlocks.GREEN_SI_BLOCK_SET)) {
+            return Items.EMERALD;
+        } else if (color.equals(BPBlocks.CYAN_SI_BLOCK_SET)) {
+            return Items.DIAMOND;
+        } else if (color.equals(BPBlocks.BLUE_SI_BLOCK_SET)) {
+            return Items.LAPIS_LAZULI;
+        } else if (color.equals(BPBlocks.PURPLE_SI_BLOCK_SET)) {
+            return Items.AMETHYST_SHARD;
+        } else if (color.equals(BPBlocks.WHITE_SI_BLOCK_SET)) {
+            return Items.QUARTZ;
+        } else if (color.equals(BPBlocks.GRAY_SI_BLOCK_SET)) {
+            return Items.IRON_INGOT;
+        }
+        return Items.AIR;
     }
 }

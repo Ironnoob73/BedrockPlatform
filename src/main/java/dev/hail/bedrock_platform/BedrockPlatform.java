@@ -167,21 +167,21 @@ public class BedrockPlatform
 
     public void packSetup(AddPackFindersEvent event) {
         event.addPackFinders(
-                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_fusion"),
+                BedrockPlatform.modResLocation("resourcepacks/bp_fusion"),
                 PackType.CLIENT_RESOURCES,
                 Component.translatable("pack.bp_fusion.name"),
                 PackSource.BUILT_IN,
                 false,
                 Pack.Position.TOP);
         event.addPackFinders(
-                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_mcpatcher"),
+                BedrockPlatform.modResLocation("resourcepacks/bp_mcpatcher"),
                 PackType.CLIENT_RESOURCES,
                 Component.translatable("pack.bp_mcpatcher.name"),
                 PackSource.BUILT_IN,
                 false,
                 Pack.Position.TOP);
         event.addPackFinders(
-                ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/bp_ctm"),
+                BedrockPlatform.modResLocation("resourcepacks/bp_ctm"),
                 PackType.CLIENT_RESOURCES,
                 Component.translatable("pack.bp_ctm.name"),
                 PackSource.BUILT_IN,
@@ -216,5 +216,9 @@ public class BedrockPlatform
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(BPBlocks.SOLID_END_VOID_BE.get(), context -> new SolidEndVoidRender());
         }
+    }
+
+    public static ResourceLocation modResLocation(String path){
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
     }
 }

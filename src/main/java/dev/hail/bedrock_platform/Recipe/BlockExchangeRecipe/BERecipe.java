@@ -5,7 +5,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -18,60 +17,47 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public class BERecipe implements Recipe<BERInput> {
-    // https://docs.neoforged.net/docs/1.21.1/resources/server/recipes/#custom-recipes
-    // An in-code representation of our recipe data. This can be basically anything you want.
-    // Common things to have here is a processing time integer of some kind, or an experience reward.
-    // Note that we now use an ingredient instead of an item stack for the input.
-    private final BlockState inputState;
-    private final Ingredient inputItem;
-    private final BlockState resultState;
+public record BERecipe(BlockState inputState, Ingredient inputItem, BlockState resultState) implements Recipe<BERInput> {
     // Add a constructor that sets all properties.
-    public BERecipe(BlockState inputState, Ingredient inputItem, BlockState resultState) {
-        this.inputState = inputState;
-        this.inputItem = inputItem;
-        this.resultState = resultState;
-    }
+
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
         list.add(this.inputItem);
         return list;
     }
+
     @Override
     public boolean canCraftInDimensions(int width, int height) {
         return width * height >= 1;
     }
+
     @Override
     public boolean matches(BERInput input, @NotNull Level level) {
         return this.inputState == input.state() && this.inputItem.test(input.stack());
     }
+
     @Override
-    public ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
-        return null;
+    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
+        return resultState.getBlock().asItem().getDefaultInstance();
     }
+
     @Override
-    public ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
-        return null;
+    public @NotNull ItemStack assemble(@NotNull BERInput input, HolderLookup.@NotNull Provider registries) {
+        return resultState.getBlock().asItem().getDefaultInstance();
     }
-    public @NotNull BlockState assembleBlock(RegistryAccess registryAccess){
+
+    public @NotNull BlockState assembleBlock(RegistryAccess registryAccess) {
         return this.resultState;
     }
+
     @Override
-    public RecipeType<?> getType() {
+    public @NotNull RecipeType<?> getType() {
         return BLOCK_EXCHANGE.get();
     }
-    public BlockState getInputState() {
-        return inputState;
-    }
-    public Ingredient getInputItem() {
-        return inputItem;
-    }
-    public BlockState getResultState() {
-        return resultState;
-    }
+
     @Override
-    public RecipeSerializer<?> getSerializer() {
+    public @NotNull RecipeSerializer<?> getSerializer() {
         return BERSerializer.BLOCK_EXCHANGE.get();
     }
 
@@ -83,6 +69,6 @@ public class BERecipe implements Recipe<BERInput> {
             RECIPE_TYPES.register(
                     "block_ex",
                     // We need the qualifying generic here due to generics being generics.
-                    () -> RecipeType.simple(ResourceLocation.fromNamespaceAndPath(BedrockPlatform.MODID, "block_exchange"))
+                    () -> RecipeType.simple(BedrockPlatform.modResLocation("block_exchange"))
             );
 }

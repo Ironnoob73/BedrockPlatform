@@ -1,6 +1,14 @@
 {
   "values":[
     "bedrock_platform:sculk_rib_block",
-    "bedrock_platform:geode_mosaic_tile"
+    "bedrock_platform:geode_mosaic_tile",
+    "bedrock_platform:amethyst_lantern",
+    "bedrock_platform:exposed_amethyst_lantern",
+    "bedrock_platform:oxidized_amethyst_lantern",
+    "bedrock_platform:weathered_amethyst_lantern",
+    "bedrock_platform:waxed_amethyst_lantern",
+    "bedrock_platform:waxed_exposed_amethyst_lantern",
+    "bedrock_platform:waxed_oxidized_amethyst_lantern",
+    "bedrock_platform:waxed_weathered_amethyst_lantern"
   ]
 }

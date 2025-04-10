@@ -7,19 +7,21 @@ import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import dev.hail.bedrock_platform.Items.BPItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.*;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
@@ -29,7 +31,6 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
-import net.neoforged.neoforge.client.model.generators.ModelBuilder;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -47,6 +48,12 @@ import java.util.stream.Collectors;
 public class DatagenHandler {
     protected static List<DeferredBlock<Block>> cubeAllBlockList = new ArrayList<>();
     protected static List<StrongInteractionBlockSet> colorSIList = new ArrayList<>();
+
+    // TAGS
+    public static final TagKey<Item> COAL_TAG = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("coals"));
+    public static final TagKey<Item> COBBLED_DEEPSLATE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/deepslate"));
+    public static final TagKey<Item> COBBLESTONE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/normal"));
+
     @SubscribeEvent
     public static void gatherData(GatherDataEvent event) {
         // INIT
@@ -116,7 +123,7 @@ public class DatagenHandler {
             }
             genBlockItemWithSpecialModel(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME);
             genBlockItemWithSpecialModel(BPBlocks.SCULK_RIB_BLOCK);
-            genKelpBlockWithItem();
+            genKelpBlockWithItem(BPBlocks.KELP_BLOCK);
             genBlockItemWithSpecialModel(BPBlocks.PERMANENTLY_WETTED_FARMLAND);
             genBlockItemWithSpecialModel(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND);
             genAmethystLanternBlockItem(BPBlocks.AMETHYST_LANTERN.getUnwaxed(),"copper_grate");
@@ -130,9 +137,9 @@ public class DatagenHandler {
         protected void genTransparentBlockWithItem(DeferredBlock<Block> block){
             simpleBlockWithItem(block.get(), models().cubeAll(getBlockId(block), blockTexture(block.get())).renderType("translucent"));
         }
-        protected void genKelpBlockWithItem(){
-            simpleBlockWithItem(BPBlocks.KELP_BLOCK.get(), models().cubeColumn(BPBlocks.KELP_BLOCK.getId().getPath(),
-                    getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_side"), getBlockTexture(getBlockId(BPBlocks.KELP_BLOCK) + "_end")));
+        protected void genKelpBlockWithItem(DeferredBlock<Block> block){
+            simpleBlockWithItem(block.get(), models().cubeColumn(block.getId().getPath(),
+                    getBlockTexture(getBlockId(block) + "_side"), getBlockTexture(getBlockId(block) + "_end")));
         }
         protected void genAmethystLanternBlockItem(DeferredBlock<Block> block, String outer){
             simpleBlockItem(block.get(), models().withExistingParent(block.getId().getPath(),
@@ -190,7 +197,7 @@ public class DatagenHandler {
                             pOutput.accept(resourcekey, loottable$builder);
                         }else {
                             throw new IllegalStateException(
-                                    String.format(Locale.ROOT, "Missing loottable '%s' for '%s'", resourcekey.location(), BuiltInRegistries.BLOCK.getKey(block))
+                                    String.format(Locale.ROOT, "Missing lootTable '%s' for '%s'", resourcekey.location(), BuiltInRegistries.BLOCK.getKey(block))
                             );
                         }
                     }
@@ -253,10 +260,14 @@ public class DatagenHandler {
             for (StrongInteractionBlockSet color : colorSIList) {
                 genSISet(color,output);
             }
+            genCompressAndDecompressFour(BPItems.BLUE_ICE_CUBE, Blocks.BLUE_ICE, output);
+            genCompressAndDecompressNine(Items.KELP, BPBlocks.KELP_BLOCK.get(), output);
             genBothRecipeWithState(Blocks.FARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE,7),
                     Items.SLIME_BALL, BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().defaultBlockState(), output);
             genBothRecipe(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get(), Items.GLOW_LICHEN,
                     BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get(), output);
+            genTorch(COAL_TAG,COBBLESTONE_TAG,BPBlocks.STONE_TORCH.getItem()).save(output);
+            genTorch(COAL_TAG,COBBLED_DEEPSLATE_TAG,BPBlocks.DEEPSLATE_TORCH.getItem()).save(output);
             for (int w = 0; w < 2; w++){
                 genBothRecipeWithModPath(
                         "amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
@@ -311,42 +322,42 @@ public class DatagenHandler {
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.WAXED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("waxed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.WAXED_EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.WAXED_WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                     genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                     .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                             BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
                             Blocks.WAXED_OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
-                            .save(output, "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "") + i + "_reduction");
+                            .save(output, BedrockPlatform.modResLocation("waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 }
             }
         }
@@ -373,6 +384,7 @@ public class DatagenHandler {
                         color.getTransparent().get().defaultBlockState())
                         .save(output, BuiltInRegistries.ITEM.getKey(color.getTransparent().asItem()) + "_dye");
             }
+            genCompressAndDecompressFour(color.getBaseBlock().get(),color.getTile().get(),output);
         }
 
         protected void genBothRecipe(Block inputBlock, Item ingredient, Block outputBlock, RecipeOutput output){
@@ -400,6 +412,45 @@ public class DatagenHandler {
                     Ingredient.of(BPItems.OBSIDIAN_WRENCH),
                     resultItem,
                     outputBlock);
+        }
+
+        // 九原料合成一块的合成及分解配方
+        protected void genCompressAndDecompressNine(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
+            genCompressNine(input, result).save(output);
+            genDecompressNine(result, input).save(output, BuiltInRegistries.ITEM.getKey(input.asItem()) + "_from_block");
+        }
+        protected ShapedRecipeBuilder genCompressNine(ItemLike input, ItemLike result){
+            return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+                    .define('A', input)
+                    .pattern("AAA").pattern("AAA").pattern("AAA")
+                    .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+        }
+        protected ShapelessRecipeBuilder genDecompressNine(ItemLike input, ItemLike result){
+            return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 9)
+                    .requires(input)
+                    .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+        }
+        // 四原料合成一块的合成及分解配方
+        protected void genCompressAndDecompressFour(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
+            genCompressFour(input, result).save(output);
+            genDecompressFour(result, input).save(output, BuiltInRegistries.ITEM.getKey(input.asItem()) + "_from_block");
+        }
+        protected ShapedRecipeBuilder genCompressFour(ItemLike input, ItemLike result){
+            return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+                    .define('A', input)
+                    .pattern("AA").pattern("AA")
+                    .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+        }
+        protected ShapelessRecipeBuilder genDecompressFour(ItemLike input, ItemLike result){
+            return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 4)
+                    .requires(input)
+                    .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+        }
+        protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){
+            return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
+                    .define('^', input0).define('|', input1)
+                    .pattern("^").pattern("|")
+                    .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input0)));
         }
     }
 }

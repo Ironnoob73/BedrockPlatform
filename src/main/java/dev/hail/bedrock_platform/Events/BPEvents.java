@@ -77,6 +77,7 @@ public class BPEvents {
                 resultState = resultState.setValue(AmethystCandleBlock.LIGHT, AmethystCandleLogic.getLightFromEnvironment(level, pos));
             }
             level.setBlock(pos, resultState, UPDATE_ALL);
+            level.getBlockState(pos).onPlace(level,pos,resultState,false);
             level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
             ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_EXCHANGE.get(), UniformInt.of(1, 1));
             event.cancelWithResult(ItemInteractionResult.sidedSuccess(level.isClientSide));

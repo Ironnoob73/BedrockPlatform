@@ -158,11 +158,6 @@ public class BedrockPlatform
 
         NeoForge.EVENT_BUS.register(this);
         NeoForge.EVENT_BUS.register(new BPEvents());
-
-        modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC_C);
-        modContainer.registerConfig(ModConfig.Type.SERVER, Config.SPEC_S);
-        ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> ConfigurationScreen::new);
     }
 
     public void packSetup(AddPackFindersEvent event) {
@@ -191,6 +186,9 @@ public class BedrockPlatform
     }
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
+        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, Config.SPEC_C);
+        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.SERVER, Config.SPEC_S);
     }
 
     @SubscribeEvent
@@ -203,6 +201,7 @@ public class BedrockPlatform
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
+            ModLoadingContext.get().registerExtensionPoint(IConfigScreenFactory.class, () -> ConfigurationScreen::new);
         }
         @SubscribeEvent
         public static void registerParticleProviders(RegisterParticleProvidersEvent event) {

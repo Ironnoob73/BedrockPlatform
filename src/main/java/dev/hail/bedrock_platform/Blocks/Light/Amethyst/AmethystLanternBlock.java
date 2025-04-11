@@ -44,6 +44,13 @@ public class AmethystLanternBlock extends WeatheringCopperGrateBlock implements 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> pBuilder) {
         pBuilder.add(AmethystCandleLogic.WATERLOGGED,LIGHT);
     }
+    @Override
+    protected void onPlace(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pOldState, boolean pIsMoving) {
+        if (!pLevel.isClientSide) {
+            // NOT SOLVED
+            pState.setValue(LIGHT, AmethystCandleLogic.getLightFromEnvironment(pLevel,pPos));
+        }
+    }
 
     @Override
     public @NotNull BlockState updateShape(@NotNull BlockState pState, @NotNull Direction pDirection, @NotNull BlockState pNeighborState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pPos, @NotNull BlockPos pNeighborPos){

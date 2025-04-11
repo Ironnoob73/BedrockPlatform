@@ -9,6 +9,7 @@ import dev.hail.bedrock_platform.Blocks.Light.SolidTorchBlock;
 import dev.hail.bedrock_platform.Blocks.SolidEnd.SolidEndVoid;
 import dev.hail.bedrock_platform.Blocks.SolidEnd.SolidEndVoidBE;
 import dev.hail.bedrock_platform.Items.BPItems;
+import dev.hail.bedrock_platform.Items.PlatformItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -152,6 +154,10 @@ public class BPBlocks {
             .builder("weathered_",WeatheringCopper.WeatherState.WEATHERED,Blocks.WEATHERED_COPPER_GRATE).build();
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
+
+
+    public static final DeferredItem<Item> STONE_PLATFORM = BPItems.ITEMS.register("stone_platform",
+            () -> new PlatformItem( Blocks.COBBLESTONE_STAIRS, new Item.Properties()));
 
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {

@@ -1,8 +1,0 @@
-{
-  "parent": "bedrock_platform:block/template_amethyst_lantern",
-  "render_type": "minecraft:translucent",
-  "textures": {
-    "outer": "minecraft:block/oxidized_copper_grate",
-    "torch": "bedrock_platform:block/amethyst_candle_off"
-  }
-}

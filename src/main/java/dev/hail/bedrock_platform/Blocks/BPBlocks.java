@@ -155,9 +155,10 @@ public class BPBlocks {
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
 
-
-    public static final DeferredItem<Item> STONE_PLATFORM = BPItems.ITEMS.register("stone_platform",
-            () -> new PlatformItem( Blocks.COBBLESTONE_STAIRS, new Item.Properties()));
+    public static final DeferredBlock<Block> STONE_PLATFORM = BLOCKS.register("stone_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)));
+    public static final DeferredItem<Item> STONE_PLATFORM_ITEM = BPItems.ITEMS.register("stone_platform",
+            () -> new PlatformItem(STONE_PLATFORM.get(), new Item.Properties()));
 
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {

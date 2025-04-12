@@ -1,5 +1,7 @@
 package dev.hail.bedrock_platform.Items;
 
+import dev.hail.bedrock_platform.BedrockPlatform;
+import dev.hail.bedrock_platform.Blocks.PlatformBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -13,8 +15,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Half;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -43,7 +45,6 @@ public class PlatformItem extends BlockItem {
         return InteractionResultHolder.fail(pPlayer.getItemInHand(pUsedHand));
     }
     public BlockPlaceContext setPlatformBlock(@NotNull Level pLevel, Player pPlayer,  @NotNull InteractionHand pUsedHand){
-        BlockState plat = Blocks.COBBLESTONE_STAIRS.defaultBlockState();
         BlockPos currentPos = pPlayer.getOnPos();
         Direction direction = pPlayer.getDirection();
         UpOrDown upOrDown = UpOrDown.FORWARD;
@@ -52,25 +53,36 @@ public class PlatformItem extends BlockItem {
         } else if (pPlayer.getXRot() <= -45){
             upOrDown = UpOrDown.UP;
         }
-        if (pLevel.getBlockState(currentPos).getBlock() != plat.getBlock()){
+        if (!(pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock)){
             return null;
         }
-        while (pLevel.getBlockState(currentPos).getBlock() == plat.getBlock()){
+        while (pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock){
             currentPos = currentPos.mutable().move(direction);
-            if (pLevel.getBlockState(currentPos.above()).getBlock() == plat.getBlock()){
+            if (pLevel.getBlockState(currentPos.above()).getBlock() instanceof PlatformBlock){
                 currentPos = currentPos.above();
-            } else if (pLevel.getBlockState(currentPos.below()).getBlock() == plat.getBlock()){
+            } else if (pLevel.getBlockState(currentPos.below()).getBlock() instanceof PlatformBlock){
                 currentPos = currentPos.below();
             }
         }
+        BlockState previousBlock = pLevel.getBlockState(currentPos.mutable().move(direction.getOpposite()));
+        boolean isPlatform = previousBlock.getBlock() instanceof PlatformBlock;
         if (pLevel.getBlockState(currentPos).canBeReplaced()) {
-            if (upOrDown == UpOrDown.UP){
+            if (upOrDown == UpOrDown.UP
+                    && isPlatform
+                    &&(previousBlock.getValue(PlatformBlock.HALF) == Half.TOP
+                    || previousBlock.getValue(PlatformBlock.FACING) != direction.getOpposite())){
                 currentPos = currentPos.above();
-            } else if (upOrDown == UpOrDown.DOWN){
+            } else if (isPlatform
+                    &&((upOrDown == UpOrDown.DOWN
+                    && (previousBlock.getValue(PlatformBlock.HALF) == Half.BOTTOM
+                    && previousBlock.getValue(PlatformBlock.FACING) == direction.getOpposite()))
+                    ||((upOrDown == UpOrDown.FORWARD)
+                    && previousBlock.getValue(PlatformBlock.HALF) == Half.BOTTOM
+                    && previousBlock.getValue(PlatformBlock.FACING) == direction.getOpposite()))){
                 currentPos = currentPos.below();
             }
             return new BlockPlaceContext(pLevel,pPlayer,pUsedHand,pPlayer.getItemInHand(pUsedHand),
-                    new BlockHitResult(new Vec3(currentPos.getX() + 0.5,currentPos.getY() + 0.5,currentPos.getZ() + 0.5),
+                    new BlockHitResult(new Vec3(currentPos.getX(),currentPos.getY() + (upOrDown == UpOrDown.FORWARD ? 0.7 : 0),currentPos.getZ()),
                             direction, currentPos, false));
         }
         return null;

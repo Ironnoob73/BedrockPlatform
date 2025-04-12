@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/template_torch",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "torch": "bedrock_platform:block/stone_torch_off"
-  }
-}

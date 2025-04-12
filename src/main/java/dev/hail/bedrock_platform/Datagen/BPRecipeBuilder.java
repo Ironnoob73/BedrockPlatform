@@ -20,21 +20,21 @@ import javax.annotation.Nullable;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public abstract class MyRecipeBuilder implements RecipeBuilder {
+public abstract class BPRecipeBuilder implements RecipeBuilder {
     protected final ItemStack result;
     protected final Map<String, Criterion<?>> criteria = new LinkedHashMap<>();
     @Nullable
     protected String group;
-    public MyRecipeBuilder(ItemStack result) {
+    public BPRecipeBuilder(ItemStack result) {
         this.result = result;
     }
     @Override
-    public @NotNull MyRecipeBuilder unlockedBy(@NotNull String name, @NotNull Criterion<?> criterion) {
+    public @NotNull BPRecipeBuilder unlockedBy(@NotNull String name, @NotNull Criterion<?> criterion) {
         this.criteria.put(name, criterion);
         return this;
     }
     @Override
-    public @NotNull MyRecipeBuilder group(@Nullable String group) {
+    public @NotNull BPRecipeBuilder group(@Nullable String group) {
         this.group = group;
         return this;
     }
@@ -43,7 +43,7 @@ public abstract class MyRecipeBuilder implements RecipeBuilder {
         return this.result.getItem();
     }
 
-    public static class BERBuilder extends MyRecipeBuilder {
+    public static class BERBuilder extends BPRecipeBuilder {
         private final BlockState inputState;
         private final Ingredient inputItem;
         private final BlockState resultState;
@@ -64,7 +64,7 @@ public abstract class MyRecipeBuilder implements RecipeBuilder {
             output.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
         }
     }
-    public static class BRRBuilder extends MyRecipeBuilder {
+    public static class BRRBuilder extends BPRecipeBuilder {
         private final BlockState inputState;
         private final Ingredient toolItem;
         private final ItemStack resultItem;

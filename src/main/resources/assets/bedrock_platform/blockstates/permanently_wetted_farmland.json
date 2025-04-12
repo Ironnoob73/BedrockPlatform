@@ -1,7 +1,0 @@
-{
-  "variants": {
-    "": {
-      "model": "bedrock_platform:block/permanently_wetted_farmland"
-    }
-  }
-}

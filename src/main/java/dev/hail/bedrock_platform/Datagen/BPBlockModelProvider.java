@@ -145,10 +145,11 @@ public class BPBlockModelProvider extends BlockStateProvider {
                     Half half = state.getValue(PlatformBlock.HALF);
                     int yRot = (int) facing.getClockWise().toYRot() - 90;
                     yRot %= 360;
+                    boolean uvlock = yRot != 0 || half == Half.TOP;
                     return ConfiguredModel.builder()
                             .modelFile(half == Half.TOP ? platformTop : platformBottom)
                             .rotationY(half == Half.TOP ? 0 : yRot)
-                            .uvLock(true)
+                            .uvLock(uvlock)
                             .build();
                 }, PlatformBlock.WATERLOGGED);
     }

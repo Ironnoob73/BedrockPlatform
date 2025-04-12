@@ -17,8 +17,6 @@ import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Objects;
-
 public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final EnumProperty<Half> HALF = BlockStateProperties.HALF;
@@ -26,6 +24,9 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
     protected static final VoxelShape TOP_SHAPE = Block.box(0.0, 14.0, 0.0, 16.0, 16.0, 16.0);
     protected static final VoxelShape HALF_SHAPE_X = Block.box(0.0, 6.0, 0.0, 16.0, 8.0, 8.0);
     protected static final VoxelShape HALF_SHAPE_Z = Block.box(0.0, 6.0, 0.0, 8.0, 8.0, 16.0);
+    protected static final VoxelShape TOP_SHAPE_INTERACT = Block.box(0.0, 8.0, 0.0, 16.0, 16.0, 16.0);
+    protected static final VoxelShape HALF_SHAPE_X_INTERACT = Block.box(0.0, 0.0, 0.0, 16.0, 8.0, 8.0);
+    protected static final VoxelShape HALF_SHAPE_Z_INTERACT = Block.box(0.0, 0.0, 0.0, 8.0, 8.0, 16.0);
     public PlatformBlock(Properties properties) {
         super(properties);
         this.stateDefinition
@@ -35,11 +36,7 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
                 .setValue(WATERLOGGED, Boolean.FALSE);
     }
     @Override
-    protected boolean useShapeForLightOcclusion(@NotNull BlockState pState) {
-        return true;
-    }
-    @Override
-    protected @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+    protected @NotNull VoxelShape getOcclusionShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
         if (pState.getValue(HALF) != Half.TOP){
             switch (pState.getValue(FACING)){
                 case NORTH -> {
@@ -57,6 +54,26 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
             }
         }
         return TOP_SHAPE;
+    }
+    @Override
+    protected @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+        if (pState.getValue(HALF) != Half.TOP){
+            switch (pState.getValue(FACING)){
+                case NORTH -> {
+                    return Shapes.or(HALF_SHAPE_X_INTERACT.move(0,0,0.5),HALF_SHAPE_X_INTERACT.move(0,0.5,0));
+                }
+                case SOUTH -> {
+                    return Shapes.or(HALF_SHAPE_X_INTERACT,HALF_SHAPE_X_INTERACT.move(0,0.5,0.5));
+                }
+                case WEST -> {
+                    return Shapes.or(HALF_SHAPE_Z_INTERACT.move(0.5,0,0),HALF_SHAPE_Z_INTERACT.move(0,0.5,0));
+                }
+                case EAST -> {
+                    return Shapes.or(HALF_SHAPE_Z_INTERACT,HALF_SHAPE_Z_INTERACT.move(0.5,0.5,0));
+                }
+            }
+        }
+        return TOP_SHAPE_INTERACT;
     }
     @Override
     public BlockState getStateForPlacement(BlockPlaceContext pContext) {
@@ -85,6 +102,17 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
         return super.updateShape(pState, pFacing, pFacingState, pLevel, pCurrentPos, pFacingPos);
     }
 
+    @Override
+    protected @NotNull VoxelShape getCollisionShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, CollisionContext pContext) {
+        if (((pContext.isAbove(Shapes.block().move(0,-0.5,0), pPos, true) && pState.getValue(HALF) == Half.TOP)
+                || (pContext.isAbove(Shapes.block().move(0,-1,0), pPos, true) && pState.getValue(HALF) == Half.BOTTOM))
+                &&(!pContext.isDescending()
+                || pContext.isHoldingItem(asItem()))) {
+            return getOcclusionShape(pState,pLevel,pPos);
+        } else {
+            return Shapes.empty();
+        }
+    }
 
     @Override
     protected @NotNull BlockState rotate(BlockState pState, Rotation pRot) {

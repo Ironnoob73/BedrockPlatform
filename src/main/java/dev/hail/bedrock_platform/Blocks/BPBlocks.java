@@ -1,6 +1,5 @@
 package dev.hail.bedrock_platform.Blocks;
 
-import com.mojang.serialization.MapCodec;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleBlock;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystCandleLogic;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.TorchBlockSet;
@@ -156,7 +155,10 @@ public class BPBlocks {
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
 
     public static final DeferredBlock<Block> STONE_PLATFORM = BLOCKS.register("stone_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)));
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
     public static final DeferredItem<Item> STONE_PLATFORM_ITEM = BPItems.ITEMS.register("stone_platform",
             () -> new PlatformItem(STONE_PLATFORM.get(), new Item.Properties()));
 

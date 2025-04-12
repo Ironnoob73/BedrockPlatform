@@ -44,6 +44,10 @@
   "block.bedrock_platform.amethyst_candle.tooltip_5": "亮度随高度增加而减少。",
   "block.bedrock_platform.amethyst_candle.tooltip_6": "其他情况：",
   "block.bedrock_platform.amethyst_candle.tooltip_7": "不发光。",
+
+  "block.bedrock_platform.stone_platform": "石平台",
+  "block.bedrock_platform.stone_platform.cant_use": "请先站在一个平台上。",
+
   "block.bedrock_platform.amethyst_lantern": "紫水晶灯笼",
   "block.bedrock_platform.exposed_amethyst_lantern": "斑驳的紫水晶灯笼",
   "block.bedrock_platform.weathered_amethyst_lantern": "锈蚀的紫水晶灯笼",

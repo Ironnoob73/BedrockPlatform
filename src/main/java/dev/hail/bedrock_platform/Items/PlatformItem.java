@@ -1,9 +1,11 @@
 package dev.hail.bedrock_platform.Items;
 
-import dev.hail.bedrock_platform.BedrockPlatform;
 import dev.hail.bedrock_platform.Blocks.PlatformBlock;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -54,6 +56,9 @@ public class PlatformItem extends BlockItem {
             upOrDown = UpOrDown.UP;
         }
         if (!(pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock)){
+            if (pPlayer instanceof ServerPlayer){
+                ((ServerPlayer)pPlayer).sendSystemMessage(Component.translatable("block.bedrock_platform.stone_platform.cant_use").withStyle(ChatFormatting.RED), true);
+            }
             return null;
         }
         while (pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock){
@@ -80,6 +85,11 @@ public class PlatformItem extends BlockItem {
                     && previousBlock.getValue(PlatformBlock.HALF) == Half.BOTTOM
                     && previousBlock.getValue(PlatformBlock.FACING) == direction.getOpposite()))){
                 currentPos = currentPos.below();
+            }
+            int j = pLevel.getMaxBuildHeight();
+            if (pPlayer instanceof ServerPlayer && currentPos.getY() >= j) {
+                ((ServerPlayer)pPlayer).sendSystemMessage(Component.translatable("build.tooHigh", j - 1).withStyle(ChatFormatting.RED), true);
+                return null;
             }
             return new BlockPlaceContext(pLevel,pPlayer,pUsedHand,pPlayer.getItemInHand(pUsedHand),
                     new BlockHitResult(new Vec3(currentPos.getX(),currentPos.getY() + (upOrDown == UpOrDown.FORWARD ? 0.7 : 0),currentPos.getZ()),

@@ -116,7 +116,9 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
         if (((pContext.isAbove(Shapes.block().move(0, -0.5, 0), pPos, true) && pState.getValue(HALF) == Half.TOP)
                 || (pContext.isAbove(Shapes.block().move(0, -1, 0), pPos, true) && pState.getValue(HALF) == Half.BOTTOM))
                 && (!pContext.isDescending()
-                || (entity != null && Objects.requireNonNull(entity.getWeaponItem()).getItem() instanceof PlatformItem))) {
+                || (entity != null
+                &&(Objects.requireNonNull(entity.getWeaponItem()).getItem() instanceof PlatformItem
+                || Objects.requireNonNull(entity.getSlot(99)).get().getItem() instanceof PlatformItem)))) {
             return getOcclusionShape(pState, pLevel, pPos);
         } else {
             return Shapes.empty();

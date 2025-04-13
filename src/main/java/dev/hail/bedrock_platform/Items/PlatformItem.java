@@ -115,14 +115,16 @@ public class PlatformItem extends BlockItem {
     public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
         List<Component> list = Lists.newArrayList();
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip").withStyle(ChatFormatting.GRAY));
-        list.add(Component.empty());
         list.add(Component.translatable("block.bedrock_platform.platform.tooltip_0").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.empty());
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.GRAY));
         list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_2").withStyle(ChatFormatting.BLUE)));
         list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_5").withStyle(ChatFormatting.BLUE)));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_5").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_6").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_7").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_8").withStyle(ChatFormatting.BLUE)));
         pTooltipComponents.addAll(list);
     }
 

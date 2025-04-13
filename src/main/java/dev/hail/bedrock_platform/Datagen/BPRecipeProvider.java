@@ -3,6 +3,7 @@ package dev.hail.bedrock_platform.Datagen;
 import dev.hail.bedrock_platform.BedrockPlatform;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystLanternBlock;
+import dev.hail.bedrock_platform.Blocks.PlatformBlock;
 import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import dev.hail.bedrock_platform.Items.BPItems;
 import net.minecraft.core.HolderLookup;
@@ -19,6 +20,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.Half;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
@@ -171,6 +174,7 @@ public class BPRecipeProvider extends RecipeProvider {
             }
         }
         genStonePlat(STONE_PLATFORM_MATERIAL_2_TAG,STONE_PLATFORM_MATERIAL_TAG,BPBlocks.STONE_PLATFORM,Blocks.STONE_BRICK_SLAB,output);
+        genTransparentStonePlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -227,8 +231,8 @@ public class BPRecipeProvider extends RecipeProvider {
 
     // 九原料合成一块的合成及分解配方
     protected void genCompressAndDecompressNine(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
-        genCompressNine(input, result).save(output);
-        genDecompressNine(result, input).save(output, BuiltInRegistries.ITEM.getKey(input.asItem()) + "_from_block");
+        genCompressNine(input, result).save(output, BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath()));
+        genDecompressNine(result, input).save(output,  BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath() + "_from_block"));
     }
     protected ShapedRecipeBuilder genCompressNine(ItemLike input, ItemLike result){
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
@@ -243,8 +247,8 @@ public class BPRecipeProvider extends RecipeProvider {
     }
     // 四原料合成一块的合成及分解配方
     protected void genCompressAndDecompressFour(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
-        genCompressFour(input, result).save(output);
-        genDecompressFour(result, input).save(output, BuiltInRegistries.ITEM.getKey(input.asItem()) + "_from_block");
+        genCompressFour(input, result).save(output, BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath()));
+        genDecompressFour(result, input).save(output, BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath() + "_from_block"));
     }
     protected ShapedRecipeBuilder genCompressFour(ItemLike input, ItemLike result){
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
@@ -285,5 +289,22 @@ public class BPRecipeProvider extends RecipeProvider {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    protected void genTransparentStonePlat(DeferredBlock<Block> inputBlock, DeferredBlock<Block> outputBlock, @NotNull RecipeOutput output){
+        for (int i = 0; i < 4; i++){
+            for (Half half : Half.values()){
+                for (int w = 0; w < 2; w++){
+                    genBothRecipeWithModPath(
+                        BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName(),
+                        BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName() + "_reduction",
+                        inputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), Items.GLASS_PANE,
+                        outputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                }
+            }
+        }
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, outputBlock)
+                .requires(inputBlock).requires(Items.GLASS_PANE)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(inputBlock)))
+                .save(output, BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()) + "_from_crafting");
     }
 }

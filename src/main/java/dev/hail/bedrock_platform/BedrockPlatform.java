@@ -73,6 +73,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.DEEPSLATE_TORCH.getItem());
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
                 output.accept(BPBlocks.STONE_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().asItem());

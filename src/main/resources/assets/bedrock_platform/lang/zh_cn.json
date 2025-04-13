@@ -46,12 +46,14 @@
   "block.bedrock_platform.amethyst_candle.tooltip_7": "不发光。",
 
   "block.bedrock_platform.stone_platform": "石平台",
+  "block.bedrock_platform.transparent_stone_platform": "通透石平台",
   "block.bedrock_platform.platform.tooltip": "泰拉瑞亚？还是基岩版？",
   "block.bedrock_platform.platform.tooltip_0": "直接使用：",
   "block.bedrock_platform.platform.tooltip_1": "如果站在平台上，会顺着平台向前放置方块。",
-  "block.bedrock_platform.platform.tooltip_2": "不站在平台上则无效。",
-  "block.bedrock_platform.platform.tooltip_3": "潜行并在方块上使用：",
-  "block.bedrock_platform.platform.tooltip_4": "放置方块。",
+  "block.bedrock_platform.platform.tooltip_2": "放置时朝上或朝下看可以使平台斜向延申。",
+  "block.bedrock_platform.platform.tooltip_3": "不站在平台上则无效。",
+  "block.bedrock_platform.platform.tooltip_4": "潜行并在方块上使用：",
+  "block.bedrock_platform.platform.tooltip_5": "放置方块。",
   "block.bedrock_platform.platform.cant_use": "请先站在一个平台上。",
   "block.bedrock_platform.platform.too_long": "平台的延申距离限制为 %s",
 

@@ -158,6 +158,11 @@ public class BPBlocks {
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_STONE_PLATFORM = registerWithPlatItem("transparent_stone_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

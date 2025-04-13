@@ -1,7 +1,9 @@
 package dev.hail.bedrock_platform.Blocks;
 
+import dev.hail.bedrock_platform.Items.PlatformItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelAccessor;
@@ -13,9 +15,12 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.EntityCollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Objects;
 
 public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -103,12 +108,16 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
     }
 
     @Override
-    protected @NotNull VoxelShape getCollisionShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, CollisionContext pContext) {
-        if (((pContext.isAbove(Shapes.block().move(0,-0.5,0), pPos, true) && pState.getValue(HALF) == Half.TOP)
-                || (pContext.isAbove(Shapes.block().move(0,-1,0), pPos, true) && pState.getValue(HALF) == Half.BOTTOM))
-                &&(!pContext.isDescending()
-                || pContext.isHoldingItem(asItem()))) {
-            return getOcclusionShape(pState,pLevel,pPos);
+    protected @NotNull VoxelShape getCollisionShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
+        Entity entity = null;
+        if (pContext instanceof EntityCollisionContext entitycollisioncontext) {
+            entity = entitycollisioncontext.getEntity();
+        }
+        if (((pContext.isAbove(Shapes.block().move(0, -0.5, 0), pPos, true) && pState.getValue(HALF) == Half.TOP)
+                || (pContext.isAbove(Shapes.block().move(0, -1, 0), pPos, true) && pState.getValue(HALF) == Half.BOTTOM))
+                && (!pContext.isDescending()
+                || (entity != null && Objects.requireNonNull(entity.getWeaponItem()).getItem() instanceof PlatformItem))) {
+            return getOcclusionShape(pState, pLevel, pPos);
         } else {
             return Shapes.empty();
         }

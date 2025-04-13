@@ -120,10 +120,10 @@ public class PlatformItem extends BlockItem {
         list.add(Component.translatable("block.bedrock_platform.platform.tooltip_0").withStyle(ChatFormatting.GRAY));
         list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.BLUE)));
         list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_2").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.BLUE)));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_5").withStyle(ChatFormatting.BLUE)));
         pTooltipComponents.addAll(list);
-
     }
 
     public enum UpOrDown {

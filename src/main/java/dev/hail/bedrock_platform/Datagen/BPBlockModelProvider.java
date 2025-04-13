@@ -48,6 +48,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genAmethystLanternBlockItem(BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed(),"weathered_copper_grate");
         genAmethystLanternBlockItem(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed(),"oxidized_copper_grate");
         genPlatformBlock(BPBlocks.STONE_PLATFORM);
+        genPlatformBlockTransparent(BPBlocks.TRANSPARENT_STONE_PLATFORM);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
@@ -138,6 +139,28 @@ public class BPBlockModelProvider extends BlockStateProvider {
                 .texture("all", getBlockTexture(block.getId().getPath())));
         BlockModelBuilder platformBottom = models().withExistingParent(block.getId().getPath() + "_stair",
                 BedrockPlatform.modResLocation("block/template_stair_platform"))
+                .texture("all", getBlockTexture(block.getId().getPath()));
+        getVariantBuilder(block.get())
+                .forAllStatesExcept(state -> {
+                    Direction facing = state.getValue(PlatformBlock.FACING);
+                    Half half = state.getValue(PlatformBlock.HALF);
+                    int yRot = (int) facing.getClockWise().toYRot() - 90;
+                    yRot %= 360;
+                    boolean uvlock = yRot != 0 || half == Half.TOP;
+                    return ConfiguredModel.builder()
+                            .modelFile(half == Half.TOP ? platformTop : platformBottom)
+                            .rotationY(half == Half.TOP ? 0 : yRot)
+                            .uvLock(uvlock)
+                            .build();
+                }, PlatformBlock.WATERLOGGED);
+    }
+    protected void genPlatformBlockTransparent(DeferredBlock<Block> block){
+        BlockModelBuilder platformTop = models().withExistingParent(block.getId().getPath(),
+                BedrockPlatform.modResLocation("block/template_platform")).renderType("cutout");
+        simpleBlockItem(block.get(), platformTop
+                .texture("all", getBlockTexture(block.getId().getPath())));
+        BlockModelBuilder platformBottom = models().withExistingParent(block.getId().getPath() + "_stair",
+                        BedrockPlatform.modResLocation("block/template_stair_platform")).renderType("cutout")
                 .texture("all", getBlockTexture(block.getId().getPath()));
         getVariantBuilder(block.get())
                 .forAllStatesExcept(state -> {

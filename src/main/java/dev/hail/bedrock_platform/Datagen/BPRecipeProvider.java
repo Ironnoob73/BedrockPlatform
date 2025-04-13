@@ -28,6 +28,8 @@ public class BPRecipeProvider extends RecipeProvider {
     public static final TagKey<Item> COAL_TAG = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("coals"));
     public static final TagKey<Item> COBBLED_DEEPSLATE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/deepslate"));
     public static final TagKey<Item> COBBLESTONE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/normal"));
+    public static final TagKey<Item> STONE_PLATFORM_MATERIAL_2_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials_2"));
+    public static final TagKey<Item> STONE_PLATFORM_MATERIAL_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials"));
 
     public BPRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
@@ -168,6 +170,7 @@ public class BPRecipeProvider extends RecipeProvider {
                         .save(output, BedrockPlatform.modResLocation("waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
             }
         }
+        genStonePlat(STONE_PLATFORM_MATERIAL_2_TAG,STONE_PLATFORM_MATERIAL_TAG,BPBlocks.STONE_PLATFORM,Blocks.STONE_BRICK_SLAB,output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -254,10 +257,33 @@ public class BPRecipeProvider extends RecipeProvider {
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
+
     protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('^', input0).define('|', input1)
                 .pattern("^").pattern("|")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input0)));
+    }
+
+    protected void genStonePlat(TagKey<Item> blockInput, TagKey<Item> slabInput, ItemLike result, ItemLike recovery, @NotNull RecipeOutput output){
+        genStonePlatCraftingTable(blockInput,result).save(output);
+        genStonePlatReverse(result, recovery).save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_recovery");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(blockInput), RecipeCategory.BUILDING_BLOCKS, result,2)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(blockInput)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(slabInput), RecipeCategory.BUILDING_BLOCKS, result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(slabInput)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting_single");
+    }
+    protected ShapedRecipeBuilder genStonePlatCraftingTable(TagKey<Item> input, ItemLike result){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 10)
+                .define('A', input)
+                .pattern("AAA").pattern("A A")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    protected ShapelessRecipeBuilder genStonePlatReverse(ItemLike input, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(input)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
 }

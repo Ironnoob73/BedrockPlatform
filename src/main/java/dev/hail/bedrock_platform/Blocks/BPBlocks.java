@@ -19,7 +19,6 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -154,14 +153,11 @@ public class BPBlocks {
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
 
-    public static final DeferredBlock<Block> STONE_PLATFORM = BLOCKS.register("stone_platform",
+    public static final DeferredBlock<Block> STONE_PLATFORM = registerWithPlatItem("stone_platform",
             ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredItem<Item> STONE_PLATFORM_ITEM = BPItems.ITEMS.register("stone_platform",
-            () -> new PlatformItem(STONE_PLATFORM.get(), new Item.Properties()));
-
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);
@@ -176,6 +172,11 @@ public class BPBlocks {
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block, Item.Properties item) {
         DeferredBlock<B> object = BLOCKS.register(id, block);
         BPItems.ITEMS.registerSimpleBlockItem(object, item);
+        return object;
+    }
+    public static <B extends Block> DeferredBlock<B> registerWithPlatItem(String id, Supplier<B> block) {
+        DeferredBlock<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new PlatformItem(object.get(), new Item.Properties()));
         return object;
     }
     public static DeferredBlock<Block> registerWithItem(String id, BlockBehaviour.Properties block, Item.Properties item) {

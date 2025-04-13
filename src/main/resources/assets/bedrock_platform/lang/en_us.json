@@ -46,7 +46,14 @@
   "block.bedrock_platform.amethyst_candle.tooltip_7": "Doesn't emit light.",
 
   "block.bedrock_platform.stone_platform": "Stone Platform",
-  "block.bedrock_platform.stone_platform.cant_use": "Please standing on a Platform first.",
+  "block.bedrock_platform.platform.tooltip": "Terraria? or Bedrock Edition?",
+  "block.bedrock_platform.platform.tooltip_0": "Directly use:",
+  "block.bedrock_platform.platform.tooltip_1": "If standing on a Platform, blocks will be placed forward along the Platform.",
+  "block.bedrock_platform.platform.tooltip_2": "It will not work if you are not standing on the Platform.",
+  "block.bedrock_platform.platform.tooltip_3": "Sneak and use on a block:",
+  "block.bedrock_platform.platform.tooltip_4": "Place the block.",
+  "block.bedrock_platform.platform.cant_use": "Please standing on a Platform first.",
+  "block.bedrock_platform.platform.too_long": "The Platform's extended distance limit is %s",
 
   "block.bedrock_platform.amethyst_lantern": "Amethyst Lantern",
   "block.bedrock_platform.exposed_amethyst_lantern": "Exposed Amethyst Lantern",

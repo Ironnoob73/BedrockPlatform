@@ -1,9 +1,12 @@
 package dev.hail.bedrock_platform.Items;
 
+import com.google.common.collect.Lists;
 import dev.hail.bedrock_platform.Blocks.PlatformBlock;
+import dev.hail.bedrock_platform.Config;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -13,6 +16,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
@@ -23,6 +27,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.Objects;
 
 public class PlatformItem extends BlockItem {
@@ -57,17 +62,25 @@ public class PlatformItem extends BlockItem {
         }
         if (!(pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock)){
             if (pPlayer instanceof ServerPlayer){
-                ((ServerPlayer)pPlayer).sendSystemMessage(Component.translatable("block.bedrock_platform.stone_platform.cant_use").withStyle(ChatFormatting.RED), true);
+                ((ServerPlayer)pPlayer).sendSystemMessage(Component.translatable("block.bedrock_platform.platform.cant_use").withStyle(ChatFormatting.RED), true);
             }
             return null;
         }
+        int distance = 0;
         while (pLevel.getBlockState(currentPos).getBlock() instanceof PlatformBlock){
+            if(distance > Config.platformExtensionDistance){
+                if (pPlayer instanceof ServerPlayer){
+                    ((ServerPlayer)pPlayer).sendSystemMessage(Component.translatable("block.bedrock_platform.platform.too_long", (Config.platformExtensionDistance)).withStyle(ChatFormatting.RED), true);
+                }
+                return null;
+            }
             currentPos = currentPos.mutable().move(direction);
             if (pLevel.getBlockState(currentPos.above()).getBlock() instanceof PlatformBlock){
                 currentPos = currentPos.above();
             } else if (pLevel.getBlockState(currentPos.below()).getBlock() instanceof PlatformBlock){
                 currentPos = currentPos.below();
             }
+            distance += 1;
         }
         BlockState previousBlock = pLevel.getBlockState(currentPos.mutable().move(direction.getOpposite()));
         boolean isPlatform = previousBlock.getBlock() instanceof PlatformBlock;
@@ -96,6 +109,21 @@ public class PlatformItem extends BlockItem {
                             direction, currentPos, false));
         }
         return null;
+    }
+
+    @Override
+    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+        List<Component> list = Lists.newArrayList();
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip").withStyle(ChatFormatting.GRAY));
+        list.add(Component.empty());
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_0").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.BLUE)));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_2").withStyle(ChatFormatting.BLUE)));
+        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.GRAY));
+        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.BLUE)));
+        pTooltipComponents.addAll(list);
+
     }
 
     public enum UpOrDown {

@@ -116,15 +116,19 @@ public class PlatformItem extends BlockItem {
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
         List<Component> list = Lists.newArrayList();
         list.add(Component.translatable("block.bedrock_platform.platform.tooltip_0").withStyle(ChatFormatting.GRAY));
-        list.add(Component.empty());
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_2").withStyle(ChatFormatting.BLUE)));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.BLUE)));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_5").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_6").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("block.bedrock_platform.platform.tooltip_7").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_8").withStyle(ChatFormatting.BLUE)));
+        if(pTooltipFlag.hasShiftDown()){
+            list.add(Component.empty());
+            list.add(Component.translatable("block.bedrock_platform.platform.tooltip_1").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_2").withStyle(ChatFormatting.BLUE)));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_3").withStyle(ChatFormatting.BLUE)));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_4").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("block.bedrock_platform.platform.tooltip_5").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_6").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("block.bedrock_platform.platform.tooltip_7").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.platform.tooltip_8").withStyle(ChatFormatting.BLUE)));
+        } else {
+            list.add(Component.translatable("tooltip.bedrock_platform.shift").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        }
         pTooltipComponents.addAll(list);
     }
 

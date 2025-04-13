@@ -134,6 +134,8 @@
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 
+  "tooltip.bedrock_platform.shift": "按下 <Shift> 获取更多信息",
+
   "death.attack.strongInteractionExplosion": "%1$s为利用强互作用力材料而献身。",
 
   "bedrock_platform.configuration.solid_void_render_end_portal": "固态终末虚空渲染末地传送门",

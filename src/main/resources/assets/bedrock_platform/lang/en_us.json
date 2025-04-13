@@ -134,6 +134,8 @@
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 
+  "tooltip.bedrock_platform.shift": "Press <Shift> for more information",
+
   "death.attack.strongInteractionExplosion": "%1$s dedicated his life to the use of strong interacting materials.",
 
   "bedrock_platform.configuration.solid_void_render_end_portal": "Solid End Void Render End Portal",

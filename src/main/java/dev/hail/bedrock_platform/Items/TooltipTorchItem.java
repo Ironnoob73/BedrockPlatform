@@ -27,16 +27,20 @@ public class TooltipTorchItem extends StandingAndWallBlockItem {
         }else if(pStack.is(BPBlocks.AMETHYST_CANDLE.getItem())){
             List<Component> list = Lists.newArrayList();
             list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip").withStyle(ChatFormatting.GRAY));
-            list.add(Component.empty());
-            list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_0").withStyle(ChatFormatting.GRAY));
-            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_1").withStyle(ChatFormatting.BLUE)));
-            list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_2").withStyle(ChatFormatting.GRAY));
-            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_3").withStyle(ChatFormatting.GRAY)));
-            list.add(CommonComponents.space().append(CommonComponents.space()).append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_1").withStyle(ChatFormatting.BLUE)));
-            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_4").withStyle(ChatFormatting.GRAY)));
-            list.add(CommonComponents.space().append(CommonComponents.space()).append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_5").withStyle(ChatFormatting.BLUE)));
-            list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_6").withStyle(ChatFormatting.GRAY));
-            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_7").withStyle(ChatFormatting.BLUE)));
+            if(pTooltipFlag.hasShiftDown()){
+                list.add(Component.empty());
+                list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_0").withStyle(ChatFormatting.GRAY));
+                list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_1").withStyle(ChatFormatting.BLUE)));
+                list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_2").withStyle(ChatFormatting.GRAY));
+                list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_3").withStyle(ChatFormatting.GRAY)));
+                list.add(CommonComponents.space().append(CommonComponents.space()).append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_1").withStyle(ChatFormatting.BLUE)));
+                list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_4").withStyle(ChatFormatting.GRAY)));
+                list.add(CommonComponents.space().append(CommonComponents.space()).append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_5").withStyle(ChatFormatting.BLUE)));
+                list.add(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_6").withStyle(ChatFormatting.GRAY));
+                list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.amethyst_candle.tooltip_7").withStyle(ChatFormatting.BLUE)));
+            } else {
+                list.add(Component.translatable("tooltip.bedrock_platform.shift").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+            }
             pTooltipComponents.addAll(list);
         }
     }

@@ -120,13 +120,17 @@ public class ObsidianWrench extends Item {
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
         List<Component> list = Lists.newArrayList();
         list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip").withStyle(ChatFormatting.GRAY));
-        list.add(Component.empty());
-        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_0").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_1").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_2").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_3").withStyle(ChatFormatting.BLUE)));
-        list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_4").withStyle(ChatFormatting.GRAY));
-        list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_5").withStyle(ChatFormatting.BLUE)));
+        if(pTooltipFlag.hasShiftDown()){
+            list.add(Component.empty());
+            list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_0").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_1").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_2").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_3").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_4").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_5").withStyle(ChatFormatting.BLUE)));
+        } else {
+            list.add(Component.translatable("tooltip.bedrock_platform.shift").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        }
         pTooltipComponents.addAll(list);
     }
 }

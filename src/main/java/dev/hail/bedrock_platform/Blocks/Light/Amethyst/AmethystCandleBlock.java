@@ -68,7 +68,10 @@ public class AmethystCandleBlock extends UnderwaterTorchBlock implements Amethys
 
         @Override
         public @NotNull BlockState updateShape(@NotNull BlockState pState, @NotNull Direction pDirection, @NotNull BlockState pNeighborState, @NotNull LevelAccessor pLevel, @NotNull BlockPos pPos, @NotNull BlockPos pNeighborPos){
-            return super.updateShape(pState,pDirection,pNeighborState,pLevel,pPos,pNeighborPos).setValue(LIGHT, AmethystCandleLogic.getLightFromEnvironment((Level) pLevel,pPos));
+            if (pState.getBlock() instanceof AmethystCandleBlock){
+                return super.updateShape(pState,pDirection,pNeighborState,pLevel,pPos,pNeighborPos).setValue(LIGHT, AmethystCandleLogic.getLightFromEnvironment((Level) pLevel,pPos));
+            }
+            return super.updateShape(pState,pDirection,pNeighborState,pLevel,pPos,pNeighborPos);
         }
     }
 }

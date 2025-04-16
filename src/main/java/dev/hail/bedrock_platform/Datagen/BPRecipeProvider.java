@@ -224,7 +224,7 @@ public class BPRecipeProvider extends RecipeProvider {
         return new BPRecipeBuilder.BRRBuilder(
                 new ItemStack(outputBlock.getBlock()),
                 inputBlock,
-                Ingredient.of(BPItems.OBSIDIAN_WRENCH),
+                Ingredient.of(BPItems.ENCHANT_DUST),
                 resultItem,
                 outputBlock);
     }

@@ -72,29 +72,32 @@ public class ObsidianWrench extends Item {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
-        ItemStack itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
-        RecipeManager recipes = level.getRecipeManager();
-        BRRInput input = new BRRInput(state,itemStack);
-        Optional<RecipeHolder<BRRecipe>> optional = recipes.getRecipeFor(
-                BLOCK_REDUCTION.get(),
-                input,
-                level
-        );
-        BlockState resultState = optional
-                .map(RecipeHolder::value)
-                .map(e -> e.assembleBlock(level.registryAccess()))
-                .orElse(null);
-        ItemStack result = optional
-                .map(RecipeHolder::value)
-                .map(e -> e.assemble(input, level.registryAccess()))
-                .orElse(ItemStack.EMPTY);
-        if (resultState != null && !result.isEmpty()) {
-            level.setBlock(pos, resultState,11);
-            level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
-            ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_REDUCTION.get(), UniformInt.of(1, 1));
-            if (!player.isCreative())
-                player.getInventory().placeItemBackInInventory(result);
-            return InteractionResult.SUCCESS;
+        ItemStack itemStack;
+        if (player != null) {
+            itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
+            RecipeManager recipes = level.getRecipeManager();
+            BRRInput input = new BRRInput(state,BPItems.ENCHANT_DUST.toStack());
+            Optional<RecipeHolder<BRRecipe>> optional = recipes.getRecipeFor(
+                    BLOCK_REDUCTION.get(),
+                    input,
+                    level
+            );
+            BlockState resultState = optional
+                    .map(RecipeHolder::value)
+                    .map(e -> e.assembleBlock(level.registryAccess()))
+                    .orElse(null);
+            ItemStack result = optional
+                    .map(RecipeHolder::value)
+                    .map(e -> e.assemble(input, level.registryAccess()))
+                    .orElse(ItemStack.EMPTY);
+            if (resultState != null && !result.isEmpty()) {
+                level.setBlock(pos, resultState,11);
+                level.playLocalSound(pos, SoundEvents.NETHERITE_BLOCK_BREAK, SoundSource.BLOCKS,1,1,true);
+                ParticleUtils.spawnParticlesOnBlockFaces(level, pos, BPParticles.BLOCK_REDUCTION.get(), UniformInt.of(1, 1));
+                if (!player.isCreative())
+                    player.getInventory().placeItemBackInInventory(result);
+                return InteractionResult.SUCCESS;
+            }
         }
         return InteractionResult.PASS;
     }

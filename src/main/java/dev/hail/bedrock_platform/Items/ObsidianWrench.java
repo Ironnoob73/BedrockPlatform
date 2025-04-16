@@ -76,7 +76,7 @@ public class ObsidianWrench extends Item {
         if (player != null) {
             itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
             RecipeManager recipes = level.getRecipeManager();
-            BRRInput input = new BRRInput(state,BPItems.ENCHANT_DUST.toStack());
+            BRRInput input = new BRRInput(state,BPItems.INVALID_DECOMPOSITION_PRODUCTS.toStack());
             Optional<RecipeHolder<BRRecipe>> optional = recipes.getRecipeFor(
                     BLOCK_REDUCTION.get(),
                     input,

@@ -224,7 +224,7 @@ public class BPRecipeProvider extends RecipeProvider {
         return new BPRecipeBuilder.BRRBuilder(
                 new ItemStack(outputBlock.getBlock()),
                 inputBlock,
-                Ingredient.of(BPItems.ENCHANT_DUST),
+                Ingredient.of(BPItems.INVALID_DECOMPOSITION_PRODUCTS),
                 resultItem,
                 outputBlock);
     }

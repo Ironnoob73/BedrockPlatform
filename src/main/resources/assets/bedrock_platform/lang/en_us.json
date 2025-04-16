@@ -131,6 +131,8 @@
   "block.bedrock_platform.gray_transparent_strong_interaction_block": "Gray Transparent StrongInteraction Block",
   "block.bedrock_platform.black_transparent_strong_interaction_block": "Black Transparent StrongInteraction Block",
 
+  "item.bedrock_platform.ineffective_decomposition_products": "§c§k|||§r§cIneffective Decomposition Products§k|||",
+
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 

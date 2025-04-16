@@ -18,4 +18,5 @@ public class BPItems {
     public static final DeferredItem<Item> SCULK_RIB = ITEMS.registerSimpleItem("sculk_rib", new Item.Properties().component(DataComponents.LORE,new ItemLore(List.of(Component.nullToEmpty("Tastes like fingernails")))));
     public static final DeferredItem<Item> ENCHANT_DUST = ITEMS.registerSimpleItem("enchant_dust");
     public static final DeferredItem<Item> BLUE_ICE_CUBE = ITEMS.registerSimpleItem("blue_ice_cube");
+    public static final DeferredItem<Item> INVALID_DECOMPOSITION_PRODUCTS = ITEMS.registerSimpleItem("ineffective_decomposition_products", new Item.Properties().component(DataComponents.LORE,new ItemLore(List.of(Component.nullToEmpty("What did you just do?!")))));
 }

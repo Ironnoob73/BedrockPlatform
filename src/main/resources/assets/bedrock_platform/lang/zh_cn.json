@@ -131,6 +131,8 @@
   "block.bedrock_platform.gray_transparent_strong_interaction_block": "灰色透明强相互作用方块",
   "block.bedrock_platform.black_transparent_strong_interaction_block": "黑色透明强相互作用方块",
 
+  "item.bedrock_platform.ineffective_decomposition_products": "§c§k烫烫烫§r§c无效分解产物§k烫烫烫",
+
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 

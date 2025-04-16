@@ -1,7 +1,7 @@
 {
-  "parent": "minecraft:block/template_farmland",
+  "parent": "minecraft:block/dirt_path",
   "textures": {
-    "dirt": "bedrock_platform:block/permanently_wetted_farmland_side",
+    "side": "bedrock_platform:block/permanently_wetted_farmland_side",
     "top": "bedrock_platform:block/permanently_wetted_farmland_top"
   }
 }

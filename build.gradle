@@ -72,8 +72,8 @@ configurations {
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    implementation "curse.maven:jei-238222:5705557"
-    implementation "curse.maven:jade-324717:5655385"
+    implementation "curse.maven:jei-238222:5846880"
+    implementation "curse.maven:jade-324717:6291517"
     implementation "curse.maven:ctm-267602:5587515"
 }
 

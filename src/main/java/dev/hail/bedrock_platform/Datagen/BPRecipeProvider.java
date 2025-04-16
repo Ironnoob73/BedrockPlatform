@@ -48,12 +48,12 @@ public class BPRecipeProvider extends RecipeProvider {
         genBothRecipeWithModPath("crying_obsidian","crying_obsidian_reduction",
                 Blocks.OBSIDIAN.defaultBlockState(), BPItems.ENCHANT_DUST.get(), Blocks.CRYING_OBSIDIAN.defaultBlockState(), output);
         genBothRecipeWithModPath("sculk_shrieker_reactive","sculk_shrieker_disable",
-                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true), Items.ECHO_SHARD,
-                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false), output);
+                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false), Items.ECHO_SHARD,
+                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true), output);
         genBothRecipeWithModPath("sculk_shrieker_waterlogged_reactive","sculk_shrieker_waterlogged_disable",
-                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true)
-                        .setValue(SculkShriekerBlock.WATERLOGGED,true), Items.ECHO_SHARD,
                 Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false)
+                        .setValue(SculkShriekerBlock.WATERLOGGED,true), Items.ECHO_SHARD,
+                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true)
                         .setValue(SculkShriekerBlock.WATERLOGGED,true), output);
         for (int i = 0; i < 4; i++){
             genBRRecipe(

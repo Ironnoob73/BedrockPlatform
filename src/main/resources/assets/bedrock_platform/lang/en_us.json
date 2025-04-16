@@ -132,6 +132,15 @@
   "block.bedrock_platform.black_transparent_strong_interaction_block": "Black Transparent StrongInteraction Block",
 
   "item.bedrock_platform.ineffective_decomposition_products": "§c§k|||§r§cIneffective Decomposition Products§k|||",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip": "What did you just do?!",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_0": "What's this?",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_1": "One of your mods attempts to decompose an item that happens to use a recipe from this mod...",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_2": "Generally speaking, you must know what you just did, don't play innocent.",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_3": "If you think that decomposing should not use recipes from this mod, please give feedback to the author of the mod that provided you with the decomposing operation, so that they can try to use only vanilla recipes.",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_4": "Unfortunately, you probably won't be able to get back the item you tried to salvage, so you can only hope you were more careful next time.",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_5": "Or you could write a datapack to fix this, or just ask for help from creative mode, which might be difficult, but it's the only option.",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_6": "Well...I'll never tell you how I found this out, probably.",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_7": "I can't believe I wasted so much ink on this...",
 
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",

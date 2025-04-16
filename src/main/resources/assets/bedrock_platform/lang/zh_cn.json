@@ -132,6 +132,15 @@
   "block.bedrock_platform.black_transparent_strong_interaction_block": "黑色透明强相互作用方块",
 
   "item.bedrock_platform.ineffective_decomposition_products": "§c§k烫烫烫§r§c无效分解产物§k烫烫烫",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip": "你刚才做了什么？！",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_0": "这是什么？",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_1": "你的其中一个模组试图分解物品，恰好采用了此模组的配方...",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_2": "通常来说，你一定知道你刚才干了什么，不要装无辜。",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_3": "如果你认为分解不应当采用来自此模组的配方，请反馈给向你提供了分解操作的模组的作者，让他尽量只采用原版配方。",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_4": "不幸的是，你可能拿不回你试图分解的物品了，只能希望你下次注意点。",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_5": "或者你可以写个数据包来修复这点，或者干脆创哥理赔吧，我知道这可能有点困难，但这也是无奈之举。",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_6": "嗯...我永远不会告诉你我是怎么发现这个问题的，大概吧。",
+  "item.bedrock_platform.ineffective_decomposition_products.tooltip_7": "不敢相信我居然为了这么个东西浪费了如此多的笔墨...",
 
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",

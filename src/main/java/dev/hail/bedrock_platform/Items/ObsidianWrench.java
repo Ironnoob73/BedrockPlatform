@@ -1,10 +1,10 @@
 package dev.hail.bedrock_platform.Items;
 
 import com.google.common.collect.Lists;
-import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRInput;
-import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import dev.hail.bedrock_platform.Data.BPTags;
 import dev.hail.bedrock_platform.Particle.BPParticles;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRInput;
+import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.CommonComponents;
@@ -14,7 +14,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.ParticleUtils;
 import net.minecraft.util.valueproviders.UniformInt;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -72,9 +71,7 @@ public class ObsidianWrench extends Item {
         Level level = context.getLevel();
         BlockPos pos = context.getClickedPos();
         BlockState state = level.getBlockState(pos);
-        ItemStack itemStack;
         if (player != null) {
-            itemStack = player.getItemInHand(InteractionHand.MAIN_HAND);
             RecipeManager recipes = level.getRecipeManager();
             BRRInput input = new BRRInput(state,BPItems.INVALID_DECOMPOSITION_PRODUCTS.toStack());
             Optional<RecipeHolder<BRRecipe>> optional = recipes.getRecipeFor(

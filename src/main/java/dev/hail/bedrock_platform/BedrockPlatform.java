@@ -3,6 +3,7 @@ package dev.hail.bedrock_platform;
 import com.mojang.logging.LogUtils;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Blocks.SolidEnd.SolidEndVoidRender;
+import dev.hail.bedrock_platform.Entities.BPEntities;
 import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Particle.BPParticles;
@@ -12,6 +13,7 @@ import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
 import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRSerializer;
 import dev.hail.bedrock_platform.Recipe.BlockReductionRecipe.BRRecipe;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -46,7 +48,7 @@ public class BedrockPlatform
     public static final String MODID = "bedrock_platform";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("bedrock_platform_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("bedrock_platform.name"))
             .icon(() -> BPBlocks.BEDROCK_PLATFORM.asItem().getDefaultInstance())
             .displayItems((parameters, output) -> {
@@ -74,6 +76,10 @@ public class BedrockPlatform
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
                 output.accept(BPBlocks.STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_STONE_PLATFORM.asItem());
+                output.accept(BPItems.CRIMSON_BOAT.get());
+                output.accept(BPItems.CRIMSON_CHEST_BOAT.get());
+                output.accept(BPItems.WARPED_BOAT.get());
+                output.accept(BPItems.WARPED_CHEST_BOAT.get());
                 output.accept(BPBlocks.AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().asItem());
@@ -141,7 +147,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BLACK_SI_BLOCK_SET.getTransparent().asItem());
             }).build());
 
-    public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)
+    public BedrockPlatform(IEventBus modEventBus)
     {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::packSetup);
@@ -149,6 +155,7 @@ public class BedrockPlatform
         BPBlocks.BLOCKS.register(modEventBus);
         BPBlocks.BLOCK_ENTITY_TYPES.register(modEventBus);
         BPItems.ITEMS.register(modEventBus);
+        BPEntities.ENTITY_TYPES.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
 
         BPParticles.PARTICLE_TYPES.register(modEventBus);
@@ -216,6 +223,8 @@ public class BedrockPlatform
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(BPBlocks.SOLID_END_VOID_BE.get(), context -> new SolidEndVoidRender());
+            event.registerEntityRenderer(BPEntities.NETHER_BOAT.get(),context -> new BoatRenderer(context,false));
+            event.registerEntityRenderer(BPEntities.NETHER_CHEST_BOAT.get(),context -> new BoatRenderer(context,true));
         }
     }
 

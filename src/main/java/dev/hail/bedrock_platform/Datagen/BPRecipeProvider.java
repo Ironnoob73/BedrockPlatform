@@ -33,6 +33,7 @@ public class BPRecipeProvider extends RecipeProvider {
     public static final TagKey<Item> COBBLESTONE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/normal"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_2_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials_2"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials"));
+    public static final TagKey<Item> WOODEN_CHEST_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","chests/wooden"));
 
     public BPRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
@@ -175,6 +176,8 @@ public class BPRecipeProvider extends RecipeProvider {
         }
         genStonePlat(STONE_PLATFORM_MATERIAL_2_TAG,STONE_PLATFORM_MATERIAL_TAG,BPBlocks.STONE_PLATFORM,Blocks.STONE_BRICK_SLAB,output);
         genTransparentStonePlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
+        genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
+        genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -261,14 +264,14 @@ public class BPRecipeProvider extends RecipeProvider {
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
-
+    // 火把
     protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){
         return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .define('^', input0).define('|', input1)
                 .pattern("^").pattern("|")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input0)));
     }
-
+    // 石平台
     protected void genStonePlat(TagKey<Item> blockInput, TagKey<Item> slabInput, ItemLike result, ItemLike recovery, @NotNull RecipeOutput output){
         genStonePlatCraftingTable(blockInput,result).save(output);
         genStonePlatReverse(result, recovery).save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_recovery");
@@ -306,5 +309,21 @@ public class BPRecipeProvider extends RecipeProvider {
                 .requires(inputBlock).requires(Items.GLASS_PANE)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(inputBlock)))
                 .save(output, BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()) + "_from_crafting");
+    }
+    // 船
+    protected void genBoatWithChest(ItemLike input, ItemLike result, ItemLike chestResult, @NotNull RecipeOutput output){
+        genBoat(input,result).save(output);
+        genChestBoat(input,chestResult).save(output);
+    }
+    protected ShapedRecipeBuilder genBoat(ItemLike input, ItemLike result){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+                .define('A', input)
+                .pattern("A A").pattern("AAA")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    protected ShapelessRecipeBuilder genChestBoat(ItemLike input, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(WOODEN_CHEST_TAG).requires(input)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
 }

@@ -23,6 +23,10 @@ public class BPItemModelProvider extends ItemModelProvider {
         genBlockItem(BPBlocks.STONE_TORCH.getItem());
         genBlockItem(BPBlocks.DEEPSLATE_TORCH.getItem());
         genBlockItem(BPBlocks.AMETHYST_CANDLE.getItem());
+        genDefault(BPItems.CRIMSON_BOAT);
+        genDefault(BPItems.CRIMSON_CHEST_BOAT);
+        genDefault(BPItems.WARPED_BOAT);
+        genDefault(BPItems.WARPED_CHEST_BOAT);
     }
     private void genDefault(DeferredItem<Item> item){
         singleTexture(item.getId().getPath(), gItemModel, "layer0",

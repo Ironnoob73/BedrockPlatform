@@ -125,3 +125,9 @@ idea {
 jar{
     exclude 'dev/hail/bedrock_platform/Datagen'
 }
+
+minecraft {
+    accessTransformers {
+        file('src/main/resources/META-INF/accesstransformer.cfg')
+    }
+}

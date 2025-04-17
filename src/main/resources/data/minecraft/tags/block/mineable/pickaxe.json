@@ -10,7 +10,8 @@
     "bedrock_platform:waxed_exposed_amethyst_lantern",
     "bedrock_platform:waxed_oxidized_amethyst_lantern",
     "bedrock_platform:waxed_weathered_amethyst_lantern",
-    
-    "bedrock_platform:stone_platform"
+    "bedrock_platform:stone_platform",
+    "bedrock_platform:transparent_stone_platform",
+    "bedrock_platform:precise_nether_portal"
   ]
 }

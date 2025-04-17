@@ -76,6 +76,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
                 output.accept(BPBlocks.STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_STONE_PLATFORM.asItem());
+                output.accept(BPBlocks.PRECISE_NETHER_PORTAL.asItem());
                 output.accept(BPItems.CRIMSON_BOAT.get());
                 output.accept(BPItems.CRIMSON_CHEST_BOAT.get());
                 output.accept(BPItems.WARPED_BOAT.get());

@@ -69,6 +69,10 @@
     "bedrock_platform:sculk_rib_block",
     "bedrock_platform:geode_mosaic_tile",
 
+    "bedrock_platform:stone_platform",
+    "bedrock_platform:transparent_stone_platform",
+    "bedrock_platform:precise_nether_portal",
+
     "bedrock_platform:red_strong_interaction_tile",
     "bedrock_platform:yellow_strong_interaction_tile",
     "bedrock_platform:green_strong_interaction_tile",

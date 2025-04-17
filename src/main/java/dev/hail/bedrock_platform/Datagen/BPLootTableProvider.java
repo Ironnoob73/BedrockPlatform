@@ -15,10 +15,7 @@ import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import java.util.stream.Collectors;
@@ -58,9 +55,12 @@ public class BPLootTableProvider extends LootTableProvider {
         }
         @Override
         protected void generate() {
-            for (Block block : blockList) {
+            List<Block> blockList1 = new ArrayList<>(blockList);
+            blockList1.remove(BPBlocks.PRECISE_NETHER_PORTAL.get());
+            for (Block block : blockList1) {
                 dropSelf(block);
             }
+            map.put(BPBlocks.PRECISE_NETHER_PORTAL.get().getLootTable(),createDoorTable(BPBlocks.PRECISE_NETHER_PORTAL.get()));
         }
         @NotNull
         @Override

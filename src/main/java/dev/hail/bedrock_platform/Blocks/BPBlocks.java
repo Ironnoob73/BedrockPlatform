@@ -18,6 +18,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -103,7 +104,7 @@ public class BPBlocks {
                     .mapColor(MapColor.DEEPSLATE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .isValidSpawn(Blocks::never)
-                    .strength(10.0F, 100.0F)
+                    .strength(25.0F, 100.0F)
                     .sound(SoundType.DEEPSLATE));
     public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
@@ -163,6 +164,13 @@ public class BPBlocks {
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
+
+    public static final DeferredBlock<Block> PRECISE_NETHER_PORTAL = registerWithItem("precise_nether_portal",
+            ()->new PreciseNetherPortal(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)
+                    .noCollission()
+                    .sound(SoundType.METAL)
+                    .lightLevel(p -> 11)
+                    .pushReaction(PushReaction.BLOCK)));
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

@@ -65,6 +65,13 @@
   "item.bedrock_platform.warped_chest_boat": "Warped Chest Boat",
   "item.bedrock_platform.nether_boat.tooltip": "Much better than the Striders!",
 
+  "block.bedrock_platform.precise_nether_portal": "Precise Nether Portal",
+  "block.bedrock_platform.precise_nether_portal.process": "Transmission countdown: %s",
+  "block.bedrock_platform.precise_nether_portal.cant_use": "There is no portal at the corresponding location!",
+  "block.bedrock_platform.precise_nether_portal.out_border": "The corresponding position exceeds the world border!",
+  "block.bedrock_platform.precise_nether_portal.invalid": "The Portal are not available in this dimension!",
+  "block.bedrock_platform.precise_nether_portal.invalid_target": "Invalid target dimension!",
+
   "block.bedrock_platform.amethyst_lantern": "Amethyst Lantern",
   "block.bedrock_platform.exposed_amethyst_lantern": "Exposed Amethyst Lantern",
   "block.bedrock_platform.weathered_amethyst_lantern": "Weathered Amethyst Lantern",

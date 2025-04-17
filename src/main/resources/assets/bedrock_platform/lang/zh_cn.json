@@ -65,6 +65,13 @@
   "item.bedrock_platform.warped_chest_boat": "诡异木箱船",
   "item.bedrock_platform.nether_boat.tooltip": "比炽足兽好了不止一点！",
 
+  "block.bedrock_platform.precise_nether_portal": "精确下界传送门",
+  "block.bedrock_platform.precise_nether_portal.process": "传送倒计时：%s",
+  "block.bedrock_platform.precise_nether_portal.cant_use": "对应位置没有传送门！",
+  "block.bedrock_platform.precise_nether_portal.out_border": "对应位置超出世界边界！",
+  "block.bedrock_platform.precise_nether_portal.invalid": "传送门在该维度不可用！",
+  "block.bedrock_platform.precise_nether_portal.invalid_target": "目标维度无效！",
+
   "block.bedrock_platform.amethyst_lantern": "紫水晶灯笼",
   "block.bedrock_platform.exposed_amethyst_lantern": "斑驳的紫水晶灯笼",
   "block.bedrock_platform.weathered_amethyst_lantern": "锈蚀的紫水晶灯笼",

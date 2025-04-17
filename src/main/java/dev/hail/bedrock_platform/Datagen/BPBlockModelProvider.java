@@ -5,12 +5,14 @@ import dev.hail.bedrock_platform.Blocks.BPBlocks;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.TorchBlockSet;
 import dev.hail.bedrock_platform.Blocks.Light.SolidTorchBlock;
 import dev.hail.bedrock_platform.Blocks.PlatformBlock;
+import dev.hail.bedrock_platform.Blocks.PreciseNetherPortal;
 import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
@@ -49,6 +51,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genAmethystLanternBlockItem(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed(),"oxidized_copper_grate");
         genPlatformBlock(BPBlocks.STONE_PLATFORM);
         genPlatformBlockTransparent(BPBlocks.TRANSPARENT_STONE_PLATFORM);
+        genPortalDoorBlock(BPBlocks.PRECISE_NETHER_PORTAL);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
@@ -175,6 +178,19 @@ public class BPBlockModelProvider extends BlockStateProvider {
                             .uvLock(uvlock)
                             .build();
                 }, PlatformBlock.WATERLOGGED);
+    }
+    protected void genPortalDoorBlock(DeferredBlock<Block> block){
+        getVariantBuilder(block.get())
+                .forAllStatesExcept(state -> {
+                    Direction.Axis axis = state.getValue(PreciseNetherPortal.AXIS);
+                    DoubleBlockHalf half = state.getValue(PreciseNetherPortal.HALF);
+                    return ConfiguredModel.builder()
+                            .modelFile(half == DoubleBlockHalf.UPPER ?
+                                    models().getExistingFile(BedrockPlatform.modResLocation("block/" + block.getId().getPath()  + "_upper")) :
+                                    models().getExistingFile(BedrockPlatform.modResLocation("block/" + block.getId().getPath()  + "_lower")))
+                            .rotationY(axis == Direction.Axis.X ? 0 : 90)
+                            .build();
+                }, PreciseNetherPortal.WATERLOGGED);
     }
 
     protected ModelFile getBlockModel(DeferredBlock<Block> block){

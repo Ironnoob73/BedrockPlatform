@@ -9,9 +9,11 @@ import dev.hail.bedrock_platform.Blocks.SolidEnd.SolidEndVoid;
 import dev.hail.bedrock_platform.Blocks.SolidEnd.SolidEndVoidBE;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Items.PlatformItem;
+import dev.hail.bedrock_platform.Items.PreciseNetherPortalItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.function.Supplier;
@@ -165,12 +168,14 @@ public class BPBlocks {
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
 
-    public static final DeferredBlock<Block> PRECISE_NETHER_PORTAL = registerWithItem("precise_nether_portal",
+    public static final DeferredBlock<Block> PRECISE_NETHER_PORTAL = BLOCKS.register("precise_nether_portal",
             ()->new PreciseNetherPortal(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)
                     .noCollission()
                     .sound(SoundType.METAL)
                     .lightLevel(p -> 11)
                     .pushReaction(PushReaction.BLOCK)));
+    public static final DeferredItem<Item> PRECISE_NETHER_PORTAL_ITEM = BPItems.ITEMS.register("precise_nether_portal",
+            () ->  new PreciseNetherPortalItem(PRECISE_NETHER_PORTAL.get(),new Item.Properties()));
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

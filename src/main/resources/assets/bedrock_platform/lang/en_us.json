@@ -66,6 +66,9 @@
   "item.bedrock_platform.nether_boat.tooltip": "Much better than the Striders!",
 
   "block.bedrock_platform.precise_nether_portal": "Precise Nether Portal",
+  "block.bedrock_platform.precise_nether_portal.tooltip": "Solve the problem of confusion in the teleportation destination!",
+  "block.bedrock_platform.precise_nether_portal.tooltip_0": "Teleports you to the corresponding location in the Overworld or the Nether.",
+  "block.bedrock_platform.precise_nether_portal.tooltip_1": "It is necessary to ensure that there is a corresponding portal at the destination of the transmission!",
   "block.bedrock_platform.precise_nether_portal.process": "Transmission countdown: %s",
   "block.bedrock_platform.precise_nether_portal.cant_use": "There is no portal at the corresponding location!",
   "block.bedrock_platform.precise_nether_portal.out_border": "The corresponding position exceeds the world border!",

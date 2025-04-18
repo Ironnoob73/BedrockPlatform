@@ -1,6 +1,5 @@
 package dev.hail.bedrock_platform.Entities;
 
-import dev.hail.bedrock_platform.Entities.NetherBoat.NetherBoat;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;

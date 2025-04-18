@@ -5,7 +5,7 @@
       "name": "BEDROCK_PLATFORM_CRIMSON",
       "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
       "parameters": {
-        "class": "dev/hail/bedrock_platform/Entities/NetherBoat/NetherBoat",
+        "class": "dev/hail/bedrock_platform/Entities/NetherBoat",
         "field": "CRIMSON"
       }
     },
@@ -14,7 +14,7 @@
       "name": "BEDROCK_PLATFORM_WARPED",
       "constructor": "(Ljava/util/function/Supplier;Ljava/lang/String;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Ljava/util/function/Supplier;Z)V",
       "parameters": {
-        "class": "dev/hail/bedrock_platform/Entities/NetherBoat/NetherBoat",
+        "class": "dev/hail/bedrock_platform/Entities/NetherBoat",
         "field": "WARPED"
       }
     }

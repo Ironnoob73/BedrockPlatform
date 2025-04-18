@@ -1,6 +1,5 @@
-package dev.hail.bedrock_platform.Entities.NetherBoat;
+package dev.hail.bedrock_platform.Entities;
 
-import dev.hail.bedrock_platform.Entities.BPEntities;
 import dev.hail.bedrock_platform.Items.BPItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -34,6 +33,11 @@ public class NetherBoat extends Boat {
     }
 
     @Override
+    public void tick(){
+        super.tick();
+        this.outOfControlTicks = 0;
+    }
+    @Override
     public void floatBoat() {
         double d0 = -this.getGravity();
         double d1 = 0.0;
@@ -53,7 +57,7 @@ public class NetherBoat extends Boat {
                 d1 = (this.waterLevel - this.getY()) / (double)this.getBbHeight();
                 this.invFriction = 0.9F;
             } else if (this.status == Boat.Status.UNDER_FLOWING_WATER) {
-                d0 = 1F;
+                d0 = 0.01F;
                 this.invFriction = 0.9F;
             } else if (this.status == Boat.Status.UNDER_WATER) {
                 d1 = 1F;
@@ -139,7 +143,7 @@ public class NetherBoat extends Boat {
                     d1 = (this.waterLevel - this.getY()) / (double)this.getBbHeight();
                     this.invFriction = 0.9F;
                 } else if (this.status == Boat.Status.UNDER_FLOWING_WATER) {
-                    d0 = 1F;
+                    d0 = 0.01F;
                     this.invFriction = 0.9F;
                 } else if (this.status == Boat.Status.UNDER_WATER) {
                     d1 = 1F;

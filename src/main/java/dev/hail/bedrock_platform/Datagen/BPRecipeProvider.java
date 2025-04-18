@@ -178,6 +178,11 @@ public class BPRecipeProvider extends RecipeProvider {
         genTransparentStonePlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
         genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
         genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.PRECISE_NETHER_PORTAL_ITEM, 2)
+                .define('#', Items.OBSIDIAN).define('@', Items.CRYING_OBSIDIAN).define('*', Items.BLAZE_POWDER)
+                .pattern("@#@").pattern("#*#").pattern("@#@")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.BLAZE_POWDER)))
+                .save(output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -266,7 +271,7 @@ public class BPRecipeProvider extends RecipeProvider {
     }
     // 火把
     protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 4)
+        return ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, result, 4)
                 .define('^', input0).define('|', input1)
                 .pattern("^").pattern("|")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input0)));
@@ -316,13 +321,13 @@ public class BPRecipeProvider extends RecipeProvider {
         genChestBoat(input,chestResult).save(output);
     }
     protected ShapedRecipeBuilder genBoat(ItemLike input, ItemLike result){
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+        return ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
                 .define('A', input)
                 .pattern("A A").pattern("AAA")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
     protected ShapelessRecipeBuilder genChestBoat(ItemLike input, ItemLike result){
-        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
                 .requires(WOODEN_CHEST_TAG).requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }

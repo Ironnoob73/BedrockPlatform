@@ -66,6 +66,9 @@
   "item.bedrock_platform.nether_boat.tooltip": "比炽足兽好了不止一点！",
 
   "block.bedrock_platform.precise_nether_portal": "精确下界传送门",
+  "block.bedrock_platform.precise_nether_portal.tooltip": "解决串门问题！",
+  "block.bedrock_platform.precise_nether_portal.tooltip_0": "将你传送到主世界或下界的对应位置。",
+  "block.bedrock_platform.precise_nether_portal.tooltip_1": "需要保证传送目标地也有对应的传送门！",
   "block.bedrock_platform.precise_nether_portal.process": "传送倒计时：%s",
   "block.bedrock_platform.precise_nether_portal.cant_use": "对应位置没有传送门！",
   "block.bedrock_platform.precise_nether_portal.out_border": "对应位置超出世界边界！",

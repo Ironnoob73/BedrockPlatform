@@ -1,6 +1,6 @@
 package dev.hail.bedrock_platform.Items;
 
-import dev.hail.bedrock_platform.Entities.NetherBoat.NetherBoat;
+import dev.hail.bedrock_platform.Entities.NetherBoat;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

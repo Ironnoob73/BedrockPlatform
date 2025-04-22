@@ -19,4 +19,7 @@ public class BPParticles{
             "stone_torch_flame",() -> new SimpleParticleType(false));
     public static final DeferredHolder<ParticleType<?>, SimpleParticleType> DEEPSLATE_TORCH_FLAME = PARTICLE_TYPES.register(
             "deepslate_torch_flame",() -> new SimpleParticleType(false));
+
+    public static final DeferredHolder<ParticleType<?>, SimpleParticleType> BOUNCE_PAD = PARTICLE_TYPES.register(
+            "bounce_pad", () -> new SimpleParticleType(false));
 }

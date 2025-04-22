@@ -31,7 +31,7 @@ public class SolidTorchBlock extends UnderwaterTorchBlock {
             if (deepSlate){
                 flame = BPParticles.DEEPSLATE_TORCH_FLAME.get();
             }
-            pLevel.addParticle(flame, d0, d1, d2, 0.0, 0.025, 0.0);
+            pLevel.addParticle(flame, d0, d1, d2, 0.0, 0.005, 0.0);
         }
     }
 
@@ -60,7 +60,7 @@ public class SolidTorchBlock extends UnderwaterTorchBlock {
                     flame = BPParticles.DEEPSLATE_TORCH_FLAME.get();
                 }
                 pLevel.addParticle(
-                        flame, d0 + 0.27 * (double)direction1.getStepX(), d1 + 0.22, d2 + 0.27 * (double)direction1.getStepZ(), 0.0, 0.025, 0.0
+                        flame, d0 + 0.27 * (double)direction1.getStepX(), d1 + 0.22, d2 + 0.27 * (double)direction1.getStepZ(), 0.0, 0.005, 0.0
                 );
             }
         }

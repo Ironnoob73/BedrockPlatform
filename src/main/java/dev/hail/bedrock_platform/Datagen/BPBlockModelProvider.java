@@ -65,6 +65,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genDVSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE);
         genDVSet(BPBlocks.GEODE_GRAY_BRICKS);
         genColumnBlockWithItem(BPBlocks.GEODE_GRAY_CRATE);
+        genPadBlock(BPBlocks.BOUNCE_PAD);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
@@ -223,6 +224,20 @@ public class BPBlockModelProvider extends BlockStateProvider {
                                     models().getExistingFile(BedrockPlatform.modResLocation("block/" + block.getId().getPath()  + "_upper")) :
                                     models().getExistingFile(BedrockPlatform.modResLocation("block/" + block.getId().getPath()  + "_lower")))
                             .rotationY(axis == Direction.Axis.X ? 0 : 90)
+                            .build();
+                }, PreciseNetherPortal.WATERLOGGED);
+    }
+    protected void genPadBlock(DeferredBlock<Block> block){
+        getVariantBuilder(block.get())
+                .forAllStatesExcept(state -> {
+                    Direction direction = state.getValue(BouncePadBlock.FACING);
+                    return ConfiguredModel.builder()
+                            .modelFile(models().withExistingParent(block.getId().getPath(),
+                                    ResourceLocation.withDefaultNamespace("block/pressure_plate_up"))
+                                    .texture("texture",ResourceLocation.withDefaultNamespace("block/yellow_stained_glass"))
+                                    .renderType("translucent"))
+                            .rotationX(direction == Direction.DOWN ? 180 : direction.getAxis().isHorizontal() ? 90 : 0)
+                            .rotationY(direction.getAxis().isVertical() ? 0 : (((int) direction.toYRot()) + 180) % 360)
                             .build();
                 }, PreciseNetherPortal.WATERLOGGED);
     }

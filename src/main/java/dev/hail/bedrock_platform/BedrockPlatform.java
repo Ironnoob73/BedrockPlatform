@@ -8,6 +8,7 @@ import dev.hail.bedrock_platform.Events.BPEvents;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Particle.BPParticles;
 import dev.hail.bedrock_platform.Particle.BlockExchangeParticle;
+import dev.hail.bedrock_platform.Particle.BouncePadParticle;
 import dev.hail.bedrock_platform.Particle.BrighterFlameParticle;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERSerializer;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
@@ -261,6 +262,8 @@ public class BedrockPlatform
 
             event.registerSpriteSet(BPParticles.STONE_TORCH_FLAME.get(), (p) -> new BrighterFlameParticle.Provider(p,false));
             event.registerSpriteSet(BPParticles.DEEPSLATE_TORCH_FLAME.get(), (p) -> new BrighterFlameParticle.Provider(p,true));
+
+            event.registerSpriteSet(BPParticles.BOUNCE_PAD.get(), BouncePadParticle.Provider::new);
         }
         @SubscribeEvent
         public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {

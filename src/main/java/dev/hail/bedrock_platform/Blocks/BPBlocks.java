@@ -121,19 +121,19 @@ public class BPBlocks {
     public static final DecoVariantBlockSet GEODE_BLACK_TILES = DecoVariantBlockSet
             .builder("geode_black_tiles", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLACK_SMOOTH_TILE = DecoVariantBlockSet
-            .builder("geode_black_smooth_tile", MapColor.SNOW).defaultSet().build();
+            .builder("geode_black_smooth_tile", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLACK_BRICKS = DecoVariantBlockSet
-            .builder("geode_black_bricks", MapColor.SNOW).defaultSet().build();
+            .builder("geode_black_bricks", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithItem("geode_black_crate",
-            ()->new CrateBlock(geodeSeries()));
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
     public static final DecoVariantBlockSet GEODE_GRAY_TILES = DecoVariantBlockSet
-            .builder("geode_gray_tiles", MapColor.COLOR_BLACK).defaultSet().build();
+            .builder("geode_gray_tiles", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_GRAY_SMOOTH_TILE = DecoVariantBlockSet
-            .builder("geode_gray_smooth_tile", MapColor.SNOW).defaultSet().build();
+            .builder("geode_gray_smooth_tile", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_GRAY_BRICKS = DecoVariantBlockSet
-            .builder("geode_gray_bricks", MapColor.SNOW).defaultSet().build();
+            .builder("geode_gray_bricks", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithItem("geode_gray_crate",
-            ()->new CrateBlock(geodeSeries()));
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
     public static final Supplier<BlockEntityType<CrateBlock.CrateBlockEntity>> GEODE_CRATE_BE = BLOCK_ENTITY_TYPES.register(
             "crate_entity",
             () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new, GEODE_WHITE_CRATE.get(), GEODE_BLACK_CRATE.get(), GEODE_GRAY_CRATE.get()).build(null));
@@ -207,7 +207,7 @@ public class BPBlocks {
             () ->  new PreciseNetherPortalItem(PRECISE_NETHER_PORTAL.get(),new Item.Properties()));
 
     public static final DeferredBlock<Block> BOUNCE_PAD = registerWithItem("bounce_pad",
-            ()->new BouncePadBlock(BlockBehaviour.Properties.of()));
+            ()->new BouncePadBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion()));
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

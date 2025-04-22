@@ -2,6 +2,7 @@ package dev.hail.bedrock_platform.Datagen;
 
 import dev.hail.bedrock_platform.BedrockPlatform;
 import dev.hail.bedrock_platform.Blocks.BPBlocks;
+import dev.hail.bedrock_platform.Blocks.DecoVariantBlockSet;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystLanternBlock;
 import dev.hail.bedrock_platform.Blocks.PlatformBlock;
 import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
@@ -34,6 +35,10 @@ public class BPRecipeProvider extends RecipeProvider {
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_2_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials_2"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials"));
     public static final TagKey<Item> WOODEN_CHEST_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","chests/wooden"));
+    public static final TagKey<Item> GEODE_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks"));
+    public static final TagKey<Item> GEODE_WHITE_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/white_bricks"));
+    public static final TagKey<Item> GEODE_BLACK_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/black_bricks"));
+    public static final TagKey<Item> GEODE_GRAY_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/gray_bricks"));
 
     public BPRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
@@ -183,6 +188,31 @@ public class BPRecipeProvider extends RecipeProvider {
                 .pattern("@#@").pattern("#*#").pattern("@#@")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.BLAZE_POWDER)))
                 .save(output);
+        genGeodeSet(BPBlocks.GEODE_MOSAIC_TILE, output);
+        genGeodeSet(BPBlocks.GEODE_WHITE_TILES, output);
+        genGeodeSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE, output);
+        genGeodeSet(BPBlocks.GEODE_WHITE_BRICKS, output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_WHITE_CRATE)
+                .define('#', GEODE_WHITE_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
+                .pattern("###").pattern("#@#").pattern("###")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_WHITE_BRICKS_TAG)))
+                .save(output);
+        genGeodeSet(BPBlocks.GEODE_BLACK_TILES, output);
+        genGeodeSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE, output);
+        genGeodeSet(BPBlocks.GEODE_BLACK_BRICKS, output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_BLACK_CRATE)
+                .define('#', GEODE_BLACK_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
+                .pattern("###").pattern("#@#").pattern("###")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BLACK_BRICKS_TAG)))
+                .save(output);
+        genGeodeSet(BPBlocks.GEODE_GRAY_TILES, output);
+        genGeodeSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE, output);
+        genGeodeSet(BPBlocks.GEODE_GRAY_BRICKS, output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_GRAY_CRATE)
+                .define('#', GEODE_GRAY_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
+                .pattern("###").pattern("#@#").pattern("###")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_GRAY_BRICKS_TAG)))
+                .save(output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -208,6 +238,12 @@ public class BPRecipeProvider extends RecipeProvider {
                     .save(output, BuiltInRegistries.ITEM.getKey(color.getTransparent().asItem()) + "_dye");
         }
         genCompressAndDecompressFour(color.getBaseBlock().get(),color.getTile().get(),output);
+    }
+    protected void genGeodeSet(DecoVariantBlockSet block, RecipeOutput output){
+        genGeodeBrickStonecutting(block.getBaseBlock(), output);
+        genGeodeBrickStonecutting(block.getStairs(), output);
+        genGeodeBrickSlabStonecutting(block.getSlab(), output);
+        genGeodeBrickStonecutting(block.getWall(), output);
     }
 
     protected void genBothRecipe(Block inputBlock, Item ingredient, Block outputBlock, RecipeOutput output){
@@ -330,5 +366,16 @@ public class BPRecipeProvider extends RecipeProvider {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
                 .requires(WOODEN_CHEST_TAG).requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    // 晶洞砖
+    protected void genGeodeBrickStonecutting(ItemLike result, @NotNull RecipeOutput output){
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GEODE_BRICKS_TAG), RecipeCategory.BUILDING_BLOCKS, result)
+            .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BRICKS_TAG)))
+            .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
+    }
+    protected void genGeodeBrickSlabStonecutting(ItemLike result, @NotNull RecipeOutput output){
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GEODE_BRICKS_TAG), RecipeCategory.BUILDING_BLOCKS, result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BRICKS_TAG)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
     }
 }

@@ -1,6 +1,10 @@
 {
   "values": [
     "#minecraft:stone_bricks",
-    "minecraft:stone"
+    "minecraft:stone",
+    "minecraft:stone_brick_stairs",
+    "minecraft:stone_brick_wall",
+    "minecraft:mossy_stone_brick_stairs",
+    "minecraft:mossy_stone_brick_wall"
   ]
 }

@@ -1,0 +1,14 @@
+{
+  "values":[
+    "bedrock_platform:geode_mosaic_tile_wall",
+    "bedrock_platform:geode_white_tiles_wall",
+    "bedrock_platform:geode_white_smooth_tile_wall",
+    "bedrock_platform:geode_white_bricks_wall",
+    "bedrock_platform:geode_black_tiles_wall",
+    "bedrock_platform:geode_black_smooth_tile_wall",
+    "bedrock_platform:geode_black_bricks_wall",
+    "bedrock_platform:geode_gray_tiles_wall",
+    "bedrock_platform:geode_gray_smooth_tile_wall",
+    "bedrock_platform:geode_gray_bricks_wall"
+  ]
+}

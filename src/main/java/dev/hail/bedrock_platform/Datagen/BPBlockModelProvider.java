@@ -1,17 +1,17 @@
 package dev.hail.bedrock_platform.Datagen;
 
 import dev.hail.bedrock_platform.BedrockPlatform;
-import dev.hail.bedrock_platform.Blocks.BPBlocks;
+import dev.hail.bedrock_platform.Blocks.*;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.TorchBlockSet;
 import dev.hail.bedrock_platform.Blocks.Light.SolidTorchBlock;
-import dev.hail.bedrock_platform.Blocks.PlatformBlock;
-import dev.hail.bedrock_platform.Blocks.PreciseNetherPortal;
-import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.StairBlock;
+import net.minecraft.world.level.block.WallBlock;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
@@ -35,7 +35,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         }
         genBlockItemWithRotatedModel(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME);
         genBlockItemWithSpecialModel(BPBlocks.SCULK_RIB_BLOCK);
-        genKelpBlockWithItem(BPBlocks.KELP_BLOCK);
+        genColumnBlockWithItem(BPBlocks.KELP_BLOCK);
         genBlockItemWithSpecialModel(BPBlocks.PERMANENTLY_WETTED_FARMLAND);
         genBlockItemWithSpecialModel(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND);
         genTorchBlock(BPBlocks.STONE_TORCH);
@@ -52,12 +52,40 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genPlatformBlock(BPBlocks.STONE_PLATFORM);
         genPlatformBlockTransparent(BPBlocks.TRANSPARENT_STONE_PLATFORM);
         genPortalDoorBlock(BPBlocks.PRECISE_NETHER_PORTAL);
+        genDVSet(BPBlocks.GEODE_MOSAIC_TILE);
+        genDVSet(BPBlocks.GEODE_WHITE_TILES);
+        genDVSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE);
+        genDVSet(BPBlocks.GEODE_WHITE_BRICKS);
+        genColumnBlockWithItem(BPBlocks.GEODE_WHITE_CRATE);
+        genDVSet(BPBlocks.GEODE_BLACK_TILES);
+        genDVSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE);
+        genDVSet(BPBlocks.GEODE_BLACK_BRICKS);
+        genColumnBlockWithItem(BPBlocks.GEODE_BLACK_CRATE);
+        genDVSet(BPBlocks.GEODE_GRAY_TILES);
+        genDVSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE);
+        genDVSet(BPBlocks.GEODE_GRAY_BRICKS);
+        genColumnBlockWithItem(BPBlocks.GEODE_GRAY_CRATE);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), cubeAll(block.get()));
     }
     protected void genTransparentBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), models().cubeAll(getBlockId(block), blockTexture(block.get())).renderType("translucent"));
+    }
+    protected void genStairsBlockWithItem(DeferredBlock<Block> block, DeferredBlock<Block> oBlock){
+        stairsBlock((StairBlock) block.get(), getBlockTexture(getBlockId(oBlock)));
+        simpleBlockItem(block.get(), models().stairs(block.getId().getPath(),
+                getBlockTexture(getBlockId(oBlock)),getBlockTexture(getBlockId(oBlock)),getBlockTexture(getBlockId(oBlock))));
+    }
+    protected void genSlabBlockWithItem(DeferredBlock<Block> block, DeferredBlock<Block> oBlock){
+        slabBlock((SlabBlock) block.get(), getBlockTexture(getBlockId(oBlock)), getBlockTexture(getBlockId(oBlock)));
+        simpleBlockItem(block.get(), models().slab(block.getId().getPath(),
+                getBlockTexture(getBlockId(oBlock)),getBlockTexture(getBlockId(oBlock)),getBlockTexture(getBlockId(oBlock))));
+    }
+    protected void genWallBlockWithItem(DeferredBlock<Block> block, DeferredBlock<Block> oBlock){
+        wallBlock((WallBlock) block.get(), getBlockTexture(getBlockId(oBlock)));
+        simpleBlockItem(block.get(), models().wallInventory(block.getId().getPath(),
+                getBlockTexture(getBlockId(oBlock))));
     }
     protected void genBlockItemWithSpecialModel(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), getBlockModel(block));
@@ -66,7 +94,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         horizontalBlock(block.get(), getBlockModel(block),0);
         simpleBlockItem(block.get(), getBlockModel(block));
     }
-    protected void genKelpBlockWithItem(DeferredBlock<Block> block){
+    protected void genColumnBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), models().cubeColumn(block.getId().getPath(),
                 getBlockTexture(getBlockId(block) + "_side"), getBlockTexture(getBlockId(block) + "_end")));
     }
@@ -134,6 +162,12 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genCubeAllBlockWithItem(color.getGlow());
         genCubeAllBlockWithItem(color.getTwill());
         genTransparentBlockWithItem(color.getTransparent());
+    }
+    protected void genDVSet(DecoVariantBlockSet block){
+        genCubeAllBlockWithItem(block.getBaseBlock());
+        genStairsBlockWithItem(block.getStairs(), block.getBaseBlock());
+        genSlabBlockWithItem(block.getSlab(), block.getBaseBlock());
+        genWallBlockWithItem(block.getWall(), block.getBaseBlock());
     }
     protected void genPlatformBlock(DeferredBlock<Block> block){
         BlockModelBuilder platformTop = models().withExistingParent(block.getId().getPath(),

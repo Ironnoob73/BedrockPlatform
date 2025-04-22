@@ -13,7 +13,6 @@ import dev.hail.bedrock_platform.Items.PreciseNetherPortalItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -39,6 +38,13 @@ public class BPBlocks {
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .strength(-1.0F, 3600000.0F)
                     .isValidSpawn(Blocks::never);
+    }
+    public static BlockBehaviour.Properties geodeSeries(){
+        return BlockBehaviour.Properties.of()
+                .instrument(NoteBlockInstrument.BASEDRUM)
+                .isValidSpawn(Blocks::never)
+                .strength(50.0F, 100.0F)
+                .sound(SoundType.DEEPSLATE);
     }
 
     public static final DeferredBlock<Block> BEDROCK_PLATFORM = registerWithItem("bedrock_platform",
@@ -102,13 +108,36 @@ public class BPBlocks {
     public static final StrongInteractionBlockSet BLACK_SI_BLOCK_SET = StrongInteractionBlockSet
             .builder("black",MapColor.TERRACOTTA_BLACK).defaultSet().build();
 
-    public static final DeferredBlock<Block> GEODE_MOSAIC_TILE = registerWithItem("geode_mosaic_tile",
-            BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.DEEPSLATE)
-                    .instrument(NoteBlockInstrument.BASEDRUM)
-                    .isValidSpawn(Blocks::never)
-                    .strength(25.0F, 100.0F)
-                    .sound(SoundType.DEEPSLATE));
+    public static final DecoVariantBlockSet GEODE_MOSAIC_TILE = DecoVariantBlockSet
+            .builder("geode_mosaic_tile", MapColor.DEEPSLATE).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_WHITE_TILES = DecoVariantBlockSet
+            .builder("geode_white_tiles", MapColor.SNOW).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_WHITE_SMOOTH_TILE = DecoVariantBlockSet
+            .builder("geode_white_smooth_tile", MapColor.SNOW).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_WHITE_BRICKS = DecoVariantBlockSet
+            .builder("geode_white_bricks", MapColor.SNOW).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_WHITE_CRATE = registerWithItem("geode_white_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.SNOW)));
+    public static final DecoVariantBlockSet GEODE_BLACK_TILES = DecoVariantBlockSet
+            .builder("geode_black_tiles", MapColor.COLOR_BLACK).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_BLACK_SMOOTH_TILE = DecoVariantBlockSet
+            .builder("geode_black_smooth_tile", MapColor.SNOW).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_BLACK_BRICKS = DecoVariantBlockSet
+            .builder("geode_black_bricks", MapColor.SNOW).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithItem("geode_black_crate",
+            ()->new CrateBlock(geodeSeries()));
+    public static final DecoVariantBlockSet GEODE_GRAY_TILES = DecoVariantBlockSet
+            .builder("geode_gray_tiles", MapColor.COLOR_BLACK).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_GRAY_SMOOTH_TILE = DecoVariantBlockSet
+            .builder("geode_gray_smooth_tile", MapColor.SNOW).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_GRAY_BRICKS = DecoVariantBlockSet
+            .builder("geode_gray_bricks", MapColor.SNOW).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithItem("geode_gray_crate",
+            ()->new CrateBlock(geodeSeries()));
+    public static final Supplier<BlockEntityType<CrateBlock.CrateBlockEntity>> GEODE_CRATE_BE = BLOCK_ENTITY_TYPES.register(
+            "crate_entity",
+            () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new, GEODE_WHITE_CRATE.get(), GEODE_BLACK_CRATE.get(), GEODE_GRAY_CRATE.get()).build(null));
+
     public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
     public static final DeferredBlock<Block> PERMANENTLY_WETTED_FARMLAND = registerWithItem("permanently_wetted_farmland",
@@ -176,6 +205,9 @@ public class BPBlocks {
                     .pushReaction(PushReaction.BLOCK)));
     public static final DeferredItem<Item> PRECISE_NETHER_PORTAL_ITEM = BPItems.ITEMS.register("precise_nether_portal",
             () ->  new PreciseNetherPortalItem(PRECISE_NETHER_PORTAL.get(),new Item.Properties()));
+
+    public static final DeferredBlock<Block> BOUNCE_PAD = registerWithItem("bounce_pad",
+            ()->new BouncePadBlock(BlockBehaviour.Properties.of()));
 
     public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);

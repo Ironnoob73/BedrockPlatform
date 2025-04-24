@@ -6,9 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionResult;
@@ -21,11 +19,11 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.entity.BarrelBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
 public class CrateBlock extends BaseEntityBlock {
@@ -36,7 +34,6 @@ public class CrateBlock extends BaseEntityBlock {
     }
     protected CrateBlock(Properties pProperties) {
         super(pProperties);
-        this.registerDefaultState(this.stateDefinition.any());
     }
     @Override
     protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull BlockHitResult pHitResult) {
@@ -56,13 +53,6 @@ public class CrateBlock extends BaseEntityBlock {
     protected void onRemove(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pNewState, boolean pIsMoving) {
         Containers.dropContentsOnDestroy(pState, pNewState, pLevel, pPos);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
-    }
-    @Override
-    protected void tick(@NotNull BlockState pState, ServerLevel pLevel, @NotNull BlockPos pPos, @NotNull RandomSource pRandom) {
-        BlockEntity blockentity = pLevel.getBlockEntity(pPos);
-        if (blockentity instanceof BarrelBlockEntity) {
-            ((BarrelBlockEntity)blockentity).recheckOpen();
-        }
     }
     @javax.annotation.Nullable
     @Override
@@ -85,7 +75,7 @@ public class CrateBlock extends BaseEntityBlock {
 
     public static class CrateBlockEntity extends RandomizableContainerBlockEntity {
         private NonNullList<ItemStack> items = NonNullList.withSize(54, ItemStack.EMPTY);
-
+        public ItemStackHandler itemStackHandler = new ItemStackHandler(items);
         public CrateBlockEntity(BlockPos pPos, BlockState pBlockState) {
             super(BPBlocks.GEODE_CRATE_BE.get(), pPos, pBlockState);
         }

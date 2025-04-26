@@ -280,7 +280,7 @@ public class BedrockPlatform
         event.registerBlockEntity(
                 Capabilities.ItemHandler.BLOCK,
                 BPBlocks.GEODE_CRATE_BE.get(),
-                (BlockEntity, side) -> BlockEntity.itemStackHandler
+                (BlockEntity, side) -> BlockEntity.inventory
         );
     }
     public static ResourceLocation modResLocation(String path){

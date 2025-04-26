@@ -75,7 +75,13 @@ public class CrateBlock extends BaseEntityBlock {
 
     public static class CrateBlockEntity extends RandomizableContainerBlockEntity {
         private NonNullList<ItemStack> items = NonNullList.withSize(54, ItemStack.EMPTY);
-        public ItemStackHandler itemStackHandler = new ItemStackHandler(items);
+        public final ItemStackHandler inventory = new ItemStackHandler(items){
+            @Override
+            protected void onContentsChanged(int slot){
+                super.onContentsChanged(slot);
+                CrateBlockEntity.this.setChanged();
+            }
+        };
         public CrateBlockEntity(BlockPos pPos, BlockState pBlockState) {
             super(BPBlocks.GEODE_CRATE_BE.get(), pPos, pBlockState);
         }

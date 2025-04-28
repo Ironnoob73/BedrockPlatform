@@ -179,8 +179,10 @@ public class BPRecipeProvider extends RecipeProvider {
                         .save(output, BedrockPlatform.modResLocation("waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
             }
         }
+        genWoodenPlat(Items.OAK_PLANKS,Items.OAK_STAIRS,Items.OAK_SLAB,BPBlocks.OAK_PLATFORM,output);
+        genTransparentPlat(BPBlocks.OAK_PLATFORM, BPBlocks.TRANSPARENT_OAK_PLATFORM, output);
         genStonePlat(STONE_PLATFORM_MATERIAL_2_TAG,STONE_PLATFORM_MATERIAL_TAG,BPBlocks.STONE_PLATFORM,Blocks.STONE_BRICK_SLAB,output);
-        genTransparentStonePlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
+        genTransparentPlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
         genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
         genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.PRECISE_NETHER_PORTAL_ITEM, 2)
@@ -312,6 +314,31 @@ public class BPRecipeProvider extends RecipeProvider {
                 .pattern("^").pattern("|")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input0)));
     }
+    // 木平台
+    protected void genWoodenPlat(ItemLike blockInput, ItemLike stairInput, ItemLike slabInput, ItemLike result, @NotNull RecipeOutput output){
+        genWoodenPlatCraftingTable(blockInput,result).save(output);
+        genWoodenPlatReverse(result, slabInput).save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_recovery");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(blockInput), RecipeCategory.BUILDING_BLOCKS, result,2)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(blockInput)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(stairInput), RecipeCategory.BUILDING_BLOCKS, result,2)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(blockInput)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stairs_stonecutting");
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(slabInput), RecipeCategory.BUILDING_BLOCKS, result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(slabInput)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting_single");
+    }
+    protected ShapedRecipeBuilder genWoodenPlatCraftingTable(ItemLike input, ItemLike result){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .define('A', input).define('/', Items.STICK)
+                .pattern("AAA").pattern("/ /")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    protected ShapelessRecipeBuilder genWoodenPlatReverse(ItemLike input, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(input)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
     // 石平台
     protected void genStonePlat(TagKey<Item> blockInput, TagKey<Item> slabInput, ItemLike result, ItemLike recovery, @NotNull RecipeOutput output){
         genStonePlatCraftingTable(blockInput,result).save(output);
@@ -334,15 +361,15 @@ public class BPRecipeProvider extends RecipeProvider {
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
-    protected void genTransparentStonePlat(DeferredBlock<Block> inputBlock, DeferredBlock<Block> outputBlock, @NotNull RecipeOutput output){
+    protected void genTransparentPlat(DeferredBlock<Block> inputBlock, DeferredBlock<Block> outputBlock, @NotNull RecipeOutput output){
         for (int i = 0; i < 4; i++){
             for (Half half : Half.values()){
                 for (int w = 0; w < 2; w++){
                     genBothRecipeWithModPath(
-                        BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName(),
-                        BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName() + "_reduction",
-                        inputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), Items.GLASS_PANE,
-                        outputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
+                            BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName(),
+                            BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName() + "_reduction",
+                            inputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), Items.GLASS_PANE,
+                            outputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
                 }
             }
         }

@@ -186,6 +186,16 @@ public class BPBlocks {
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
 
+    public static final DeferredBlock<Block> OAK_PLATFORM = registerWithPlatItem("oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_OAK_PLATFORM = registerWithPlatItem("transparent_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
     public static final DeferredBlock<Block> STONE_PLATFORM = registerWithPlatItem("stone_platform",
             ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
                     .noCollission()

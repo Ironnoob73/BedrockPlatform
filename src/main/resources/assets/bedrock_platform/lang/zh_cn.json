@@ -91,6 +91,8 @@
   "block.bedrock_platform.amethyst_candle.tooltip_6": "其他情况：",
   "block.bedrock_platform.amethyst_candle.tooltip_7": "不发光。",
 
+  "block.bedrock_platform.oak_platform": "橡木平台",
+  "block.bedrock_platform.transparent_oak_platform": "通透橡木平台",
   "block.bedrock_platform.stone_platform": "石平台",
   "block.bedrock_platform.transparent_stone_platform": "通透石平台",
   "block.bedrock_platform.platform.tooltip_0": "潜行时可以穿过此方块。",

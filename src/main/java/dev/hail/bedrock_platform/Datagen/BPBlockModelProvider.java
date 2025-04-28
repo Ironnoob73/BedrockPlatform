@@ -49,6 +49,8 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genAmethystLanternBlockItem(BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed(),"exposed_copper_grate");
         genAmethystLanternBlockItem(BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed(),"weathered_copper_grate");
         genAmethystLanternBlockItem(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed(),"oxidized_copper_grate");
+        genPlatformBlock(BPBlocks.OAK_PLATFORM);
+        genPlatformBlockTransparent(BPBlocks.TRANSPARENT_OAK_PLATFORM);
         genPlatformBlock(BPBlocks.STONE_PLATFORM);
         genPlatformBlockTransparent(BPBlocks.TRANSPARENT_STONE_PLATFORM);
         genPortalDoorBlock(BPBlocks.PRECISE_NETHER_PORTAL);

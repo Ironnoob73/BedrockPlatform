@@ -91,6 +91,8 @@
   "block.bedrock_platform.amethyst_candle.tooltip_6": "Other cases:",
   "block.bedrock_platform.amethyst_candle.tooltip_7": "Doesn't emit light.",
 
+  "block.bedrock_platform.oak_platform": "Oak Platform",
+  "block.bedrock_platform.transparent_oak_platform": "Transparent Oak Platform",
   "block.bedrock_platform.stone_platform": "Stone Platform",
   "block.bedrock_platform.transparent_stone_platform": "Transparent Stone Platform",
   "block.bedrock_platform.platform.tooltip_0": "Can pass through this block while sneaking.",

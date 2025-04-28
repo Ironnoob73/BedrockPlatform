@@ -22,6 +22,8 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -76,6 +78,8 @@ public class BedrockPlatform
                 output.accept(BPBlocks.STONE_TORCH.getItem());
                 output.accept(BPBlocks.DEEPSLATE_TORCH.getItem());
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
+                output.accept(BPBlocks.OAK_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_OAK_PLATFORM.asItem());
                 output.accept(BPBlocks.STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.PRECISE_NETHER_PORTAL_ITEM.get());
@@ -214,6 +218,7 @@ public class BedrockPlatform
         NeoForge.EVENT_BUS.register(new BPEvents());
 
         modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(this::registerFlammable);
     }
 
     public void packSetup(AddPackFindersEvent event) {
@@ -282,6 +287,11 @@ public class BedrockPlatform
                 BPBlocks.GEODE_CRATE_BE.get(),
                 (BlockEntity, side) -> BlockEntity.inventory
         );
+    }
+    private void registerFlammable(FMLCommonSetupEvent event){
+        FireBlock fireBlock = (FireBlock) Blocks.FIRE;
+        fireBlock.setFlammable(BPBlocks.OAK_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_OAK_PLATFORM.get(),20,20);
     }
     public static ResourceLocation modResLocation(String path){
         return ResourceLocation.fromNamespaceAndPath(MODID, path);

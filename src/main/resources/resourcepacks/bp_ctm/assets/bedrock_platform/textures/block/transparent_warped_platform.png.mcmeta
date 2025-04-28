@@ -1,0 +1,9 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "textures":[
+            "bedrock_platform:block/transparent_warped_platform_connected"
+        ]
+    }
+}

@@ -1,0 +1,6 @@
+{"loader":"fusion:model","type":"connecting","connections":[{"type":"is_same_block"}],
+  "parent": "bedrock_platform:block/template_platform",
+  "textures": {
+    "all": "bedrock_platform:block/spruce_platform"
+  }
+}

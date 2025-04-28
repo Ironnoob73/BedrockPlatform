@@ -196,6 +196,76 @@ public class BPBlocks {
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> BIRCH_PLATFORM = registerWithPlatItem("birch_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_BIRCH_PLATFORM = registerWithPlatItem("transparent_birch_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> SPRUCE_PLATFORM = registerWithPlatItem("spruce_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_SPRUCE_PLATFORM = registerWithPlatItem("transparent_spruce_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> JUNGLE_PLATFORM = registerWithPlatItem("jungle_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_JUNGLE_PLATFORM = registerWithPlatItem("transparent_jungle_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> DARK_OAK_PLATFORM = registerWithPlatItem("dark_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_DARK_OAK_PLATFORM = registerWithPlatItem("transparent_dark_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> ACACIA_PLATFORM = registerWithPlatItem("acacia_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_ACACIA_PLATFORM = registerWithPlatItem("transparent_acacia_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> MANGROVE_PLATFORM = registerWithPlatItem("mangrove_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_MANGROVE_PLATFORM = registerWithPlatItem("transparent_mangrove_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> CHERRY_PLATFORM = registerWithPlatItem("cherry_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_CHERRY_PLATFORM = registerWithPlatItem("transparent_cherry_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
     public static final DeferredBlock<Block> STONE_PLATFORM = registerWithPlatItem("stone_platform",
             ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
                     .noCollission()
@@ -203,6 +273,26 @@ public class BPBlocks {
                     .isRedstoneConductor(block_never)));
     public static final DeferredBlock<Block> TRANSPARENT_STONE_PLATFORM = registerWithPlatItem("transparent_stone_platform",
             ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> CRIMSON_PLATFORM = registerWithPlatItem("crimson_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_CRIMSON_PLATFORM = registerWithPlatItem("transparent_crimson_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> WARPED_PLATFORM = registerWithPlatItem("warped_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> TRANSPARENT_WARPED_PLATFORM = registerWithPlatItem("transparent_warped_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));

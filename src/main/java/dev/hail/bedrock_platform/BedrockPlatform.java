@@ -78,10 +78,30 @@ public class BedrockPlatform
                 output.accept(BPBlocks.STONE_TORCH.getItem());
                 output.accept(BPBlocks.DEEPSLATE_TORCH.getItem());
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
+
                 output.accept(BPBlocks.OAK_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_OAK_PLATFORM.asItem());
+                output.accept(BPBlocks.BIRCH_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_BIRCH_PLATFORM.asItem());
+                output.accept(BPBlocks.SPRUCE_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_SPRUCE_PLATFORM.asItem());
+                output.accept(BPBlocks.JUNGLE_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_JUNGLE_PLATFORM.asItem());
+                output.accept(BPBlocks.DARK_OAK_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_DARK_OAK_PLATFORM.asItem());
+                output.accept(BPBlocks.ACACIA_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_ACACIA_PLATFORM.asItem());
+                output.accept(BPBlocks.MANGROVE_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_MANGROVE_PLATFORM.asItem());
+                output.accept(BPBlocks.CHERRY_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_CHERRY_PLATFORM.asItem());
                 output.accept(BPBlocks.STONE_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_STONE_PLATFORM.asItem());
+                output.accept(BPBlocks.CRIMSON_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_CRIMSON_PLATFORM.asItem());
+                output.accept(BPBlocks.WARPED_PLATFORM.asItem());
+                output.accept(BPBlocks.TRANSPARENT_WARPED_PLATFORM.asItem());
+
                 output.accept(BPBlocks.PRECISE_NETHER_PORTAL_ITEM.get());
                 output.accept(BPItems.CRIMSON_BOAT.get());
                 output.accept(BPItems.CRIMSON_CHEST_BOAT.get());
@@ -292,6 +312,20 @@ public class BedrockPlatform
         FireBlock fireBlock = (FireBlock) Blocks.FIRE;
         fireBlock.setFlammable(BPBlocks.OAK_PLATFORM.get(),20,20);
         fireBlock.setFlammable(BPBlocks.TRANSPARENT_OAK_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.BIRCH_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_BIRCH_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.SPRUCE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_SPRUCE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.JUNGLE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_JUNGLE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.DARK_OAK_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_DARK_OAK_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.ACACIA_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_ACACIA_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.MANGROVE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_MANGROVE_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.CHERRY_PLATFORM.get(),20,20);
+        fireBlock.setFlammable(BPBlocks.TRANSPARENT_CHERRY_PLATFORM.get(),20,20);
     }
     public static ResourceLocation modResLocation(String path){
         return ResourceLocation.fromNamespaceAndPath(MODID, path);

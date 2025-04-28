@@ -1,0 +1,9 @@
+{
+    "ctm":{
+        "ctm_version": 1,
+        "type":"CTM",
+        "textures":[
+            "bedrock_platform:block/mangrove_platform_connected"
+        ]
+    }
+}

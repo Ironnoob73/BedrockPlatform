@@ -181,8 +181,26 @@ public class BPRecipeProvider extends RecipeProvider {
         }
         genWoodenPlat(Items.OAK_PLANKS,Items.OAK_STAIRS,Items.OAK_SLAB,BPBlocks.OAK_PLATFORM,output);
         genTransparentPlat(BPBlocks.OAK_PLATFORM, BPBlocks.TRANSPARENT_OAK_PLATFORM, output);
+        genWoodenPlat(Items.BIRCH_PLANKS,Items.BIRCH_STAIRS,Items.BIRCH_SLAB,BPBlocks.BIRCH_PLATFORM,output);
+        genTransparentPlat(BPBlocks.BIRCH_PLATFORM, BPBlocks.TRANSPARENT_BIRCH_PLATFORM, output);
+        genWoodenPlat(Items.SPRUCE_PLANKS,Items.SPRUCE_STAIRS,Items.SPRUCE_SLAB,BPBlocks.SPRUCE_PLATFORM,output);
+        genTransparentPlat(BPBlocks.SPRUCE_PLATFORM, BPBlocks.TRANSPARENT_SPRUCE_PLATFORM, output);
+        genWoodenPlat(Items.JUNGLE_PLANKS,Items.JUNGLE_STAIRS,Items.JUNGLE_SLAB,BPBlocks.JUNGLE_PLATFORM,output);
+        genTransparentPlat(BPBlocks.JUNGLE_PLATFORM, BPBlocks.TRANSPARENT_JUNGLE_PLATFORM, output);
+        genWoodenPlat(Items.DARK_OAK_PLANKS,Items.DARK_OAK_STAIRS,Items.DARK_OAK_SLAB,BPBlocks.DARK_OAK_PLATFORM,output);
+        genTransparentPlat(BPBlocks.DARK_OAK_PLATFORM, BPBlocks.TRANSPARENT_DARK_OAK_PLATFORM, output);
+        genWoodenPlat(Items.ACACIA_PLANKS,Items.ACACIA_STAIRS,Items.ACACIA_SLAB,BPBlocks.ACACIA_PLATFORM,output);
+        genTransparentPlat(BPBlocks.ACACIA_PLATFORM, BPBlocks.TRANSPARENT_ACACIA_PLATFORM, output);
+        genWoodenPlat(Items.MANGROVE_PLANKS,Items.MANGROVE_STAIRS,Items.MANGROVE_SLAB,BPBlocks.MANGROVE_PLATFORM,output);
+        genTransparentPlat(BPBlocks.MANGROVE_PLATFORM, BPBlocks.TRANSPARENT_MANGROVE_PLATFORM, output);
+        genWoodenPlat(Items.CHERRY_PLANKS,Items.CHERRY_STAIRS,Items.CHERRY_SLAB,BPBlocks.CHERRY_PLATFORM,output);
+        genTransparentPlat(BPBlocks.CHERRY_PLATFORM, BPBlocks.TRANSPARENT_CHERRY_PLATFORM, output);
         genStonePlat(STONE_PLATFORM_MATERIAL_2_TAG,STONE_PLATFORM_MATERIAL_TAG,BPBlocks.STONE_PLATFORM,Blocks.STONE_BRICK_SLAB,output);
         genTransparentPlat(BPBlocks.STONE_PLATFORM, BPBlocks.TRANSPARENT_STONE_PLATFORM, output);
+        genWoodenPlat(Items.CRIMSON_PLANKS,Items.CRIMSON_STAIRS,Items.CRIMSON_SLAB,BPBlocks.CRIMSON_PLATFORM,output);
+        genTransparentPlat(BPBlocks.CRIMSON_PLATFORM, BPBlocks.TRANSPARENT_CRIMSON_PLATFORM, output);
+        genWoodenPlat(Items.WARPED_PLANKS,Items.WARPED_STAIRS,Items.WARPED_SLAB,BPBlocks.WARPED_PLATFORM,output);
+        genTransparentPlat(BPBlocks.WARPED_PLATFORM, BPBlocks.TRANSPARENT_WARPED_PLATFORM, output);
         genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
         genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.PRECISE_NETHER_PORTAL_ITEM, 2)

@@ -61,6 +61,13 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
         return TOP_SHAPE;
     }
     @Override
+    public boolean skipRendering(@NotNull BlockState state, BlockState pState, @NotNull Direction direction) {
+        if (pState.getBlock() instanceof PlatformBlock && pState.getValue(HALF) == Half.TOP) {
+            return true;
+        }
+        return super.skipRendering(state, pState, direction);
+    }
+    @Override
     protected @NotNull VoxelShape getShape(@NotNull BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
         if (pState.getValue(HALF) != Half.TOP){
             switch (pState.getValue(FACING)){

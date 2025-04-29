@@ -271,6 +271,10 @@ public class BPRecipeProvider extends RecipeProvider {
                     StrongInteractionBlockSet.returnColorMaterial(color),
                     color.getBaseBlock().get().defaultBlockState())
                     .save(output, BuiltInRegistries.ITEM.getKey(color.getBaseBlock().asItem()) + "_dye");
+            genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getSlick().get().defaultBlockState(),
+                    StrongInteractionBlockSet.returnColorMaterial(color),
+                    color.getSlick().get().defaultBlockState())
+                    .save(output, BuiltInRegistries.ITEM.getKey(color.getSlick().asItem()) + "_dye");
             genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getGlow().get().defaultBlockState(),
                     StrongInteractionBlockSet.returnColorMaterial(color),
                     color.getGlow().get().defaultBlockState())

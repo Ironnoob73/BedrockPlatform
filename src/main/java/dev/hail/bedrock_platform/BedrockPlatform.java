@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.FireBlock;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
@@ -235,7 +236,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BLACK_SI_BLOCK_SET.getTransparent().asItem());
             }).build());
 
-    public BedrockPlatform(IEventBus modEventBus)
+    public BedrockPlatform(IEventBus modEventBus, ModContainer modContainer)
     {
         modEventBus.addListener(this::commonSetup);
         modEventBus.addListener(this::packSetup);
@@ -258,6 +259,8 @@ public class BedrockPlatform
 
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerFlammable);
+
+        modContainer.registerConfig(ModConfig.Type.CLIENT, Config.SPEC_C);
     }
 
     public void packSetup(AddPackFindersEvent event) {
@@ -287,7 +290,6 @@ public class BedrockPlatform
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.COMMON, Config.SPEC);
-        ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.CLIENT, Config.SPEC_C);
         ModLoadingContext.get().getActiveContainer().registerConfig(ModConfig.Type.SERVER, Config.SPEC_S);
     }
 

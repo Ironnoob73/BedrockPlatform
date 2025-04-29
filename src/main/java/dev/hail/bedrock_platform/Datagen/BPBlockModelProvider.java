@@ -68,6 +68,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genPlatformBlockTransparent(BPBlocks.TRANSPARENT_CRIMSON_PLATFORM);
         genPlatformBlock(BPBlocks.WARPED_PLATFORM);
         genPlatformBlockTransparent(BPBlocks.TRANSPARENT_WARPED_PLATFORM);
+        genPlatformBlockTransparent(BPBlocks.GLASS_PLATFORM);
         genPortalDoorBlock(BPBlocks.PRECISE_NETHER_PORTAL);
         genDVSet(BPBlocks.GEODE_MOSAIC_TILE);
         genDVSet(BPBlocks.GEODE_WHITE_TILES);

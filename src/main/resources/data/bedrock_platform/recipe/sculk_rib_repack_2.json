@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "bedrock_platform:sculk_rib"
+    },
+    "@": {
+      "item": "minecraft:amethyst_shard"
+    }
+  },
+  "pattern": [
+    "###",
+    "#@#",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "bedrock_platform:filled_sculk_rib_block"
+  }
+}

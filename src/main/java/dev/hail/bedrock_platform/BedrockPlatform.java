@@ -70,6 +70,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().asItem());
                 output.accept(BPItems.SCULK_RIB.get());
                 output.accept(BPBlocks.SCULK_RIB_BLOCK.asItem());
+                output.accept(BPBlocks.FILLED_SCULK_RIB_BLOCK.asItem());
                 output.accept(BPItems.ENCHANT_DUST.get());
                 output.accept(BPItems.BLUE_ICE_CUBE.get());
                 output.accept(BPBlocks.GEODE_MOSAIC_TILE.getBaseBlock());
@@ -177,6 +178,14 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_BLUE_BRICKS.getSlab());
                 output.accept(BPBlocks.GEODE_BLUE_BRICKS.getWall());
                 output.accept(BPBlocks.GEODE_BLUE_PILLAR);
+                output.accept(BPBlocks.GEODE_GRAY_WHITE_TILES.getBaseBlock());
+                output.accept(BPBlocks.GEODE_GRAY_WHITE_TILES.getStairs());
+                output.accept(BPBlocks.GEODE_GRAY_WHITE_TILES.getSlab());
+                output.accept(BPBlocks.GEODE_GRAY_WHITE_TILES.getWall());
+                output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getBaseBlock());
+                output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getStairs());
+                output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getSlab());
+                output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getWall());
 
                 output.accept(BPBlocks.RED_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.YELLOW_SI_BLOCK_SET.getTile().asItem());

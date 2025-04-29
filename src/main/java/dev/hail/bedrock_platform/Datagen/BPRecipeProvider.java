@@ -1,11 +1,8 @@
 package dev.hail.bedrock_platform.Datagen;
 
 import dev.hail.bedrock_platform.BedrockPlatform;
-import dev.hail.bedrock_platform.Blocks.BPBlocks;
-import dev.hail.bedrock_platform.Blocks.DecoVariantBlockSet;
+import dev.hail.bedrock_platform.Blocks.*;
 import dev.hail.bedrock_platform.Blocks.Light.Amethyst.AmethystLanternBlock;
-import dev.hail.bedrock_platform.Blocks.PlatformBlock;
-import dev.hail.bedrock_platform.Blocks.StrongInteractionBlockSet;
 import dev.hail.bedrock_platform.Items.BPItems;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -54,9 +51,14 @@ public class BPRecipeProvider extends RecipeProvider {
         genBothRecipe(Blocks.BEDROCK, Items.NETHERITE_SCRAP, BPBlocks.BEDROCK_PLATFORM.get(), output);
         genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.GOLD_INGOT, BPBlocks.TWILL_BEDROCK_PLATFORM.get(), output);
         genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.NETHER_STAR, BPBlocks.LUMINOUS_BEDROCK_PLATFORM.get(), output);
+        genBothRecipe(Blocks.END_PORTAL, BPItems.ENCHANT_DUST.get(), BPBlocks.SOLID_END_VOID.get(), output);
         genBothRecipe(Blocks.GLASS, Items.GHAST_TEAR, BPBlocks.GHAST_TEAR_GLASS.get(), output);
         genBothRecipeWithModPath("reinforced_deepslate","reinforced_deepslate_reduction",
                 Blocks.DEEPSLATE.defaultBlockState(), BPItems.SCULK_RIB.get(), Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), output);
+        genBothRecipe(BPBlocks.SCULK_RIB_BLOCK.get(), Items.AMETHYST_SHARD, BPBlocks.FILLED_SCULK_RIB_BLOCK.get(), output);
+        genBERecipe(BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState().setValue(SculkRibBlock.WATERLOGGED, true),
+                Items.AMETHYST_SHARD, BPBlocks.FILLED_SCULK_RIB_BLOCK.get().defaultBlockState())
+                .save(output, BedrockPlatform.modResLocation("filled_sculk_rib_block_from_waterlogged"));
         genBothRecipeWithModPath("crying_obsidian","crying_obsidian_reduction",
                 Blocks.OBSIDIAN.defaultBlockState(), BPItems.ENCHANT_DUST.get(), Blocks.CRYING_OBSIDIAN.defaultBlockState(), output);
         genBothRecipeWithModPath("sculk_shrieker_reactive","sculk_shrieker_disable",
@@ -260,6 +262,8 @@ public class BPRecipeProvider extends RecipeProvider {
                 .pattern("###").pattern("#@#").pattern("###")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BLUE_BRICKS_TAG)))
                 .save(output);
+        genGeodeSet(BPBlocks.GEODE_GRAY_WHITE_TILES, output);
+        genGeodeSet(BPBlocks.GEODE_BLUE_WHITE_TILES, output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
@@ -454,7 +458,7 @@ public class BPRecipeProvider extends RecipeProvider {
             .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
     }
     protected void genGeodeBrickSlabStonecutting(ItemLike result, @NotNull RecipeOutput output){
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GEODE_BRICKS_TAG), RecipeCategory.BUILDING_BLOCKS, result)
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(GEODE_BRICKS_TAG), RecipeCategory.BUILDING_BLOCKS, result, 2)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BRICKS_TAG)))
                 .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
     }

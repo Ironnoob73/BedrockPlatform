@@ -62,7 +62,7 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
     }
     @Override
     public boolean skipRendering(@NotNull BlockState state, BlockState pState, @NotNull Direction direction) {
-        if (pState.getBlock() instanceof PlatformBlock && pState.getValue(HALF) == Half.TOP) {
+        if (pState.getBlock() instanceof PlatformBlock && pState.getValue(HALF) == Half.TOP && state.getValue(HALF) == Half.TOP) {
             return true;
         }
         return super.skipRendering(state, pState, direction);

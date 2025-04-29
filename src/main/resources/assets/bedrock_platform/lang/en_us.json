@@ -22,6 +22,7 @@
 
   "item.bedrock_platform.sculk_rib": "Sculk Rib",
   "block.bedrock_platform.sculk_rib_block": "Sculk Rib Block",
+  "block.bedrock_platform.filled_sculk_rib_block": "Filled Sculk Rib Block",
 
   "item.bedrock_platform.enchant_dust": "Enchant Dust",
   "item.bedrock_platform.blue_ice_cube": "Blue Ice Cube",
@@ -87,6 +88,14 @@
   "block.bedrock_platform.geode_blue_bricks_wall": "Geode Blue Bricks Wall",
   "block.bedrock_platform.geode_blue_pillar": "Geode Blue Pillar",
   "block.bedrock_platform.geode_blue_crate": "Geode Blue Crate",
+  "block.bedrock_platform.geode_gray_white_tiles": "Geode Gray White Tiles ",
+  "block.bedrock_platform.geode_gray_white_tiles_stairs": "Geode Gray White Tiles Stairs",
+  "block.bedrock_platform.geode_gray_white_tiles_slab": "Geode Gray White Tiles Slab",
+  "block.bedrock_platform.geode_gray_white_tiles_wall": "Geode Gray White Tiles Wall",
+  "block.bedrock_platform.geode_blue_white_tiles": "Geode Blue White Tiles ",
+  "block.bedrock_platform.geode_blue_white_tiles_stairs": "Geode Blue White Tiles Stairs",
+  "block.bedrock_platform.geode_blue_white_tiles_slab": "Geode Blue White Tiles Slab",
+  "block.bedrock_platform.geode_blue_white_tiles_wall": "Geode Blue White Tiles Wall",
   
   "container.bedrock_platform.crate": "Crate",
 

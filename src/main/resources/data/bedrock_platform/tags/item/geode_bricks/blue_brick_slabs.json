@@ -2,6 +2,7 @@
   "values": [
     "bedrock_platform:geode_blue_tiles_slab",
     "bedrock_platform:geode_blue_smooth_tile_slab",
-    "bedrock_platform:geode_blue_bricks_slab"
+    "bedrock_platform:geode_blue_bricks_slab",
+    "bedrock_platform:geode_blue_white_tiles_slab"
   ]
 }

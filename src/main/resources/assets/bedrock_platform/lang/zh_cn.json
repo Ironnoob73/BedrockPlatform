@@ -22,6 +22,7 @@
 
   "item.bedrock_platform.sculk_rib": "幽匿肋骨",
   "block.bedrock_platform.sculk_rib_block": "幽匿肋骨块",
+  "block.bedrock_platform.filled_sculk_rib_block": "填充的幽匿肋骨块",
 
   "item.bedrock_platform.enchant_dust": "附魔尘",
   "item.bedrock_platform.blue_ice_cube": "小蓝冰块",
@@ -87,6 +88,14 @@
   "block.bedrock_platform.geode_blue_bricks_wall": "晶洞蓝砖墙",
   "block.bedrock_platform.geode_blue_pillar": "晶洞蓝柱",
   "block.bedrock_platform.geode_blue_crate": "晶洞蓝板条箱",
+  "block.bedrock_platform.geode_gray_white_tiles": "晶洞灰白地砖",
+  "block.bedrock_platform.geode_gray_white_tiles_stairs": "晶洞灰白地砖楼梯",
+  "block.bedrock_platform.geode_gray_white_tiles_slab": "晶洞灰白地砖台阶",
+  "block.bedrock_platform.geode_gray_white_tiles_wall": "晶洞灰白地砖墙",
+  "block.bedrock_platform.geode_blue_white_tiles": "晶洞蓝白地砖",
+  "block.bedrock_platform.geode_blue_white_tiles_stairs": "晶洞蓝白地砖楼梯",
+  "block.bedrock_platform.geode_blue_white_tiles_slab": "晶洞蓝白地砖台阶",
+  "block.bedrock_platform.geode_blue_white_tiles_wall": "晶洞蓝白地砖墙",
 
   "container.bedrock_platform.crate": "板条箱",
 

@@ -39,6 +39,16 @@ public class BPBlocks {
                     .strength(-1.0F, 3600000.0F)
                     .isValidSpawn(Blocks::never);
     }
+    public static BlockBehaviour.Properties sculkRibLike(){
+        return BlockBehaviour.Properties.of()
+                .mapColor(MapColor.SAND)
+                .instrument(NoteBlockInstrument.XYLOPHONE)
+                .requiresCorrectToolForDrops()
+                .strength(55.0F, 1200.0F)
+                .requiresCorrectToolForDrops()
+                .sound(SoundType.BONE_BLOCK)
+                .isValidSpawn(Blocks::never);
+    }
     public static BlockBehaviour.Properties geodeSeries(){
         return BlockBehaviour.Properties.of()
                 .instrument(NoteBlockInstrument.BASEDRUM)
@@ -77,15 +87,8 @@ public class BPBlocks {
             ()->new EncapsulatedEndPortalFrame(bedrockLike()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> SCULK_RIB_BLOCK = registerWithItem("sculk_rib_block",()->new SculkRibBlock(
-            BlockBehaviour.Properties.of()
-                    .mapColor(MapColor.SAND)
-                    .instrument(NoteBlockInstrument.XYLOPHONE)
-                    .requiresCorrectToolForDrops()
-                    .strength(55.0F, 1200.0F)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.BONE_BLOCK)
-                    .isValidSpawn(Blocks::never)));
+    public static final DeferredBlock<Block> SCULK_RIB_BLOCK = registerWithItem("sculk_rib_block",()->new SculkRibBlock(sculkRibLike()));
+    public static final DeferredBlock<Block> FILLED_SCULK_RIB_BLOCK = registerWithItem("filled_sculk_rib_block",sculkRibLike());
 
     public static final StrongInteractionBlockSet RED_SI_BLOCK_SET = StrongInteractionBlockSet
             .builder("red",MapColor.TERRACOTTA_RED).defaultSet().build();
@@ -150,6 +153,10 @@ public class BPBlocks {
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final DeferredBlock<Block> GEODE_BLUE_CRATE = registerWithItem("geode_blue_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DecoVariantBlockSet GEODE_GRAY_WHITE_TILES = DecoVariantBlockSet
+            .builder("geode_gray_white_tiles", MapColor.COLOR_GRAY).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_BLUE_WHITE_TILES = DecoVariantBlockSet
+            .builder("geode_blue_white_tiles", MapColor.COLOR_GRAY).defaultSet().build();
     public static final Supplier<BlockEntityType<CrateBlock.CrateBlockEntity>> GEODE_CRATE_BE = BLOCK_ENTITY_TYPES.register(
             "crate_entity",
             () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new,

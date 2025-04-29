@@ -1,5 +1,6 @@
 package dev.hail.bedrock_platform.Recipe.JEI;
 
+import com.google.common.collect.Lists;
 import dev.hail.bedrock_platform.BedrockPlatform;
 import dev.hail.bedrock_platform.Items.BPItems;
 import dev.hail.bedrock_platform.Recipe.BlockExchangeRecipe.BERecipe;
@@ -12,15 +13,19 @@ import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import mezz.jei.api.runtime.IIngredientManager;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientPacketListener;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.component.ItemLore;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.block.state.BlockState;
+import org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -68,7 +73,25 @@ public class Plugin implements IModPlugin {
     }
     public static ItemStack getItemStackFromBlockState(BlockState blockState){
         ItemStack itemStack = blockState.getBlock().asItem().getDefaultInstance();
-        itemStack.set(DataComponents.LORE,new ItemLore(List.of(Component.nullToEmpty(blockState.toString()))));
+        if (itemStack.getItem() == Items.AIR){
+            itemStack = Items.BARRIER.getDefaultInstance();
+            itemStack.set(DataComponents.CUSTOM_NAME,blockState.getBlock().getName().withStyle(ChatFormatting.WHITE));
+        }
+        itemStack.set(DataComponents.LORE,new ItemLore(getBlockstateList(blockState)));
         return itemStack;
+    }
+    public static List<Component> getBlockstateList(BlockState blockState){
+        List<Component> list = Lists.newArrayList();
+        String string = blockState.toString();
+        BedrockPlatform.LOGGER.debug(string);
+        if(string.contains("[")){
+            BedrockPlatform.LOGGER.debug("HAVE");
+            string = string.split("\\[")[1].split("]")[0];
+            for (String i : string.split(",")){
+                list.add(Component.nullToEmpty(i));
+            }
+        }
+        BedrockPlatform.LOGGER.debug(list.toString());
+        return list;
     }
 }

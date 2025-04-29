@@ -3,6 +3,7 @@
     "bedrock_platform:geode_blue_tiles",
     "bedrock_platform:geode_blue_smooth_tile",
     "bedrock_platform:geode_blue_bricks",
-    "bedrock_platform:geode_blue_pillar"
+    "bedrock_platform:geode_blue_pillar",
+    "bedrock_platform:geode_blue_white_tiles"
   ]
 }

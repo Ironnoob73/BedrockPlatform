@@ -42,6 +42,12 @@
     "bedrock_platform:geode_blue_bricks",
     "bedrock_platform:geode_blue_bricks_stairs",
     "bedrock_platform:geode_blue_bricks_wall",
-    "bedrock_platform:geode_blue_pillar"
+    "bedrock_platform:geode_blue_pillar",
+    "bedrock_platform:geode_gray_white_tiles",
+    "bedrock_platform:geode_gray_white_tiles_stairs",
+    "bedrock_platform:geode_gray_white_tiles_wall",
+    "bedrock_platform:geode_blue_white_tiles",
+    "bedrock_platform:geode_blue_white_tiles_stairs",
+    "bedrock_platform:geode_blue_white_tiles_wall"
   ]
 }

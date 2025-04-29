@@ -32,6 +32,10 @@ public class BPBlockModelProvider extends BlockStateProvider {
         }
         genBlockItemWithRotatedModel(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME);
         genBlockItemWithSpecialModel(BPBlocks.SCULK_RIB_BLOCK);
+        simpleBlockWithItem(BPBlocks.FILLED_SCULK_RIB_BLOCK.get(), models().cubeBottomTop(BPBlocks.FILLED_SCULK_RIB_BLOCK.getId().getPath(),
+                getBlockTexture(getBlockId(BPBlocks.SCULK_RIB_BLOCK) + "_side"),
+                getBlockTexture(getBlockId(BPBlocks.FILLED_SCULK_RIB_BLOCK) + "_bottom"),
+                getBlockTexture(getBlockId(BPBlocks.FILLED_SCULK_RIB_BLOCK) + "_top")));
         genColumnBlockWithItem(BPBlocks.KELP_BLOCK);
         genBlockItemWithSpecialModel(BPBlocks.PERMANENTLY_WETTED_FARMLAND);
         genBlockItemWithSpecialModel(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND);
@@ -91,6 +95,8 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genDVSet(BPBlocks.GEODE_BLUE_BRICKS);
         genAxisBlockWithItem(BPBlocks.GEODE_BLUE_PILLAR);
         genColumnBlockWithItem(BPBlocks.GEODE_BLUE_CRATE);
+        genDVSet(BPBlocks.GEODE_GRAY_WHITE_TILES);
+        genDVSet(BPBlocks.GEODE_BLUE_WHITE_TILES);
         genPadBlock(BPBlocks.BOUNCE_PAD);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){

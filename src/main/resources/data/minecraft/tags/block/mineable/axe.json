@@ -1,0 +1,24 @@
+{
+  "values":[
+    "bedrock_platform:oak_platform",
+    "bedrock_platform:transparent_oak_platform",
+    "bedrock_platform:birch_platform",
+    "bedrock_platform:transparent_birch_platform",
+    "bedrock_platform:spruce_platform",
+    "bedrock_platform:transparent_spruce_platform",
+    "bedrock_platform:jungle_platform",
+    "bedrock_platform:transparent_jungle_platform",
+    "bedrock_platform:dark_oak_platform",
+    "bedrock_platform:transparent_dark_oak_platform",
+    "bedrock_platform:acacia_platform",
+    "bedrock_platform:transparent_acacia_platform",
+    "bedrock_platform:mangrove_platform",
+    "bedrock_platform:transparent_mangrove_platform",
+    "bedrock_platform:cherry_platform",
+    "bedrock_platform:transparent_cherry_platform",
+    "bedrock_platform:crimson_platform",
+    "bedrock_platform:transparent_crimson_platform",
+    "bedrock_platform:warped_platform",
+    "bedrock_platform:transparent_warped_platform"
+  ]
+}

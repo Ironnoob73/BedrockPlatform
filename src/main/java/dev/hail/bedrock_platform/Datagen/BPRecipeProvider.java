@@ -32,13 +32,19 @@ public class BPRecipeProvider extends RecipeProvider {
     public static final TagKey<Item> COAL_TAG = TagKey.create(Registries.ITEM, ResourceLocation.withDefaultNamespace("coals"));
     public static final TagKey<Item> COBBLED_DEEPSLATE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/deepslate"));
     public static final TagKey<Item> COBBLESTONE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/normal"));
+    public static final TagKey<Item> COLORLESS_GLASS_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","glass_blocks/colorless"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_2_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials_2"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials"));
     public static final TagKey<Item> WOODEN_CHEST_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","chests/wooden"));
     public static final TagKey<Item> GEODE_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks"));
     public static final TagKey<Item> GEODE_WHITE_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/white_bricks"));
+    public static final TagKey<Item> GEODE_WHITE_BRICK_SLABS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/white_brick_slabs"));
     public static final TagKey<Item> GEODE_BLACK_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/black_bricks"));
+    public static final TagKey<Item> GEODE_BLACK_BRICK_SLABS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/black_brick_slabs"));
     public static final TagKey<Item> GEODE_GRAY_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/gray_bricks"));
+    public static final TagKey<Item> GEODE_GRAY_BRICK_SLABS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/gray_brick_slabs"));
+    public static final TagKey<Item> GEODE_BLUE_BRICKS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/blue_bricks"));
+    public static final TagKey<Item> GEODE_BLUE_BRICK_SLABS_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("geode_bricks/blue_brick_slabs"));
 
     public BPRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider);
@@ -201,6 +207,15 @@ public class BPRecipeProvider extends RecipeProvider {
         genTransparentPlat(BPBlocks.CRIMSON_PLATFORM, BPBlocks.TRANSPARENT_CRIMSON_PLATFORM, output);
         genWoodenPlat(Items.WARPED_PLANKS,Items.WARPED_STAIRS,Items.WARPED_SLAB,BPBlocks.WARPED_PLATFORM,output);
         genTransparentPlat(BPBlocks.WARPED_PLATFORM, BPBlocks.TRANSPARENT_WARPED_PLATFORM, output);
+        genStonePlatCraftingTable(COLORLESS_GLASS_TAG,BPBlocks.GLASS_PLATFORM).save(output);
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(COLORLESS_GLASS_TAG), RecipeCategory.BUILDING_BLOCKS, BPBlocks.GLASS_PLATFORM,2)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(COLORLESS_GLASS_TAG)))
+                .save(output, BuiltInRegistries.ITEM.getKey(BPBlocks.GLASS_PLATFORM.asItem()) + "_from_stonecutting");
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.GLASS)
+                .requires(BPBlocks.GLASS_PLATFORM).requires(BPBlocks.GLASS_PLATFORM)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(BPBlocks.GLASS_PLATFORM)))
+                .save(output);
+
         genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
         genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.PRECISE_NETHER_PORTAL_ITEM, 2)
@@ -212,6 +227,7 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_WHITE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_WHITE_BRICKS, output);
+        genPillarSet(GEODE_WHITE_BRICKS_TAG,GEODE_WHITE_BRICK_SLABS_TAG,BPBlocks.GEODE_WHITE_PILLAR,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_WHITE_CRATE)
                 .define('#', GEODE_WHITE_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
                 .pattern("###").pattern("#@#").pattern("###")
@@ -220,6 +236,7 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_BLACK_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_BRICKS, output);
+        genPillarSet(GEODE_BLACK_BRICKS_TAG,GEODE_BLACK_BRICK_SLABS_TAG,BPBlocks.GEODE_BLACK_PILLAR,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_BLACK_CRATE)
                 .define('#', GEODE_BLACK_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
                 .pattern("###").pattern("#@#").pattern("###")
@@ -228,10 +245,20 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_GRAY_TILES, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_BRICKS, output);
+        genPillarSet(GEODE_GRAY_BRICKS_TAG,GEODE_GRAY_BRICK_SLABS_TAG,BPBlocks.GEODE_GRAY_PILLAR,output);
         ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_GRAY_CRATE)
                 .define('#', GEODE_GRAY_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
                 .pattern("###").pattern("#@#").pattern("###")
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_GRAY_BRICKS_TAG)))
+                .save(output);
+        genGeodeSet(BPBlocks.GEODE_BLUE_TILES, output);
+        genGeodeSet(BPBlocks.GEODE_BLUE_SMOOTH_TILE, output);
+        genGeodeSet(BPBlocks.GEODE_BLUE_BRICKS, output);
+        genPillarSet(GEODE_BLUE_BRICKS_TAG,GEODE_BLUE_BRICK_SLABS_TAG,BPBlocks.GEODE_BLUE_PILLAR,output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_BLUE_CRATE)
+                .define('#', GEODE_BLUE_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
+                .pattern("###").pattern("#@#").pattern("###")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BLUE_BRICKS_TAG)))
                 .save(output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
@@ -264,6 +291,10 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeBrickStonecutting(block.getStairs(), output);
         genGeodeBrickSlabStonecutting(block.getSlab(), output);
         genGeodeBrickStonecutting(block.getWall(), output);
+    }
+    protected void genPillarSet(TagKey<Item> inputTag, TagKey<Item> inputSlabTag, DeferredBlock<Block> outputBlock, RecipeOutput output){
+        genPillarStonecutting(inputTag,outputBlock,output);
+        genPillarFromReverse(inputSlabTag,outputBlock).save(output);
     }
 
     protected void genBothRecipe(Block inputBlock, Item ingredient, Block outputBlock, RecipeOutput output){
@@ -422,5 +453,17 @@ public class BPRecipeProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(GEODE_BRICKS_TAG), RecipeCategory.BUILDING_BLOCKS, result)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BRICKS_TAG)))
                 .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
+    }
+    // 柱子
+    protected void genPillarStonecutting(TagKey<Item> input, ItemLike result, @NotNull RecipeOutput output){
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(input), RecipeCategory.BUILDING_BLOCKS, result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)))
+                .save(output, BuiltInRegistries.ITEM.getKey(result.asItem()) + "_from_stonecutting");
+    }
+    protected ShapedRecipeBuilder genPillarFromReverse(TagKey<Item> input, ItemLike result){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+                .define('A', input)
+                .pattern("A").pattern("A")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
 }

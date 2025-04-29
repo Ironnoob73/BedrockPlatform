@@ -12,6 +12,7 @@
     "bedrock_platform:geode_white_bricks",
     "bedrock_platform:geode_white_bricks_stairs",
     "bedrock_platform:geode_white_bricks_wall",
+    "bedrock_platform:geode_white_pillar",
     "bedrock_platform:geode_black_tiles",
     "bedrock_platform:geode_black_tiles_stairs",
     "bedrock_platform:geode_black_tiles_wall",
@@ -21,6 +22,7 @@
     "bedrock_platform:geode_black_bricks",
     "bedrock_platform:geode_black_bricks_stairs",
     "bedrock_platform:geode_black_bricks_wall",
+    "bedrock_platform:geode_black_pillar",
     "bedrock_platform:geode_gray_tiles",
     "bedrock_platform:geode_gray_tiles_stairs",
     "bedrock_platform:geode_gray_tiles_wall",
@@ -29,6 +31,17 @@
     "bedrock_platform:geode_gray_smooth_tile_wall",
     "bedrock_platform:geode_gray_bricks",
     "bedrock_platform:geode_gray_bricks_stairs",
-    "bedrock_platform:geode_gray_bricks_wall"
+    "bedrock_platform:geode_gray_bricks_wall",
+    "bedrock_platform:geode_gray_pillar",
+    "bedrock_platform:geode_blue_tiles",
+    "bedrock_platform:geode_blue_tiles_stairs",
+    "bedrock_platform:geode_blue_tiles_wall",
+    "bedrock_platform:geode_blue_smooth_tile",
+    "bedrock_platform:geode_blue_smooth_tile_stairs",
+    "bedrock_platform:geode_blue_smooth_tile_wall",
+    "bedrock_platform:geode_blue_bricks",
+    "bedrock_platform:geode_blue_bricks_stairs",
+    "bedrock_platform:geode_blue_bricks_wall",
+    "bedrock_platform:geode_blue_pillar"
   ]
 }

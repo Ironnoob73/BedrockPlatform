@@ -1,0 +1,38 @@
+{
+  "variants": {
+    "facing=east,half=bottom": {
+      "model": "bedrock_platform:block/glass_stair_platform",
+      "uvlock": true,
+      "y": -90
+    },
+    "facing=east,half=top": {
+      "model": "bedrock_platform:block/glass_platform",
+      "uvlock": true
+    },
+    "facing=north,half=bottom": {
+      "model": "bedrock_platform:block/glass_stair_platform",
+      "uvlock": true,
+      "y": 180
+    },
+    "facing=north,half=top": {
+      "model": "bedrock_platform:block/glass_platform",
+      "uvlock": true
+    },
+    "facing=south,half=bottom": {
+      "model": "bedrock_platform:block/glass_stair_platform"
+    },
+    "facing=south,half=top": {
+      "model": "bedrock_platform:block/glass_platform",
+      "uvlock": true
+    },
+    "facing=west,half=bottom": {
+      "model": "bedrock_platform:block/glass_stair_platform",
+      "uvlock": true,
+      "y": 90
+    },
+    "facing=west,half=top": {
+      "model": "bedrock_platform:block/glass_platform",
+      "uvlock": true
+    }
+  }
+}

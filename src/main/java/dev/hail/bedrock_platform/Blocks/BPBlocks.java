@@ -43,7 +43,7 @@ public class BPBlocks {
         return BlockBehaviour.Properties.of()
                 .instrument(NoteBlockInstrument.BASEDRUM)
                 .isValidSpawn(Blocks::never)
-                .strength(50.0F, 100.0F)
+                .strength(25.0F, 100.0F)
                 .sound(SoundType.DEEPSLATE);
     }
 
@@ -116,6 +116,8 @@ public class BPBlocks {
             .builder("geode_white_smooth_tile", MapColor.SNOW).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_WHITE_BRICKS = DecoVariantBlockSet
             .builder("geode_white_bricks", MapColor.SNOW).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_WHITE_PILLAR = registerWithItem("geode_white_pillar",
+            ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.SNOW)));
     public static final DeferredBlock<Block> GEODE_WHITE_CRATE = registerWithItem("geode_white_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.SNOW)));
     public static final DecoVariantBlockSet GEODE_BLACK_TILES = DecoVariantBlockSet
@@ -124,6 +126,8 @@ public class BPBlocks {
             .builder("geode_black_smooth_tile", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLACK_BRICKS = DecoVariantBlockSet
             .builder("geode_black_bricks", MapColor.COLOR_BLACK).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_BLACK_PILLAR = registerWithItem("geode_black_pillar",
+            ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
     public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithItem("geode_black_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
     public static final DecoVariantBlockSet GEODE_GRAY_TILES = DecoVariantBlockSet
@@ -132,11 +136,28 @@ public class BPBlocks {
             .builder("geode_gray_smooth_tile", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_GRAY_BRICKS = DecoVariantBlockSet
             .builder("geode_gray_bricks", MapColor.COLOR_GRAY).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_GRAY_PILLAR = registerWithItem("geode_gray_pillar",
+            ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
     public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithItem("geode_gray_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
+    public static final DecoVariantBlockSet GEODE_BLUE_TILES = DecoVariantBlockSet
+            .builder("geode_blue_tiles", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_BLUE_SMOOTH_TILE = DecoVariantBlockSet
+            .builder("geode_blue_smooth_tile", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
+    public static final DecoVariantBlockSet GEODE_BLUE_BRICKS = DecoVariantBlockSet
+            .builder("geode_blue_bricks", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
+    public static final DeferredBlock<Block> GEODE_BLUE_PILLAR = registerWithItem("geode_blue_pillar",
+            ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<Block> GEODE_BLUE_CRATE = registerWithItem("geode_blue_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
     public static final Supplier<BlockEntityType<CrateBlock.CrateBlockEntity>> GEODE_CRATE_BE = BLOCK_ENTITY_TYPES.register(
             "crate_entity",
-            () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new, GEODE_WHITE_CRATE.get(), GEODE_BLACK_CRATE.get(), GEODE_GRAY_CRATE.get()).build(null));
+            () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new,
+                    GEODE_WHITE_CRATE.get(),
+                    GEODE_BLACK_CRATE.get(),
+                    GEODE_GRAY_CRATE.get(),
+                    GEODE_BLUE_CRATE.get())
+                    .build(null));
 
     public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
@@ -293,6 +314,11 @@ public class BPBlocks {
                     .isRedstoneConductor(block_never)));
     public static final DeferredBlock<Block> TRANSPARENT_WARPED_PLATFORM = registerWithPlatItem("transparent_warped_platform",
             ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+                    .noCollission()
+                    .dynamicShape()
+                    .isRedstoneConductor(block_never)));
+    public static final DeferredBlock<Block> GLASS_PLATFORM = registerWithPlatItem("glass_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));

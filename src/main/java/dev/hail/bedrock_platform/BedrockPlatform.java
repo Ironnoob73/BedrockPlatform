@@ -101,6 +101,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.TRANSPARENT_CRIMSON_PLATFORM.asItem());
                 output.accept(BPBlocks.WARPED_PLATFORM.asItem());
                 output.accept(BPBlocks.TRANSPARENT_WARPED_PLATFORM.asItem());
+                output.accept(BPBlocks.GLASS_PLATFORM.asItem());
 
                 output.accept(BPBlocks.PRECISE_NETHER_PORTAL_ITEM.get());
                 output.accept(BPItems.CRIMSON_BOAT.get());
@@ -110,6 +111,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_WHITE_CRATE);
                 output.accept(BPBlocks.GEODE_BLACK_CRATE);
                 output.accept(BPBlocks.GEODE_GRAY_CRATE);
+                output.accept(BPBlocks.GEODE_BLUE_CRATE);
                 output.accept(BPBlocks.AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().asItem());
                 output.accept(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().asItem());
@@ -134,6 +136,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_WHITE_BRICKS.getStairs());
                 output.accept(BPBlocks.GEODE_WHITE_BRICKS.getSlab());
                 output.accept(BPBlocks.GEODE_WHITE_BRICKS.getWall());
+                output.accept(BPBlocks.GEODE_WHITE_PILLAR);
                 output.accept(BPBlocks.GEODE_BLACK_TILES.getBaseBlock());
                 output.accept(BPBlocks.GEODE_BLACK_TILES.getStairs());
                 output.accept(BPBlocks.GEODE_BLACK_TILES.getSlab());
@@ -146,6 +149,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_BLACK_BRICKS.getStairs());
                 output.accept(BPBlocks.GEODE_BLACK_BRICKS.getSlab());
                 output.accept(BPBlocks.GEODE_BLACK_BRICKS.getWall());
+                output.accept(BPBlocks.GEODE_BLACK_PILLAR);
                 output.accept(BPBlocks.GEODE_GRAY_TILES.getBaseBlock());
                 output.accept(BPBlocks.GEODE_GRAY_TILES.getStairs());
                 output.accept(BPBlocks.GEODE_GRAY_TILES.getSlab());
@@ -158,6 +162,21 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_GRAY_BRICKS.getStairs());
                 output.accept(BPBlocks.GEODE_GRAY_BRICKS.getSlab());
                 output.accept(BPBlocks.GEODE_GRAY_BRICKS.getWall());
+                output.accept(BPBlocks.GEODE_GRAY_PILLAR);
+                output.accept(BPBlocks.GEODE_BLUE_TILES.getBaseBlock());
+                output.accept(BPBlocks.GEODE_BLUE_TILES.getStairs());
+                output.accept(BPBlocks.GEODE_BLUE_TILES.getSlab());
+                output.accept(BPBlocks.GEODE_BLUE_TILES.getWall());
+                output.accept(BPBlocks.GEODE_BLUE_SMOOTH_TILE.getBaseBlock());
+                output.accept(BPBlocks.GEODE_BLUE_SMOOTH_TILE.getStairs());
+                output.accept(BPBlocks.GEODE_BLUE_SMOOTH_TILE.getSlab());
+                output.accept(BPBlocks.GEODE_BLUE_SMOOTH_TILE.getWall());
+                output.accept(BPBlocks.GEODE_BLUE_BRICKS.getBaseBlock());
+                output.accept(BPBlocks.GEODE_BLUE_BRICKS.getStairs());
+                output.accept(BPBlocks.GEODE_BLUE_BRICKS.getSlab());
+                output.accept(BPBlocks.GEODE_BLUE_BRICKS.getWall());
+                output.accept(BPBlocks.GEODE_BLUE_PILLAR);
+
                 output.accept(BPBlocks.RED_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.YELLOW_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.GREEN_SI_BLOCK_SET.getTile().asItem());

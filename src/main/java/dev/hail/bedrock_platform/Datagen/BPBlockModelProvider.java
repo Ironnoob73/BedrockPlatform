@@ -8,10 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.Half;
 import net.neoforged.neoforge.client.model.generators.BlockModelBuilder;
@@ -76,15 +73,23 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genDVSet(BPBlocks.GEODE_WHITE_TILES);
         genDVSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE);
         genDVSet(BPBlocks.GEODE_WHITE_BRICKS);
+        genAxisBlockWithItem(BPBlocks.GEODE_WHITE_PILLAR);
         genColumnBlockWithItem(BPBlocks.GEODE_WHITE_CRATE);
         genDVSet(BPBlocks.GEODE_BLACK_TILES);
         genDVSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE);
         genDVSet(BPBlocks.GEODE_BLACK_BRICKS);
+        genAxisBlockWithItem(BPBlocks.GEODE_BLACK_PILLAR);
         genColumnBlockWithItem(BPBlocks.GEODE_BLACK_CRATE);
         genDVSet(BPBlocks.GEODE_GRAY_TILES);
         genDVSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE);
         genDVSet(BPBlocks.GEODE_GRAY_BRICKS);
+        genAxisBlockWithItem(BPBlocks.GEODE_GRAY_PILLAR);
         genColumnBlockWithItem(BPBlocks.GEODE_GRAY_CRATE);
+        genDVSet(BPBlocks.GEODE_BLUE_TILES);
+        genDVSet(BPBlocks.GEODE_BLUE_SMOOTH_TILE);
+        genDVSet(BPBlocks.GEODE_BLUE_BRICKS);
+        genAxisBlockWithItem(BPBlocks.GEODE_BLUE_PILLAR);
+        genColumnBlockWithItem(BPBlocks.GEODE_BLUE_CRATE);
         genPadBlock(BPBlocks.BOUNCE_PAD);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
@@ -117,6 +122,11 @@ public class BPBlockModelProvider extends BlockStateProvider {
     }
     protected void genColumnBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), models().cubeColumn(block.getId().getPath(),
+                getBlockTexture(getBlockId(block) + "_side"), getBlockTexture(getBlockId(block) + "_end")));
+    }
+    protected void genAxisBlockWithItem(DeferredBlock<Block> block){
+        axisBlock((RotatedPillarBlock) block.get());
+        simpleBlockItem(block.get(), models().cubeColumn(block.getId().getPath(),
                 getBlockTexture(getBlockId(block) + "_side"), getBlockTexture(getBlockId(block) + "_end")));
     }
     protected void genTorchBlock(TorchBlockSet torch){

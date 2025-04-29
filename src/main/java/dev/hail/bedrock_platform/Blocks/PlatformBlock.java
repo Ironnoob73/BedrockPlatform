@@ -86,6 +86,9 @@ public class PlatformBlock extends Block implements SimpleWaterloggedBlock {
         BlockPos blockpos = pContext.getClickedPos();
         FluidState fluidstate = pContext.getLevel().getFluidState(blockpos);
         Direction horizontailDirection = pContext.getHorizontalDirection();
+        if (pContext.getPlayer() != null && pContext.getPlayer().getXRot() >= 45 && !pContext.isSecondaryUseActive()){
+            horizontailDirection = horizontailDirection.getOpposite();
+        }
         return this.defaultBlockState()
                 .setValue(FACING, horizontailDirection)
                 .setValue(

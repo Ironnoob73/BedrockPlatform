@@ -1,7 +1,7 @@
 ![Icon](/src/main/resources/logo.png)
 # 基岩平台
 
-### 一个增加了一些随意物品的模组。<br>A mods that add some random things.
+### 一个增加了一些随意物品的模组。<br>A mod that add some random things.
 
 这个模组一开始只是为了添加一种难以被破坏的方块，用于建造工业基地的地基。不过现在它添加了一些其他有用的物品。<br>
 This mod was originally intended to add a hard-to-break block for building industrial base foundations, but now it adds some other useful items.

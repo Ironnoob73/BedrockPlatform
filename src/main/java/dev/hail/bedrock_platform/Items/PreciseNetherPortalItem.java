@@ -27,6 +27,10 @@ public class PreciseNetherPortalItem extends BlockItem {
             list.add(Component.empty());
             list.add(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_0").withStyle(ChatFormatting.GRAY));
             list.add(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_1").withStyle(ChatFormatting.GRAY));
+            list.add(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_2").withStyle(ChatFormatting.BLUE));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_3").withStyle(ChatFormatting.GRAY)));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_4").withStyle(ChatFormatting.GRAY)));
+            list.add(CommonComponents.space().append(Component.translatable("block.bedrock_platform.precise_nether_portal.tooltip_5").withStyle(ChatFormatting.GRAY)));
         } else {
             list.add(Component.translatable("tooltip.bedrock_platform.shift").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         }

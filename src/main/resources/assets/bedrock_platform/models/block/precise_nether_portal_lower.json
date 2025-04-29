@@ -4,6 +4,7 @@
 	"texture_size": [32, 32],
 	"textures": {
 		"0": "bedrock_platform:block/precise_nether_portal",
+		"1": "bedrock_platform:block/precise_nether_portal_animation",
 		"particle": "bedrock_platform:block/precise_nether_portal"
 	},
 	"elements": [
@@ -43,8 +44,8 @@
 			"from": [2, 2, 7],
 			"to": [14, 16, 9],
 			"faces": {
-				"north": {"uv": [1, 8, 7, 15], "texture": "#0"},
-				"south": {"uv": [1, 8, 7, 15], "texture": "#0"}
+				"north": {"uv": [1, 8, 7, 15], "texture": "#1"},
+				"south": {"uv": [1, 8, 7, 15], "texture": "#1"}
 			}
 		}
 	]

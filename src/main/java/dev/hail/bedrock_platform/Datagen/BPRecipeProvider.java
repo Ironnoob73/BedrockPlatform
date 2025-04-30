@@ -30,6 +30,7 @@ public class BPRecipeProvider extends RecipeProvider {
     public static final TagKey<Item> COBBLED_DEEPSLATE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/deepslate"));
     public static final TagKey<Item> COBBLESTONE_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","cobblestones/normal"));
     public static final TagKey<Item> COLORLESS_GLASS_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","glass_blocks/colorless"));
+    public static final TagKey<Item> AMETHYST_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","gems/amethyst"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_2_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials_2"));
     public static final TagKey<Item> STONE_PLATFORM_MATERIAL_TAG = TagKey.create(Registries.ITEM, BedrockPlatform.modResLocation("stone_platform_materials"));
     public static final TagKey<Item> WOODEN_CHEST_TAG = TagKey.create(Registries.ITEM, ResourceLocation.fromNamespaceAndPath("c","chests/wooden"));
@@ -84,6 +85,9 @@ public class BPRecipeProvider extends RecipeProvider {
         }
         genBothRecipeWithModPath("sculk_catalyst_from_rib","sculk_rib_block_from_reduction",
                 BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState(), Items.ECHO_SHARD, Blocks.SCULK_CATALYST.defaultBlockState(), output);
+        genCompressAndDecompressEight(BPItems.SCULK_RIB,BPBlocks.SCULK_RIB_BLOCK,output);
+        genHuiShaped(BPItems.SCULK_RIB,Items.ECHO_SHARD,Items.SCULK_CATALYST).save(output);
+        genHuiShaped(BPItems.SCULK_RIB,AMETHYST_TAG,BPBlocks.FILLED_SCULK_RIB_BLOCK).save(output,BedrockPlatform.modResLocation("filled_sculk_rib_block_from_crafting"));
         for (StrongInteractionBlockSet color : DatagenHandler.colorSIList) {
             genSISet(color,output);
         }
@@ -95,6 +99,8 @@ public class BPRecipeProvider extends RecipeProvider {
                 BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get(), output);
         genTorch(COAL_TAG,COBBLESTONE_TAG,BPBlocks.STONE_TORCH.getItem()).save(output);
         genTorch(COAL_TAG,COBBLED_DEEPSLATE_TAG,BPBlocks.DEEPSLATE_TORCH.getItem()).save(output);
+        genHuiShaped(AMETHYST_TAG,Items.GLOW_LICHEN,BPBlocks.AMETHYST_CANDLE.getItem()).save(output);
+        genHuiShaped(AMETHYST_TAG,Items.GLOW_INK_SAC,BPBlocks.AMETHYST_CANDLE.getItem()).save(output,BedrockPlatform.modResLocation("amethyst_candle_from_ink"));
         for (int w = 0; w < 2; w++){
             genBothRecipeWithModPath(
                     "amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
@@ -239,29 +245,17 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_BRICKS, output);
         genPillarSet(GEODE_BLACK_BRICKS_TAG,GEODE_BLACK_BRICK_SLABS_TAG,BPBlocks.GEODE_BLACK_PILLAR,output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_BLACK_CRATE)
-                .define('#', GEODE_BLACK_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
-                .pattern("###").pattern("#@#").pattern("###")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BLACK_BRICKS_TAG)))
-                .save(output);
+        genHuiShaped(GEODE_BLACK_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLACK_CRATE).save(output);
         genGeodeSet(BPBlocks.GEODE_GRAY_TILES, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_BRICKS, output);
         genPillarSet(GEODE_GRAY_BRICKS_TAG,GEODE_GRAY_BRICK_SLABS_TAG,BPBlocks.GEODE_GRAY_PILLAR,output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_GRAY_CRATE)
-                .define('#', GEODE_GRAY_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
-                .pattern("###").pattern("#@#").pattern("###")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_GRAY_BRICKS_TAG)))
-                .save(output);
+        genHuiShaped(GEODE_GRAY_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_GRAY_CRATE).save(output);
         genGeodeSet(BPBlocks.GEODE_BLUE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_BRICKS, output);
         genPillarSet(GEODE_BLUE_BRICKS_TAG,GEODE_BLUE_BRICK_SLABS_TAG,BPBlocks.GEODE_BLUE_PILLAR,output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_BLUE_CRATE)
-                .define('#', GEODE_BLUE_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
-                .pattern("###").pattern("#@#").pattern("###")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_BLUE_BRICKS_TAG)))
-                .save(output);
+        genHuiShaped(GEODE_BLUE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLUE_CRATE).save(output);
         genGeodeSet(BPBlocks.GEODE_GRAY_WHITE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_WHITE_TILES, output);
     }
@@ -348,6 +342,21 @@ public class BPRecipeProvider extends RecipeProvider {
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
+    // 八原料合成一块的合成及分解配方
+    protected void genCompressAndDecompressEight(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
+        genCompressEight(input, result).save(output, BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath()));
+        genDecompressEight(result, input).save(output,  BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath() + "_from_block"));
+    }
+    protected ShapelessRecipeBuilder genCompressEight(ItemLike input, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result)
+                .requires(input).requires(input).requires(input).requires(input).requires(input).requires(input).requires(input).requires(input)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    protected ShapelessRecipeBuilder genDecompressEight(ItemLike input, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 8)
+                .requires(input)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
     // 四原料合成一块的合成及分解配方
     protected void genCompressAndDecompressFour(ItemLike input, ItemLike result, @NotNull RecipeOutput output){
         genCompressFour(input, result).save(output, BedrockPlatform.modResLocation(BuiltInRegistries.ITEM.getKey(input.asItem()).getPath()));
@@ -363,6 +372,28 @@ public class BPRecipeProvider extends RecipeProvider {
         return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 4)
                 .requires(input)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
+    }
+    // 回字形配方
+    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, TagKey<Item> input0 , ItemLike result){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
+    }
+    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, ItemLike input0 , ItemLike result){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
+    }
+    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, TagKey<Item> input0 , ItemLike result){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
+    }
+    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, ItemLike input0 , ItemLike result){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
+    }
+    protected ShapedRecipeBuilder genHuiShaped(Ingredient input, Ingredient input0 , ItemLike result){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+                .define('#', input).define('@', input0)
+                .pattern("###").pattern("#@#").pattern("###");
     }
     // 火把
     protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){

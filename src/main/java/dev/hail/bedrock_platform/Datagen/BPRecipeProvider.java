@@ -86,7 +86,7 @@ public class BPRecipeProvider extends RecipeProvider {
         genBothRecipeWithModPath("sculk_catalyst_from_rib","sculk_rib_block_from_reduction",
                 BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState(), Items.ECHO_SHARD, Blocks.SCULK_CATALYST.defaultBlockState(), output);
         genCompressAndDecompressEight(BPItems.SCULK_RIB,BPBlocks.SCULK_RIB_BLOCK,output);
-        genHuiShaped(BPItems.SCULK_RIB,Items.ECHO_SHARD,Items.SCULK_CATALYST).save(output);
+        genHuiShaped(BPItems.SCULK_RIB,Items.ECHO_SHARD,Items.SCULK_CATALYST).save(output,BedrockPlatform.modResLocation("sculk_catalyst_from_crafting"));
         genHuiShaped(BPItems.SCULK_RIB,AMETHYST_TAG,BPBlocks.FILLED_SCULK_RIB_BLOCK).save(output,BedrockPlatform.modResLocation("filled_sculk_rib_block_from_crafting"));
         for (StrongInteractionBlockSet color : DatagenHandler.colorSIList) {
             genSISet(color,output);
@@ -222,7 +222,7 @@ public class BPRecipeProvider extends RecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, Blocks.GLASS)
                 .requires(BPBlocks.GLASS_PLATFORM).requires(BPBlocks.GLASS_PLATFORM)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(BPBlocks.GLASS_PLATFORM)))
-                .save(output);
+                .save(output, BuiltInRegistries.ITEM.getKey(BPBlocks.GLASS_PLATFORM.asItem()) + "_reverse");
 
         genBoatWithChest(Items.CRIMSON_PLANKS,BPItems.CRIMSON_BOAT,BPItems.CRIMSON_CHEST_BOAT,output);
         genBoatWithChest(Items.WARPED_PLANKS,BPItems.WARPED_BOAT,BPItems.WARPED_CHEST_BOAT,output);

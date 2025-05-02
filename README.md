@@ -4,7 +4,7 @@
 ### 一个增加了一些随意物品的模组。<br>A mod that add some random things.
 
 <font color=red>**注意！这个模组的制作理念非常随意，并不一定适合所有玩法！<br>
-Attention! The concept of this mod is very casual and may not be suitable for all play styles!
+Attention! The concept of this mod is very casual and may not be suitable for all play styles!<br>
 目前该模组处于Alpha状态，可能会造成未预期的结果，请汇报所有你遇到的问题！<br>
 This mod is currently in Alpha state and may cause unexpected results, Please report any issues you encounter!**</font>
 

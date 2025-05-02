@@ -28,7 +28,7 @@ Right-clicking bedrock with a Netherite Scrap will convert it into a **Bedrock P
 ![EncapsulatedEndPortal](/src/unused/screencap/encapsulated_end_portal.png)
 
 使用同样的方式制作**恶魂之泪玻璃**，并用它制作**封装的末地传送门**。<br>
-Craft **Ghast Tear Glass** in the same way, and use it to craft **Encapsulated End Portal**s.
+Craft **Ghast Tear Glass** in the same way, and use it to craft **Encapsulated End Portals**.
 
 ![StrongInteractionsExplode](/src/unused/screencap/strong_interactions_explode.png)
 

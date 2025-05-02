@@ -1,7 +1,7 @@
 ![Icon](/src/main/resources/logo.png)
 # 基岩平台
 
-### 一个增加了一些随意物品的模组。<br>A mod that add some random things.
+### 一个增加了一些随意物品的模组。<br>A mod that adds some random things.
 
 <font color=red>**注意！这个模组的制作理念非常随意，并不一定适合所有玩法！<br>
 Attention! The concept of this mod is very casual and may not be suitable for all play styles!<br>
@@ -13,7 +13,7 @@ This mod was originally intended to add a hard-to-break block for building indus
 
 ![0.1](/src/unused/screencap/0.1.png)
 
-## 如何开始？<br>Getting Start
+## 如何开始？<br>Getting Started
 
 ![WrenchRecipe](/src/unused/screencap/wrench_recipe.png)
 
@@ -33,7 +33,7 @@ Craft **Ghast Tear Glass** in the same way, and use it to craft **Encapsulated E
 ![StrongInteractionsExplode](/src/unused/screencap/strong_interactions_explode.png)
 
 使用四个封装的末地传送门和一个基岩（不要忘了你可以随时使用扳手还原方块）搭建图中的结构，而后使用末影水晶右击基岩，这将产生一场剧烈的爆炸，并产生大量的**强相互作用方块**。<br>
-Use four Encapsulated End Portals and a Bedrock (don't forget you can always use the Wrench to restore the block) to build the structure shown in the picture, then use an End Crystal to right-click the Bedrock, which will cause a violent explosion and produce a large number of **Strong Interaction Block**s.
+Use four Encapsulated End Portals and a Bedrock (don't forget you can always use the Wrench to restore the block) to build the structure shown in the picture, then use an End Crystal to right-click the Bedrock, which will cause a violent explosion and produce a large number of **Strong Interaction Blocks**.
 
 ![StrongInteractionBlocks](/src/unused/screencap/strong_interaction_blocks.png)
 
@@ -50,7 +50,7 @@ You can now craft boats using two types of wood from the Nether! They allow you 
 ![Platform](/src/unused/screencap/platform.png)
 
 **平台**允许你不使用潜行就能往前方放置方块，并能够轻松向上和向下（根据你视角的朝向）。如果手中不持有平台，按下潜行可以穿过平台。如果你跳的足够高，你也可以钻过平台并站在上面。<br>
-**Platform**s allow you to place blocks forward without sneaking, and to move up and down easily (Depending on the pitch angle of your view). If you are not holding a Platform, sneaking will allow you to move across it. If you jump high enough, you can also crawl through a Platform and stand on it.
+**Platforms** allow you to place blocks forward without sneaking, and to move up and down easily (Depending on the pitch angle of your view). If you are not holding a Platform, sneaking will allow you to move across it. If you jump high enough, you can also crawl through a Platform and stand on it.
 
 ![Geode](/src/unused/screencap/geode.png)
 

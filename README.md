@@ -3,6 +3,11 @@
 
 ### 一个增加了一些随意物品的模组。<br>A mod that add some random things.
 
+<font color=red>**注意！这个模组的制作理念非常随意，并不一定适合所有玩法！<br>
+Attention! The concept of this mod is very casual and may not be suitable for all play styles!
+目前该模组处于Alpha状态，可能会造成未预期的结果，请汇报所有你遇到的问题！<br>
+This mod is currently in Alpha state and may cause unexpected results, Please report any issues you encounter!**</font>
+
 这个模组一开始只是为了添加一种难以被破坏的方块，用于建造工业基地的地基。不过现在它添加了一些其他有用的物品。<br>
 This mod was originally intended to add a hard-to-break block for building industrial base foundations, but now it adds some other useful items.
 

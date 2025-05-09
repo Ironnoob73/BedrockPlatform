@@ -72,6 +72,10 @@
     "bedrock_platform:geode_blue_bricks_slab",
     "bedrock_platform:geode_blue_bricks_wall",
     "bedrock_platform:geode_blue_pillar",
-    "bedrock_platform:geode_blue_crate"
+    "bedrock_platform:geode_blue_crate",
+    "bedrock_platform:geode_tinted_white_glass",
+    "bedrock_platform:geode_tinted_black_glass",
+    "bedrock_platform:geode_tinted_gray_glass",
+    "bedrock_platform:geode_tinted_blue_glass"
   ]
 }

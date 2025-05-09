@@ -96,6 +96,10 @@
   "block.bedrock_platform.geode_blue_white_tiles_stairs": "晶洞蓝白地砖楼梯",
   "block.bedrock_platform.geode_blue_white_tiles_slab": "晶洞蓝白地砖台阶",
   "block.bedrock_platform.geode_blue_white_tiles_wall": "晶洞蓝白地砖墙",
+  "block.bedrock_platform.geode_tinted_white_glass": "晶洞遮光白玻璃",
+  "block.bedrock_platform.geode_tinted_black_glass": "晶洞遮光黑玻璃",
+  "block.bedrock_platform.geode_tinted_gray_glass": "晶洞遮光灰玻璃",
+  "block.bedrock_platform.geode_tinted_blue_glass": "晶洞遮光蓝玻璃",
 
   "container.bedrock_platform.crate": "板条箱",
 

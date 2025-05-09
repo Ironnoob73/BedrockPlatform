@@ -29,7 +29,6 @@ public class DatagenHandler {
         cubeAllBlockList.add(BPBlocks.LUMINOUS_BEDROCK_PLATFORM);
         cubeAllBlockList.add(BPBlocks.TWILL_BEDROCK_PLATFORM);
         cubeAllBlockList.add(BPBlocks.SOLID_END_VOID);
-        cubeAllBlockList.add(BPBlocks.GHAST_TEAR_GLASS);
         colorSIList.add(BPBlocks.RED_SI_BLOCK_SET);
         colorSIList.add(BPBlocks.ORANGE_SI_BLOCK_SET);
         colorSIList.add(BPBlocks.YELLOW_SI_BLOCK_SET);

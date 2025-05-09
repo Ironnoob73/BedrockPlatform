@@ -186,6 +186,10 @@ public class BedrockPlatform
                 output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getStairs());
                 output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getSlab());
                 output.accept(BPBlocks.GEODE_BLUE_WHITE_TILES.getWall());
+                output.accept(BPBlocks.GEODE_TINTED_BLACK_GLASS);
+                output.accept(BPBlocks.GEODE_TINTED_WHITE_GLASS);
+                output.accept(BPBlocks.GEODE_TINTED_GRAY_GLASS);
+                output.accept(BPBlocks.GEODE_TINTED_BLUE_GLASS);
 
                 output.accept(BPBlocks.RED_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.YELLOW_SI_BLOCK_SET.getTile().asItem());

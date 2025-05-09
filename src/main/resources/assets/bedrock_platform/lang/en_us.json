@@ -96,6 +96,10 @@
   "block.bedrock_platform.geode_blue_white_tiles_stairs": "Geode Blue White Tiles Stairs",
   "block.bedrock_platform.geode_blue_white_tiles_slab": "Geode Blue White Tiles Slab",
   "block.bedrock_platform.geode_blue_white_tiles_wall": "Geode Blue White Tiles Wall",
+  "block.bedrock_platform.geode_tinted_white_glass": "Geode Tinted White Glass",
+  "block.bedrock_platform.geode_tinted_black_glass": "Geode Tinted Black Glass",
+  "block.bedrock_platform.geode_tinted_gray_glass": "Geode Tinted Gray Glass",
+  "block.bedrock_platform.geode_tinted_blue_glass": "Geode Tinted Blue Glass",
   
   "container.bedrock_platform.crate": "Crate",
 

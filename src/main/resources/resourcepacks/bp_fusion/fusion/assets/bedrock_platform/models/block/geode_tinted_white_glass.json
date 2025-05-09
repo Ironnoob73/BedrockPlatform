@@ -1,0 +1,7 @@
+{"loader":"fusion:model","type":"connecting","connections":[{"type":"is_same_block"}],
+  "parent": "minecraft:block/cube_all",
+  "render_type": "minecraft:translucent",
+  "textures": {
+    "all": "bedrock_platform:block/geode_tinted_white_glass"
+  }
+}

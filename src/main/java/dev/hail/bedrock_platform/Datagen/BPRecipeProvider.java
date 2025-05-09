@@ -236,11 +236,7 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_WHITE_BRICKS, output);
         genPillarSet(GEODE_WHITE_BRICKS_TAG,GEODE_WHITE_BRICK_SLABS_TAG,BPBlocks.GEODE_WHITE_PILLAR,output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, BPBlocks.GEODE_WHITE_CRATE)
-                .define('#', GEODE_WHITE_BRICKS_TAG).define('@', WOODEN_CHEST_TAG)
-                .pattern("###").pattern("#@#").pattern("###")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(GEODE_WHITE_BRICKS_TAG)))
-                .save(output);
+        genHuiShaped(GEODE_WHITE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_WHITE_CRATE).save(output);
         genGeodeSet(BPBlocks.GEODE_BLACK_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_BRICKS, output);
@@ -258,6 +254,26 @@ public class BPRecipeProvider extends RecipeProvider {
         genHuiShaped(GEODE_BLUE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLUE_CRATE).save(output);
         genGeodeSet(BPBlocks.GEODE_GRAY_WHITE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_WHITE_TILES, output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_WHITE_GLASS, 4)
+                .define('#', GEODE_WHITE_BRICKS_TAG).define('@', Items.TINTED_GLASS)
+                .pattern(" # ").pattern("#@#").pattern(" # ")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_BLACK_GLASS, 4)
+                .define('#', GEODE_BLACK_BRICKS_TAG).define('@', Items.TINTED_GLASS)
+                .pattern(" # ").pattern("#@#").pattern(" # ")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_GRAY_GLASS, 4)
+                .define('#', GEODE_GRAY_BRICKS_TAG).define('@', Items.TINTED_GLASS)
+                .pattern(" # ").pattern("#@#").pattern(" # ")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
+                .save(output);
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_BLUE_GLASS, 4)
+                .define('#', GEODE_BLUE_BRICKS_TAG).define('@', Items.TINTED_GLASS)
+                .pattern(" # ").pattern("#@#").pattern(" # ")
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
+                .save(output);
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
         genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);

@@ -75,6 +75,7 @@ public class BPBlocks {
 
     public static final DeferredBlock<Block> GHAST_TEAR_GLASS = registerWithItem("ghast_tear_glass",()->new TransparentBlock(
             BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+                    .strength(0.3F, 50.0F)
                     .instrument(NoteBlockInstrument.HAT)
                     .mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()
@@ -165,6 +166,19 @@ public class BPBlocks {
                     GEODE_GRAY_CRATE.get(),
                     GEODE_BLUE_CRATE.get())
                     .build(null));
+
+    public static final DeferredBlock<Block> GEODE_TINTED_WHITE_GLASS = registerWithItem("geode_tinted_white_glass",
+            ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.SNOW)
+                    .noOcclusion().isViewBlocking(block_never)));
+    public static final DeferredBlock<Block> GEODE_TINTED_BLACK_GLASS = registerWithItem("geode_tinted_black_glass",
+            ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)
+                    .noOcclusion().isViewBlocking(block_never)));
+    public static final DeferredBlock<Block> GEODE_TINTED_GRAY_GLASS = registerWithItem("geode_tinted_gray_glass",
+            ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)
+                    .noOcclusion().isViewBlocking(block_never)));
+    public static final DeferredBlock<Block> GEODE_TINTED_BLUE_GLASS = registerWithItem("geode_tinted_blue_glass",
+            ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)
+                    .noOcclusion().isViewBlocking(block_never)));
 
     public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));

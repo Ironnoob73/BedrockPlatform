@@ -30,6 +30,7 @@ public class BPBlockModelProvider extends BlockStateProvider {
         for (StrongInteractionBlockSet color : DatagenHandler.colorSIList) {
             genSISet(color);
         }
+        genCutoutBlockWithItem(BPBlocks.GHAST_TEAR_GLASS);
         genBlockItemWithRotatedModel(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME);
         genBlockItemWithSpecialModel(BPBlocks.SCULK_RIB_BLOCK);
         simpleBlockWithItem(BPBlocks.FILLED_SCULK_RIB_BLOCK.get(), models().cubeBottomTop(BPBlocks.FILLED_SCULK_RIB_BLOCK.getId().getPath(),
@@ -97,6 +98,10 @@ public class BPBlockModelProvider extends BlockStateProvider {
         genColumnBlockWithItem(BPBlocks.GEODE_BLUE_CRATE);
         genDVSet(BPBlocks.GEODE_GRAY_WHITE_TILES);
         genDVSet(BPBlocks.GEODE_BLUE_WHITE_TILES);
+        genTransparentBlockWithItem(BPBlocks.GEODE_TINTED_WHITE_GLASS);
+        genTransparentBlockWithItem(BPBlocks.GEODE_TINTED_BLACK_GLASS);
+        genTransparentBlockWithItem(BPBlocks.GEODE_TINTED_GRAY_GLASS);
+        genTransparentBlockWithItem(BPBlocks.GEODE_TINTED_BLUE_GLASS);
         genPadBlock(BPBlocks.BOUNCE_PAD);
     }
     protected void genCubeAllBlockWithItem(DeferredBlock<Block> block){
@@ -104,6 +109,9 @@ public class BPBlockModelProvider extends BlockStateProvider {
     }
     protected void genTransparentBlockWithItem(DeferredBlock<Block> block){
         simpleBlockWithItem(block.get(), models().cubeAll(getBlockId(block), blockTexture(block.get())).renderType("translucent"));
+    }
+    protected void genCutoutBlockWithItem(DeferredBlock<Block> block){
+        simpleBlockWithItem(block.get(), models().cubeAll(getBlockId(block), blockTexture(block.get())).renderType("cutout"));
     }
     protected void genStairsBlockWithItem(DeferredBlock<Block> block, DeferredBlock<Block> oBlock){
         stairsBlock((StairBlock) block.get(), getBlockTexture(getBlockId(oBlock)));

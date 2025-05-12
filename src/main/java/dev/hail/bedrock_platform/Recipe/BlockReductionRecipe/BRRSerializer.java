@@ -20,14 +20,14 @@ import java.util.function.Supplier;
 public class BRRSerializer implements RecipeSerializer<BRRecipe> {
     public static final MapCodec<BRRecipe> CODEC = RecordCodecBuilder.mapCodec(inst -> inst.group(
             BlockState.CODEC.fieldOf("state").forGetter(BRRecipe::inputState),
-            Ingredient.CODEC.fieldOf("ingredient").forGetter(BRRecipe::toolItem),
+            Ingredient.CODEC.fieldOf("decomposition_products").forGetter(BRRecipe::decompositionProducts),
             ItemStack.CODEC.fieldOf("result").forGetter(BRRecipe::result),
             BlockState.CODEC.fieldOf("result_state").forGetter(BRRecipe::resultState)
     ).apply(inst, BRRecipe::new));
     public static final StreamCodec<RegistryFriendlyByteBuf, BRRecipe> STREAM_CODEC =
             StreamCodec.composite(
                     ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BRRecipe::inputState,
-                    Ingredient.CONTENTS_STREAM_CODEC, BRRecipe::toolItem,
+                    Ingredient.CONTENTS_STREAM_CODEC, BRRecipe::decompositionProducts,
                     ItemStack.STREAM_CODEC, BRRecipe::result,
                     ByteBufCodecs.idMapper(Block.BLOCK_STATE_REGISTRY), BRRecipe::resultState,
                     BRRecipe::new

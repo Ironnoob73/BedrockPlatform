@@ -16,11 +16,11 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public record BRRecipe(BlockState inputState, Ingredient toolItem, ItemStack result, BlockState resultState) implements Recipe<BRRInput> {
+public record BRRecipe(BlockState inputState, Ingredient decompositionProducts, ItemStack result, BlockState resultState) implements Recipe<BRRInput> {
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
-        list.add(this.toolItem);
+        list.add(this.decompositionProducts);
         return list;
     }
 

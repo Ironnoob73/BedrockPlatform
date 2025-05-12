@@ -259,6 +259,8 @@
   "item.bedrock_platform.ineffective_decomposition_products.tooltip_6": "嗯...我永远不会告诉你我是怎么发现这个问题的，大概吧。",
   "item.bedrock_platform.ineffective_decomposition_products.tooltip_7": "不敢相信我居然为了这么个东西浪费了如此多的笔墨...",
 
+  "tooltip.bedrock_platform.decomposition_products": "如果有模组试图分解下一个格子中的物品时选择了该配方，那么你将获得此物品。",
+
   "recipe.bedrock_platform.block_exchange.title": "方块替换",
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 

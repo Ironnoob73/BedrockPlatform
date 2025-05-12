@@ -259,6 +259,8 @@
   "item.bedrock_platform.ineffective_decomposition_products.tooltip_6": "Well...I'll never tell you how I found this out, probably.",
   "item.bedrock_platform.ineffective_decomposition_products.tooltip_7": "I can't believe I wasted so much ink on this...",
 
+  "tooltip.bedrock_platform.decomposition_products": "If a mod chooses this recipe when trying to salvage the item in the next slot, you will receive this item.",
+
   "recipe.bedrock_platform.block_exchange.title": "Block Exchange",
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 

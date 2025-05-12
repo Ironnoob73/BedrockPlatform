@@ -84,10 +84,9 @@ public class Plugin implements IModPlugin {
             BedrockPlatform.LOGGER.debug("HAVE");
             string = string.split("\\[")[1].split("]")[0];
             for (String i : string.split(",")){
-                list.add(Component.nullToEmpty(i));
+                list.add(Component.nullToEmpty(i).copy().withStyle(ChatFormatting.GRAY));
             }
         }
-        BedrockPlatform.LOGGER.debug(list.toString());
         return list;
     }
 }

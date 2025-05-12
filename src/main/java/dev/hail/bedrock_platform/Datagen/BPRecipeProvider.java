@@ -49,31 +49,32 @@ public class BPRecipeProvider extends RecipeProvider {
     }
     @Override
     protected void buildRecipes(@NotNull RecipeOutput output) {
-        genBothRecipe(Blocks.BEDROCK, Items.NETHERITE_SCRAP, BPBlocks.BEDROCK_PLATFORM.get(), output);
-        genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.GOLD_INGOT, BPBlocks.TWILL_BEDROCK_PLATFORM.get(), output);
-        genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.NETHER_STAR, BPBlocks.LUMINOUS_BEDROCK_PLATFORM.get(), output);
-        genBothRecipe(Blocks.END_PORTAL, BPItems.ENCHANT_DUST.get(), BPBlocks.SOLID_END_VOID.get(), output);
-        genBothRecipe(Blocks.GLASS, Items.GHAST_TEAR, BPBlocks.GHAST_TEAR_GLASS.get(), output);
+        genBothRecipe(Blocks.BEDROCK, Items.NETHERITE_SCRAP, Items.NETHERITE_SCRAP, BPBlocks.BEDROCK_PLATFORM.get(), output);
+        genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.GOLD_INGOT, Items.GOLD_INGOT, BPBlocks.TWILL_BEDROCK_PLATFORM.get(), output);
+        genBothRecipe(BPBlocks.BEDROCK_PLATFORM.get(), Items.NETHER_STAR, Items.NETHER_STAR, BPBlocks.LUMINOUS_BEDROCK_PLATFORM.get(), output);
+        genBothRecipe(Blocks.END_PORTAL, BPItems.ENCHANT_DUST.get(), BPItems.ENCHANT_DUST, BPBlocks.SOLID_END_VOID.get(), output);
+        genBothRecipe(Blocks.GLASS, Items.GHAST_TEAR, Items.GHAST_TEAR, BPBlocks.GHAST_TEAR_GLASS.get(), output);
         genBothRecipeWithModPath("reinforced_deepslate","reinforced_deepslate_reduction",
-                Blocks.DEEPSLATE.defaultBlockState(), BPItems.SCULK_RIB.get(), Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), output);
-        genBothRecipe(BPBlocks.SCULK_RIB_BLOCK.get(), Items.AMETHYST_SHARD, BPBlocks.FILLED_SCULK_RIB_BLOCK.get(), output);
+                Blocks.DEEPSLATE.defaultBlockState(), BPItems.SCULK_RIB.get(), BPItems.SCULK_RIB.get(), Blocks.REINFORCED_DEEPSLATE.defaultBlockState(), output);
+        genBothRecipe(BPBlocks.SCULK_RIB_BLOCK.get(), Items.AMETHYST_SHARD, Items.AMETHYST_SHARD, BPBlocks.FILLED_SCULK_RIB_BLOCK.get(), output);
         genBERecipe(BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState().setValue(SculkRibBlock.WATERLOGGED, true),
                 Items.AMETHYST_SHARD, BPBlocks.FILLED_SCULK_RIB_BLOCK.get().defaultBlockState())
                 .save(output, BedrockPlatform.modResLocation("filled_sculk_rib_block_from_waterlogged"));
         genBothRecipeWithModPath("crying_obsidian","crying_obsidian_reduction",
-                Blocks.OBSIDIAN.defaultBlockState(), BPItems.ENCHANT_DUST.get(), Blocks.CRYING_OBSIDIAN.defaultBlockState(), output);
+                Blocks.OBSIDIAN.defaultBlockState(), BPItems.ENCHANT_DUST.get(), BPItems.ENCHANT_DUST.get(), Blocks.CRYING_OBSIDIAN.defaultBlockState(), output);
         genBothRecipeWithModPath("sculk_shrieker_reactive","sculk_shrieker_disable",
-                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false), Items.ECHO_SHARD,
+                Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false), Items.ECHO_SHARD, Items.ECHO_SHARD,
                 Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true), output);
         genBothRecipeWithModPath("sculk_shrieker_waterlogged_reactive","sculk_shrieker_waterlogged_disable",
                 Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,false)
-                        .setValue(SculkShriekerBlock.WATERLOGGED,true), Items.ECHO_SHARD,
+                        .setValue(SculkShriekerBlock.WATERLOGGED,true), Items.ECHO_SHARD, Items.ECHO_SHARD,
                 Blocks.SCULK_SHRIEKER.defaultBlockState().setValue(SculkShriekerBlock.CAN_SUMMON,true)
                         .setValue(SculkShriekerBlock.WATERLOGGED,true), output);
         for (int i = 0; i < 4; i++){
             genBRRecipe(
                     Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,true),
                     Items.ENDER_EYE.getDefaultInstance(),
+                    Items.ENDER_PEARL,
                     Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,false))
                     .save(output, BedrockPlatform.modResLocation("end_portal_frame_" + Rotation.values()[i].getSerializedName() + "_reduction"));
             genBothRecipeWithModPath(
@@ -81,114 +82,131 @@ public class BPRecipeProvider extends RecipeProvider {
                     "encapsulated_end_portal_frame_" + Rotation.values()[i].getSerializedName() + "_reduction",
                     Blocks.END_PORTAL_FRAME.defaultBlockState().rotate(Rotation.values()[i]).setValue(EndPortalFrameBlock.HAS_EYE,true),
                     BPBlocks.GHAST_TEAR_GLASS.asItem(),
+                    Items.GLASS,
                     BPBlocks.ENCAPSULATED_END_PORTAL_FRAME.get().defaultBlockState().rotate(Rotation.values()[i]), output);
         }
         genBothRecipeWithModPath("sculk_catalyst_from_rib","sculk_rib_block_from_reduction",
-                BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState(), Items.ECHO_SHARD, Blocks.SCULK_CATALYST.defaultBlockState(), output);
+                BPBlocks.SCULK_RIB_BLOCK.get().defaultBlockState(), Items.ECHO_SHARD, Items.ECHO_SHARD, Blocks.SCULK_CATALYST.defaultBlockState(), output);
         genCompressAndDecompressEight(BPItems.SCULK_RIB,BPBlocks.SCULK_RIB_BLOCK,output);
-        genHuiShaped(BPItems.SCULK_RIB,Items.ECHO_SHARD,Items.SCULK_CATALYST).save(output,BedrockPlatform.modResLocation("sculk_catalyst_from_crafting"));
-        genHuiShaped(BPItems.SCULK_RIB,AMETHYST_TAG,BPBlocks.FILLED_SCULK_RIB_BLOCK).save(output,BedrockPlatform.modResLocation("filled_sculk_rib_block_from_crafting"));
+        genHuiShaped(BPItems.SCULK_RIB,Items.ECHO_SHARD,Items.SCULK_CATALYST,1).save(output,BedrockPlatform.modResLocation("sculk_catalyst_from_crafting"));
+        genHuiShaped(BPItems.SCULK_RIB,AMETHYST_TAG,BPBlocks.FILLED_SCULK_RIB_BLOCK,1).save(output,BedrockPlatform.modResLocation("filled_sculk_rib_block_from_crafting"));
         for (StrongInteractionBlockSet color : DatagenHandler.colorSIList) {
             genSISet(color,output);
         }
         genCompressAndDecompressFour(BPItems.BLUE_ICE_CUBE, Blocks.BLUE_ICE, output);
         genCompressAndDecompressNine(Items.KELP, BPBlocks.KELP_BLOCK.get(), output);
         genBothRecipeWithState(Blocks.FARMLAND.defaultBlockState().setValue(FarmBlock.MOISTURE,7),
-                Items.SLIME_BALL, BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().defaultBlockState(), output);
-        genBothRecipe(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get(), Items.GLOW_LICHEN,
+                Items.SLIME_BALL, Items.SLIME_BALL, BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().defaultBlockState(), output);
+        genBothRecipe(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get(), Items.GLOW_LICHEN, Items.GLOW_LICHEN,
                 BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get(), output);
         genTorch(COAL_TAG,COBBLESTONE_TAG,BPBlocks.STONE_TORCH.getItem()).save(output);
         genTorch(COAL_TAG,COBBLED_DEEPSLATE_TAG,BPBlocks.DEEPSLATE_TORCH.getItem()).save(output);
-        genHuiShaped(AMETHYST_TAG,Items.GLOW_LICHEN,BPBlocks.AMETHYST_CANDLE.getItem()).save(output);
-        genHuiShaped(AMETHYST_TAG,Items.GLOW_INK_SAC,BPBlocks.AMETHYST_CANDLE.getItem()).save(output,BedrockPlatform.modResLocation("amethyst_candle_from_ink"));
+        genHuiShaped(AMETHYST_TAG,Items.GLOW_LICHEN,BPBlocks.AMETHYST_CANDLE.getItem(),8).save(output);
+        genHuiShaped(AMETHYST_TAG,Items.GLOW_INK_SAC,BPBlocks.AMETHYST_CANDLE.getItem(),8).save(output,BedrockPlatform.modResLocation("amethyst_candle_from_ink"));
         for (int w = 0; w < 2; w++){
             genBothRecipeWithModPath(
                     "amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "waxed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.WAXED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.WAXED_EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.WAXED_WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             genBothRecipeWithModPath(
                     "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : ""),
                     "waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged" : "") + "_reduction",
                     Blocks.WAXED_OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0),
                     BPBlocks.AMETHYST_CANDLE.getItem().get(),
+                    Items.AMETHYST_SHARD,
                     BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
             for (int i = 0; i < 16; i++){
                 genBRRecipe(BPBlocks.AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getUnwaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.WAXED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("waxed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.EXPOSED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.WAXED_EXPOSED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("waxed_exposed_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.WEATHERED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.WAXED_WEATHERED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("waxed_weathered_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
                 genBRRecipe(BPBlocks.OXIDIZED_AMETHYST_LANTERN.getWaxed().get().defaultBlockState()
                                 .setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0).setValue(AmethystLanternBlock.LIGHT,i),
                         BPBlocks.AMETHYST_CANDLE.getItem().get().getDefaultInstance(),
+                        Items.AMETHYST_SHARD,
                         Blocks.WAXED_OXIDIZED_COPPER_GRATE.defaultBlockState().setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0))
                         .save(output, BedrockPlatform.modResLocation("waxed_oxidized_amethyst_lantern" + (w!=0 ? "_waterlogged_" : "_") + i + "_reduction"));
             }
@@ -236,50 +254,36 @@ public class BPRecipeProvider extends RecipeProvider {
         genGeodeSet(BPBlocks.GEODE_WHITE_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_WHITE_BRICKS, output);
         genPillarSet(GEODE_WHITE_BRICKS_TAG,GEODE_WHITE_BRICK_SLABS_TAG,BPBlocks.GEODE_WHITE_PILLAR,output);
-        genHuiShaped(GEODE_WHITE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_WHITE_CRATE).save(output);
+        genHuiShaped(GEODE_WHITE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_WHITE_CRATE,1).save(output);
         genGeodeSet(BPBlocks.GEODE_BLACK_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLACK_BRICKS, output);
         genPillarSet(GEODE_BLACK_BRICKS_TAG,GEODE_BLACK_BRICK_SLABS_TAG,BPBlocks.GEODE_BLACK_PILLAR,output);
-        genHuiShaped(GEODE_BLACK_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLACK_CRATE).save(output);
+        genHuiShaped(GEODE_BLACK_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLACK_CRATE,1).save(output);
         genGeodeSet(BPBlocks.GEODE_GRAY_TILES, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_GRAY_BRICKS, output);
         genPillarSet(GEODE_GRAY_BRICKS_TAG,GEODE_GRAY_BRICK_SLABS_TAG,BPBlocks.GEODE_GRAY_PILLAR,output);
-        genHuiShaped(GEODE_GRAY_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_GRAY_CRATE).save(output);
+        genHuiShaped(GEODE_GRAY_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_GRAY_CRATE,1).save(output);
         genGeodeSet(BPBlocks.GEODE_BLUE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_SMOOTH_TILE, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_BRICKS, output);
         genPillarSet(GEODE_BLUE_BRICKS_TAG,GEODE_BLUE_BRICK_SLABS_TAG,BPBlocks.GEODE_BLUE_PILLAR,output);
-        genHuiShaped(GEODE_BLUE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLUE_CRATE).save(output);
+        genHuiShaped(GEODE_BLUE_BRICKS_TAG,WOODEN_CHEST_TAG,BPBlocks.GEODE_BLUE_CRATE,1).save(output);
         genGeodeSet(BPBlocks.GEODE_GRAY_WHITE_TILES, output);
         genGeodeSet(BPBlocks.GEODE_BLUE_WHITE_TILES, output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_WHITE_GLASS, 4)
-                .define('#', GEODE_WHITE_BRICKS_TAG).define('@', Items.TINTED_GLASS)
-                .pattern(" # ").pattern("#@#").pattern(" # ")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_BLACK_GLASS, 4)
-                .define('#', GEODE_BLACK_BRICKS_TAG).define('@', Items.TINTED_GLASS)
-                .pattern(" # ").pattern("#@#").pattern(" # ")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_GRAY_GLASS, 4)
-                .define('#', GEODE_GRAY_BRICKS_TAG).define('@', Items.TINTED_GLASS)
-                .pattern(" # ").pattern("#@#").pattern(" # ")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
-                .save(output);
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, BPBlocks.GEODE_TINTED_BLUE_GLASS, 4)
-                .define('#', GEODE_BLUE_BRICKS_TAG).define('@', Items.TINTED_GLASS)
-                .pattern(" # ").pattern("#@#").pattern(" # ")
-                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(Items.TINTED_GLASS)))
-                .save(output);
+        genFourPlusOne(Items.TINTED_GLASS, GEODE_WHITE_BRICKS_TAG, BPBlocks.GEODE_TINTED_WHITE_GLASS).save(output);
+        genFourPlusOne(Items.TINTED_GLASS, GEODE_BLACK_BRICKS_TAG, BPBlocks.GEODE_TINTED_BLACK_GLASS).save(output);
+        genFourPlusOne(Items.TINTED_GLASS, GEODE_GRAY_BRICKS_TAG, BPBlocks.GEODE_TINTED_GRAY_GLASS).save(output);
+        genFourPlusOne(Items.TINTED_GLASS, GEODE_BLUE_BRICKS_TAG, BPBlocks.GEODE_TINTED_BLUE_GLASS).save(output);
+
+        genBERecipe(Blocks.CHEST.defaultBlockState(), Items.OAK_DOOR, Blocks.BARREL.defaultBlockState()).save(output, BedrockPlatform.modResLocation("chest_test"));
     }
     protected void genSISet(StrongInteractionBlockSet color, RecipeOutput output){
-        genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
-        genBothRecipe(color.getBaseBlock().get(), Items.GLOWSTONE_DUST, color.getGlow().get(), output);
-        genBothRecipe(color.getBaseBlock().get(), Items.WIND_CHARGE, color.getTwill().get(), output);
-        genBothRecipe(color.getBaseBlock().get(), Items.BLAZE_POWDER, color.getTransparent().get(), output);
+        genBothRecipe(color.getBaseBlock().get(), BPItems.BLUE_ICE_CUBE.get(), BPItems.BLUE_ICE_CUBE.get(), color.getSlick().get(), output);
+        genBothRecipe(color.getBaseBlock().get(), Items.GLOWSTONE_DUST, Items.GLOWSTONE_DUST, color.getGlow().get(), output);
+        genBothRecipe(color.getBaseBlock().get(), Items.WIND_CHARGE, Items.WIND_CHARGE, color.getTwill().get(), output);
+        genBothRecipe(color.getBaseBlock().get(), Items.BLAZE_POWDER, Items.BLAZE_POWDER, color.getTransparent().get(), output);
         if (color != BPBlocks.BLACK_SI_BLOCK_SET){
             genBERecipe(BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().get().defaultBlockState(),
                     StrongInteractionBlockSet.returnColorMaterial(color),
@@ -315,16 +319,16 @@ public class BPRecipeProvider extends RecipeProvider {
         genPillarFromReverse(inputSlabTag,outputBlock).save(output);
     }
 
-    protected void genBothRecipe(Block inputBlock, Item ingredient, Block outputBlock, RecipeOutput output){
-        genBothRecipeWithState(inputBlock.defaultBlockState(), ingredient, outputBlock.defaultBlockState(), output);
+    protected void genBothRecipe(Block inputBlock, Item ingredient, ItemLike decompositionProducts, Block outputBlock, RecipeOutput output){
+        genBothRecipeWithState(inputBlock.defaultBlockState(), ingredient, decompositionProducts, outputBlock.defaultBlockState(), output);
     }
-    protected void genBothRecipeWithState(BlockState inputBlock, Item ingredient, BlockState outputBlock, RecipeOutput output){
+    protected void genBothRecipeWithState(BlockState inputBlock, Item ingredient, ItemLike decompositionProducts, BlockState outputBlock, RecipeOutput output){
         genBERecipe(inputBlock, ingredient, outputBlock).save(output);
-        genBRRecipe(outputBlock, ingredient.getDefaultInstance(), inputBlock).save(output, BuiltInRegistries.ITEM.getKey(outputBlock.getBlock().asItem()) + "_reduction");
+        genBRRecipe(outputBlock, ingredient.getDefaultInstance(), decompositionProducts, inputBlock).save(output, BuiltInRegistries.ITEM.getKey(outputBlock.getBlock().asItem()) + "_reduction");
     }
-    protected void genBothRecipeWithModPath(String path0, String path1, BlockState inputBlock, Item ingredient, BlockState outputBlock, RecipeOutput output){
+    protected void genBothRecipeWithModPath(String path0, String path1, BlockState inputBlock, Item ingredient, ItemLike decompositionProducts, BlockState outputBlock, RecipeOutput output){
         genBERecipe(inputBlock, ingredient, outputBlock).save(output, BedrockPlatform.modResLocation(path0));
-        genBRRecipe(outputBlock, ingredient.getDefaultInstance(), inputBlock).save(output, BedrockPlatform.modResLocation(path1));
+        genBRRecipe(outputBlock, ingredient.getDefaultInstance(), decompositionProducts, inputBlock).save(output, BedrockPlatform.modResLocation(path1));
     }
     protected BPRecipeBuilder.BERBuilder genBERecipe(BlockState inputBlock, Item ingredient, BlockState outputBlock){
         return new BPRecipeBuilder.BERBuilder(
@@ -333,11 +337,11 @@ public class BPRecipeProvider extends RecipeProvider {
                 Ingredient.of(ingredient),
                 outputBlock);
     }
-    protected BPRecipeBuilder.BRRBuilder genBRRecipe(BlockState inputBlock, ItemStack resultItem, BlockState outputBlock){
+    protected BPRecipeBuilder.BRRBuilder genBRRecipe(BlockState inputBlock, ItemStack resultItem, ItemLike decompositionProducts, BlockState outputBlock){
         return new BPRecipeBuilder.BRRBuilder(
                 new ItemStack(outputBlock.getBlock()),
                 inputBlock,
-                Ingredient.of(BPItems.INVALID_DECOMPOSITION_PRODUCTS),
+                Ingredient.of(decompositionProducts),
                 resultItem,
                 outputBlock);
     }
@@ -390,26 +394,32 @@ public class BPRecipeProvider extends RecipeProvider {
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
     // 回字形配方
-    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, TagKey<Item> input0 , ItemLike result){
-        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, TagKey<Item> input0 , ItemLike result, int count){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result, count)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
     }
-    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, ItemLike input0 , ItemLike result){
-        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, ItemLike input0 , ItemLike result, int count){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result, count)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
     }
-    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, TagKey<Item> input0 , ItemLike result){
-        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+    protected ShapedRecipeBuilder genHuiShaped(ItemLike input, TagKey<Item> input0 , ItemLike result, int count){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result, count)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
     }
-    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, ItemLike input0 , ItemLike result){
-        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result)
+    protected ShapedRecipeBuilder genHuiShaped(TagKey<Item> input, ItemLike input0 , ItemLike result, int count){
+        return genHuiShaped(Ingredient.of(input),Ingredient.of(input0),result, count)
                 .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input).of(input0)));
     }
-    protected ShapedRecipeBuilder genHuiShaped(Ingredient input, Ingredient input0 , ItemLike result){
-        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result)
+    protected ShapedRecipeBuilder genHuiShaped(Ingredient input, Ingredient input0 , ItemLike result, int count){
+        return ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, result, count)
                 .define('#', input).define('@', input0)
                 .pattern("###").pattern("#@#").pattern("###");
+    }
+    // 4+1配方
+    protected ShapelessRecipeBuilder genFourPlusOne(ItemLike input, TagKey<Item> input4, ItemLike result){
+        return ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, result, 4)
+                .requires(input).requires(input4).requires(input4).requires(input4).requires(input4)
+                .unlockedBy("hasitem", inventoryTrigger(net.minecraft.advancements.critereon.ItemPredicate.Builder.item().of(input)));
     }
     // 火把
     protected ShapedRecipeBuilder genTorch(TagKey<Item> input0, TagKey<Item> input1, ItemLike result){
@@ -472,7 +482,7 @@ public class BPRecipeProvider extends RecipeProvider {
                     genBothRecipeWithModPath(
                             BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName(),
                             BuiltInRegistries.ITEM.getKey(outputBlock.get().asItem()).getPath() + (w!=0 ? "_waterlogged_" : "_") + half.getSerializedName() + "_" + Rotation.values()[i].getSerializedName() + "_reduction",
-                            inputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), Items.GLASS_PANE,
+                            inputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), Items.GLASS_PANE, Items.GLASS_PANE,
                             outputBlock.get().defaultBlockState().rotate(Rotation.values()[i]).setValue(PlatformBlock.HALF, half).setValue(WaterloggedTransparentBlock.WATERLOGGED,w!=0), output);
                 }
             }

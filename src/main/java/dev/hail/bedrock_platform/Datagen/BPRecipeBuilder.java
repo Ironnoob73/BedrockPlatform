@@ -66,13 +66,13 @@ public abstract class BPRecipeBuilder implements RecipeBuilder {
     }
     public static class BRRBuilder extends BPRecipeBuilder {
         private final BlockState inputState;
-        private final Ingredient toolItem;
+        private final Ingredient decompositionProducts;
         private final ItemStack resultItem;
         private final BlockState resultState;
-        public BRRBuilder(ItemStack result, BlockState inputState, Ingredient toolItem, ItemStack resultItem, BlockState resultState) {
+        public BRRBuilder(ItemStack result, BlockState inputState, Ingredient decompositionProducts, ItemStack resultItem, BlockState resultState) {
             super(result);
             this.inputState = inputState;
-            this.toolItem = toolItem;
+            this.decompositionProducts = decompositionProducts;
             this.resultItem = resultItem;
             this.resultState = resultState;
         }
@@ -83,7 +83,7 @@ public abstract class BPRecipeBuilder implements RecipeBuilder {
                     .rewards(AdvancementRewards.Builder.recipe(id))
                     .requirements(AdvancementRequirements.Strategy.OR);
             this.criteria.forEach(advancement::addCriterion);
-            BRRecipe recipe = new BRRecipe(this.inputState, this.toolItem, this.resultItem, this.resultState);
+            BRRecipe recipe = new BRRecipe(this.inputState, this.decompositionProducts, this.resultItem, this.resultState);
             output.accept(id, recipe, advancement.build(id.withPrefix("recipes/")));
         }
     }

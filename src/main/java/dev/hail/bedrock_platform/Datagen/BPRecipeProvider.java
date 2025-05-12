@@ -305,6 +305,11 @@ public class BPRecipeProvider extends RecipeProvider {
                     StrongInteractionBlockSet.returnColorMaterial(color),
                     color.getTransparent().get().defaultBlockState())
                     .save(output, BuiltInRegistries.ITEM.getKey(color.getTransparent().asItem()) + "_dye");
+            genBRRecipe(color.getBaseBlock().get().defaultBlockState(),
+                    StrongInteractionBlockSet.returnColorMaterial(color).getDefaultInstance(),
+                    StrongInteractionBlockSet.returnColorMaterial(color),
+                    BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().get().defaultBlockState())
+                    .save(output, BuiltInRegistries.ITEM.getKey(color.getBaseBlock().asItem()) + "_undye");
         }
         genCompressAndDecompressFour(color.getBaseBlock().get(),color.getTile().get(),output);
     }

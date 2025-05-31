@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "minecraft:brush"
+  },
+  "base": {
+    "item": "minecraft:shears"
+  },
+  "template": {
+    "item": "minecraft:flint_and_steel"
+  },
+  "result": {
+    "count": 1,
+    "id": "bedrock_platform:saw_blade_comb"
+  }
+}

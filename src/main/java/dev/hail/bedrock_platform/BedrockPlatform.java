@@ -61,6 +61,7 @@ public class BedrockPlatform
                 output.accept(BPBlocks.BEDROCK_PLATFORM.asItem());
                 output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM.asItem());
                 output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM.asItem());
+                output.accept(BPItems.SAW_BLADE_COMB.get());
                 output.accept(BPBlocks.ORANGE_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.CYAN_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.PURPLE_SI_BLOCK_SET.getTile().asItem());

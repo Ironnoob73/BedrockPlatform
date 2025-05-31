@@ -5,6 +5,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.ShearsItem;
 import net.minecraft.world.item.component.ItemLore;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,5 +24,6 @@ public class BPItems {
     public static final DeferredItem<Item> CRIMSON_CHEST_BOAT = ITEMS.register("crimson_chest_boat", ()-> new NetherBoatItem(true, NetherBoat.CRIMSON.getValue(), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> WARPED_BOAT = ITEMS.register("warped_boat", ()-> new NetherBoatItem(false, NetherBoat.WARPED.getValue(), new Item.Properties().stacksTo(1)));
     public static final DeferredItem<Item> WARPED_CHEST_BOAT = ITEMS.register("warped_chest_boat", ()-> new NetherBoatItem(true, NetherBoat.WARPED.getValue(), new Item.Properties().stacksTo(1)));
+    public static final DeferredItem<Item> SAW_BLADE_COMB = ITEMS.registerItem("saw_blade_comb", SawBladeCombItem::new, new Item.Properties().durability(512).component(DataComponents.TOOL, ShearsItem.createToolProperties()));
     public static final DeferredItem<Item> INVALID_DECOMPOSITION_PRODUCTS = ITEMS.registerItem("ineffective_decomposition_products", InvalidDecompositionProductsItem::new);
 }

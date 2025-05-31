@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "dev.hail.bedrock_platform.Mixin",
+  "package": "dev.hail.bedrock_platform.mixin",
   "compatibilityLevel": "JAVA_21",
   "refmap": "bedrock_platform.refmap.json",
   "mixins": [

@@ -124,7 +124,7 @@ public class ObsidianWrench extends Item {
             list.add(Component.empty());
             list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_0").withStyle(ChatFormatting.GRAY));
             list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_1").withStyle(ChatFormatting.BLUE)));
-            list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_2").withStyle(ChatFormatting.GRAY));
+            list.add(Component.translatable("tooltip.bedrock_platform.sneak_and_use").withStyle(ChatFormatting.GRAY));
             list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_3").withStyle(ChatFormatting.BLUE)));
             list.add(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_4").withStyle(ChatFormatting.GRAY));
             list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.obsidian_wrench.tooltip_5").withStyle(ChatFormatting.BLUE)));

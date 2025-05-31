@@ -1,10 +1,14 @@
 package dev.hail.bedrock_platform.item;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import net.minecraft.ChatFormatting;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.chat.CommonComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,6 +20,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseFireBlock;
@@ -24,14 +29,15 @@ import net.minecraft.world.level.block.entity.BrushableBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.neoforge.common.ItemAbilities;
+import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@ParametersAreNonnullByDefault
 @MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class SawBladeCombItem extends Item {
     public SawBladeCombItem(Properties pProperties) {
         super(pProperties);
@@ -82,24 +88,26 @@ public class SawBladeCombItem extends Item {
         Level level = pContext.getLevel();
         BlockPos blockpos = pContext.getClickedPos();
         BlockState blockstate = level.getBlockState(blockpos);
+        BlockState blockstate1 = blockstate.getToolModifiedState(pContext, net.neoforged.neoforge.common.ItemAbilities.SHEARS_TRIM, false);
         BlockState blockstate2 = blockstate.getToolModifiedState(pContext, net.neoforged.neoforge.common.ItemAbilities.FIRESTARTER_LIGHT, false);
-        if (blockstate.getBlock() == Blocks.TNT && player != null){
-            blockstate.onCaughtFire(level, blockpos, hitDir, player);
-            level.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
-            itemstack.hurtAndBreak(1, player, equipmentSlot);
-            player.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
-            return InteractionResult.SUCCESS;
-        } else if (player != null && !level.isClientSide() && level.getBlockEntity(blockpos) instanceof BrushableBlockEntity brushableblockentity) {
-            brushableblockentity.hitDirection = hitDir;
-            brushableblockentity.brushingCompleted(player);
-            itemstack.hurtAndBreak(1, player, equipmentSlot);
-        } else if (pContext.isSecondaryUseActive()){
+        if (blockstate1 != null) {
+            if (player instanceof ServerPlayer) {
+                CriteriaTriggers.ITEM_USED_ON_BLOCK.trigger((ServerPlayer)player, blockpos, itemstack);
+            }
+            level.setBlockAndUpdate(blockpos, blockstate1);
+            level.gameEvent(GameEvent.BLOCK_CHANGE, blockpos, GameEvent.Context.of(pContext.getPlayer(), blockstate1));
+            if (player != null) {
+                itemstack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(pContext.getHand()));
+            }
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        }
+        if (pContext.isSecondaryUseActive()){
             if (blockstate2 == null) {
                 BlockPos blockpos1 = blockpos.relative(hitDir);
                 if (BaseFireBlock.canBePlacedAt(level, blockpos1, pContext.getHorizontalDirection())) {
                     level.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
-                    BlockState blockstate1 = BaseFireBlock.getState(level, blockpos1);
-                    level.setBlock(blockpos1, blockstate1, 11);
+                    BlockState blockstateF = BaseFireBlock.getState(level, blockpos1);
+                    level.setBlock(blockpos1, blockstateF, 11);
                     level.gameEvent(player, GameEvent.BLOCK_PLACE, blockpos);
                     if (player instanceof ServerPlayer) {
                         CriteriaTriggers.PLACED_BLOCK.trigger((ServerPlayer) player, blockpos1, itemstack);
@@ -118,8 +126,20 @@ public class SawBladeCombItem extends Item {
 
                 return InteractionResult.SUCCESS;
             }
+        } else if (player != null) {
+            if (blockstate.getBlock() == Blocks.TNT){
+                blockstate.onCaughtFire(level, blockpos, hitDir, player);
+                level.setBlock(blockpos, Blocks.AIR.defaultBlockState(), 11);
+                itemstack.hurtAndBreak(1, player, equipmentSlot);
+                player.awardStat(Stats.ITEM_USED.get(itemstack.getItem()));
+                return InteractionResult.SUCCESS;
+            } else if (!level.isClientSide() && level.getBlockEntity(blockpos) instanceof BrushableBlockEntity brushableblockentity) {
+                brushableblockentity.hitDirection = hitDir;
+                brushableblockentity.brushingCompleted(player);
+                itemstack.hurtAndBreak(1, player, equipmentSlot);
+            }
         }
-        return InteractionResult.FAIL;
+        return super.useOn(pContext);
     }
 
     @Override
@@ -134,5 +154,24 @@ public class SawBladeCombItem extends Item {
                         ItemAbilities.BRUSH_BRUSH)
                 .collect(Collectors.toCollection(Sets::newIdentityHashSet))
                 .contains(itemAbility);
+    }
+    @Override
+    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
+        super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
+        List<Component> list = Lists.newArrayList();
+        list.add(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip").withStyle(ChatFormatting.GRAY));
+        if(pTooltipFlag.hasShiftDown()){
+            list.add(Component.empty());
+            list.add(Component.translatable("tooltip.bedrock_platform.sneak_and_use").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_1").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_2").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_3").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_4").withStyle(ChatFormatting.GRAY));
+            list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_5").withStyle(ChatFormatting.BLUE)));
+            list.add(Component.translatable("item.bedrock_platform.saw_blade_comb.tooltip_6").withStyle(ChatFormatting.GRAY));
+        } else {
+            list.add(Component.translatable("tooltip.bedrock_platform.shift").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
+        }
+        pTooltipComponents.addAll(list);
     }
 }

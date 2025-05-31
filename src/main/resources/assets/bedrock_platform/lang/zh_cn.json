@@ -5,7 +5,6 @@
   "item.bedrock_platform.obsidian_wrench.tooltip": "用于破坏大部分功能性和方块和本模组提供的不可破坏方块。",
   "item.bedrock_platform.obsidian_wrench.tooltip_0": "直接在方块上使用：",
   "item.bedrock_platform.obsidian_wrench.tooltip_1": "尝试将本模组转化后的方块还原为原版方块并返还原料。",
-  "item.bedrock_platform.obsidian_wrench.tooltip_2": "潜行并在方块上使用：",
   "item.bedrock_platform.obsidian_wrench.tooltip_3": "尝试破坏并获取方块。可以附魔精准采集以破坏如末影箱需要精准采集获得的方块。",
   "item.bedrock_platform.obsidian_wrench.tooltip_4": "被熔岩烧毁等行为破坏时：",
   "item.bedrock_platform.obsidian_wrench.tooltip_5": "返还哭泣黑耀石、末地水晶、幽匿尖啸体各一个。",
@@ -17,6 +16,7 @@
   "block.bedrock_platform.cyan_strong_interaction_tile": "青色强相互作用地砖",
   "block.bedrock_platform.purple_strong_interaction_tile": "紫色强相互作用地砖",
   "block.bedrock_platform.solid_end_void": "固态终末虚空",
+  "block.bedrock_platform.solid_end_void.tooltip": "如遇渲染问题可以在模组配置中更改渲染方式",
   "block.bedrock_platform.ghast_tear_glass": "恶魂之泪玻璃",
   "block.bedrock_platform.encapsulated_end_portal_frame": "封装的末地传送门框架",
 
@@ -102,9 +102,13 @@
   "block.bedrock_platform.geode_tinted_blue_glass": "晶洞遮光蓝玻璃",
 
   "container.bedrock_platform.crate": "板条箱",
+  "container.bedrock_platform.crate.tooltip": "具有54格存储空间",
 
   "block.bedrock_platform.kelp_block": "海带块",
+  "block.bedrock_platform.kelp_block.tooltip": "放置于下界时将变为干干海带块",
+
   "block.bedrock_platform.permanently_wetted_farmland": "永久湿润耕地",
+  "block.bedrock_platform.permanently_wetted_farmland.tooltip": "不会被踩坏，不会干涸。",
   "block.bedrock_platform.glow_permanently_wetted_farmland": "发光永久湿润耕地",
 
   "block.bedrock_platform.stone_torch": "石头火把",
@@ -175,6 +179,15 @@
   "block.bedrock_platform.precise_nether_portal.out_border": "对应位置超出世界边界！",
   "block.bedrock_platform.precise_nether_portal.invalid": "传送门在该维度不可用！",
   "block.bedrock_platform.precise_nether_portal.invalid_target": "目标维度无效！",
+
+  "item.bedrock_platform.saw_blade_comb": "锯刃梳",
+  "item.bedrock_platform.saw_blade_comb.tooltip": "也作剃刀、火镰、筛子。",
+  "item.bedrock_platform.saw_blade_comb.tooltip_1": "点火",
+  "item.bedrock_platform.saw_blade_comb.tooltip_2": "直接在可疑的沙子、可疑的沙砾等可以刷的方块上使用：",
+  "item.bedrock_platform.saw_blade_comb.tooltip_3": "立即获取方块中的物品",
+  "item.bedrock_platform.saw_blade_comb.tooltip_4": "在穿山甲身上使用时：",
+  "item.bedrock_platform.saw_blade_comb.tooltip_5": "获取犰狳鳞甲（只消耗一耐久）",
+  "item.bedrock_platform.saw_blade_comb.tooltip_6": "若未提及，则和原本合成它的工具功能相同。",
 
   "block.bedrock_platform.amethyst_lantern": "紫水晶灯笼",
   "block.bedrock_platform.exposed_amethyst_lantern": "斑驳的紫水晶灯笼",
@@ -265,6 +278,7 @@
   "recipe.bedrock_platform.block_reduction.title": "方块还原",
 
   "tooltip.bedrock_platform.shift": "按下 <Shift> 获取更多信息",
+  "tooltip.bedrock_platform.sneak_and_use": "潜行并在方块上使用：",
 
   "death.attack.strongInteractionExplosion": "%1$s为利用强互作用力材料而献身。",
 

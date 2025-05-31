@@ -27,6 +27,7 @@ public class BPItemModelProvider extends ItemModelProvider {
         genDefault(BPItems.CRIMSON_CHEST_BOAT);
         genDefault(BPItems.WARPED_BOAT);
         genDefault(BPItems.WARPED_CHEST_BOAT);
+        genDefault(BPItems.SAW_BLADE_COMB);
     }
     private void genDefault(DeferredItem<Item> item){
         singleTexture(item.getId().getPath(), gItemModel, "layer0",

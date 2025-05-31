@@ -1,15 +1,16 @@
 package dev.hail.bedrock_platform.block;
 
+import dev.hail.bedrock_platform.block.light.SolidTorchBlock;
 import dev.hail.bedrock_platform.block.light.amethyst.AmethystCandleBlock;
 import dev.hail.bedrock_platform.block.light.amethyst.AmethystCandleLogic;
 import dev.hail.bedrock_platform.block.light.amethyst.TorchBlockSet;
 import dev.hail.bedrock_platform.block.light.amethyst.WaxedAmethystLanternBlockSet;
-import dev.hail.bedrock_platform.block.light.SolidTorchBlock;
 import dev.hail.bedrock_platform.block.solid_end.SolidEndVoid;
 import dev.hail.bedrock_platform.block.solid_end.SolidEndVoidBE;
 import dev.hail.bedrock_platform.item.BPItems;
 import dev.hail.bedrock_platform.item.PlatformItem;
 import dev.hail.bedrock_platform.item.PreciseNetherPortalItem;
+import dev.hail.bedrock_platform.item.SimpleTooltipBlockItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.Item;
@@ -66,9 +67,10 @@ public class BPBlocks {
             bedrockLike().mapColor(MapColor.TERRACOTTA_YELLOW),
             new Item.Properties().rarity(Rarity.RARE).fireResistant());
 
-    public static final DeferredBlock<Block> SOLID_END_VOID = registerWithItem("solid_end_void",
+    public static final DeferredBlock<Block> SOLID_END_VOID = registerWithTooltipItem("solid_end_void",
             ()->new SolidEndVoid(bedrockLike().mapColor(MapColor.COLOR_BLACK).lightLevel(l->15)),
-            new Item.Properties().rarity(Rarity.EPIC));
+            new Item.Properties().rarity(Rarity.EPIC),"block.bedrock_platform.solid_end_void.tooltip");
+    @SuppressWarnings("DataFlowIssue")
     public static final Supplier<BlockEntityType<SolidEndVoidBE>> SOLID_END_VOID_BE = BLOCK_ENTITY_TYPES.register(
             "solid_end_void_entity",
             () -> BlockEntityType.Builder.of(SolidEndVoidBE::new, SOLID_END_VOID.get()).build(null));
@@ -122,8 +124,8 @@ public class BPBlocks {
             .builder("geode_white_bricks", MapColor.SNOW).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_WHITE_PILLAR = registerWithItem("geode_white_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.SNOW)));
-    public static final DeferredBlock<Block> GEODE_WHITE_CRATE = registerWithItem("geode_white_crate",
-            ()->new CrateBlock(geodeSeries().mapColor(MapColor.SNOW)));
+    public static final DeferredBlock<Block> GEODE_WHITE_CRATE = registerWithTooltipItem("geode_white_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.SNOW)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_BLACK_TILES = DecoVariantBlockSet
             .builder("geode_black_tiles", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLACK_SMOOTH_TILE = DecoVariantBlockSet
@@ -132,8 +134,8 @@ public class BPBlocks {
             .builder("geode_black_bricks", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_BLACK_PILLAR = registerWithItem("geode_black_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithItem("geode_black_crate",
-            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
+    public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithTooltipItem("geode_black_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_GRAY_TILES = DecoVariantBlockSet
             .builder("geode_gray_tiles", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_GRAY_SMOOTH_TILE = DecoVariantBlockSet
@@ -142,8 +144,8 @@ public class BPBlocks {
             .builder("geode_gray_bricks", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_GRAY_PILLAR = registerWithItem("geode_gray_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithItem("geode_gray_crate",
-            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
+    public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithTooltipItem("geode_gray_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_BLUE_TILES = DecoVariantBlockSet
             .builder("geode_blue_tiles", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLUE_SMOOTH_TILE = DecoVariantBlockSet
@@ -152,12 +154,13 @@ public class BPBlocks {
             .builder("geode_blue_bricks", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
     public static final DeferredBlock<Block> GEODE_BLUE_PILLAR = registerWithItem("geode_blue_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<Block> GEODE_BLUE_CRATE = registerWithItem("geode_blue_crate",
-            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
+    public static final DeferredBlock<Block> GEODE_BLUE_CRATE = registerWithTooltipItem("geode_blue_crate",
+            ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_GRAY_WHITE_TILES = DecoVariantBlockSet
             .builder("geode_gray_white_tiles", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLUE_WHITE_TILES = DecoVariantBlockSet
             .builder("geode_blue_white_tiles", MapColor.COLOR_GRAY).defaultSet().build();
+    @SuppressWarnings("DataFlowIssue")
     public static final Supplier<BlockEntityType<CrateBlock.CrateBlockEntity>> GEODE_CRATE_BE = BLOCK_ENTITY_TYPES.register(
             "crate_entity",
             () -> BlockEntityType.Builder.of(CrateBlock.CrateBlockEntity::new,
@@ -180,10 +183,12 @@ public class BPBlocks {
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)
                     .noOcclusion()));
 
-    public static final DeferredBlock<Block> KELP_BLOCK = registerWithItem("kelp_block",
-            ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)));
-    public static final DeferredBlock<Block> PERMANENTLY_WETTED_FARMLAND = registerWithItem("permanently_wetted_farmland",
-            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)));
+    public static final DeferredBlock<Block> KELP_BLOCK = registerWithTooltipItem("kelp_block",
+            ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)),
+            "block.bedrock_platform.kelp_block.tooltip");
+    public static final DeferredBlock<Block> PERMANENTLY_WETTED_FARMLAND = registerWithTooltipItem("permanently_wetted_farmland",
+            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)),
+            "block.bedrock_platform.permanently_wetted_farmland.tooltip");
     public static final DeferredBlock<Block> GLOW_PERMANENTLY_WETTED_FARMLAND = registerWithItem("glow_permanently_wetted_farmland",
             ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND).lightLevel(l->8)));
 
@@ -374,6 +379,16 @@ public class BPBlocks {
     public static <B extends Block> DeferredBlock<B> registerWithPlatItem(String id, Supplier<B> block) {
         DeferredBlock<B> object = BLOCKS.register(id, block);
         BPItems.ITEMS.register(id, () -> new PlatformItem(object.get(), new Item.Properties()));
+        return object;
+    }
+    public static <B extends Block> DeferredBlock<B> registerWithTooltipItem(String id, Supplier<B> block, String tooltip) {
+        DeferredBlock<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new SimpleTooltipBlockItem(object.get(), new Item.Properties(), tooltip));
+        return object;
+    }
+    public static <B extends Block> DeferredBlock<B> registerWithTooltipItem(String id, Supplier<B> block, Item.Properties item, String tooltip) {
+        DeferredBlock<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new SimpleTooltipBlockItem(object.get(), item, tooltip));
         return object;
     }
     public static DeferredBlock<Block> registerWithItem(String id, BlockBehaviour.Properties block, Item.Properties item) {

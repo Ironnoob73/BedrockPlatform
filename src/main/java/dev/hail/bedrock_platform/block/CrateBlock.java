@@ -1,6 +1,7 @@
 package dev.hail.bedrock_platform.block;
 
 import com.mojang.serialization.MapCodec;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -26,11 +27,15 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.neoforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
+
+@MethodsReturnNonnullByDefault
+@ParametersAreNonnullByDefault
 public class CrateBlock extends BaseEntityBlock {
     public static final MapCodec<CrateBlock> CODEC = simpleCodec(CrateBlock::new);
 
     @Override
-    public @NotNull MapCodec<CrateBlock> codec() {
+    public MapCodec<CrateBlock> codec() {
         return CODEC;
     }
 
@@ -39,7 +44,7 @@ public class CrateBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState pState, Level pLevel, @NotNull BlockPos pPos, @NotNull Player pPlayer, @NotNull BlockHitResult pHitResult) {
+    protected InteractionResult useWithoutItem(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, BlockHitResult pHitResult) {
         if (pLevel.isClientSide) {
             return InteractionResult.SUCCESS;
         } else {
@@ -54,29 +59,29 @@ public class CrateBlock extends BaseEntityBlock {
     }
 
     @Override
-    protected void onRemove(@NotNull BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, @NotNull BlockState pNewState, boolean pIsMoving) {
+    protected void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
         Containers.dropContentsOnDestroy(pState, pNewState, pLevel, pPos);
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
 
     @javax.annotation.Nullable
     @Override
-    public BlockEntity newBlockEntity(@NotNull BlockPos pPos, @NotNull BlockState pState) {
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
         return new CrateBlockEntity(pPos, pState);
     }
 
     @Override
-    protected @NotNull RenderShape getRenderShape(@NotNull BlockState pState) {
+    protected RenderShape getRenderShape(BlockState pState) {
         return RenderShape.MODEL;
     }
 
     @Override
-    protected boolean hasAnalogOutputSignal(@NotNull BlockState pState) {
+    protected boolean hasAnalogOutputSignal(BlockState pState) {
         return true;
     }
 
     @Override
-    protected int getAnalogOutputSignal(@NotNull BlockState pBlockState, Level pLevel, @NotNull BlockPos pPos) {
+    protected int getAnalogOutputSignal(BlockState pBlockState, Level pLevel, BlockPos pPos) {
         return AbstractContainerMenu.getRedstoneSignalFromBlockEntity(pLevel.getBlockEntity(pPos));
     }
 
@@ -101,7 +106,7 @@ public class CrateBlock extends BaseEntityBlock {
         }
 
         @Override
-        protected void saveAdditional(@NotNull CompoundTag pTag, HolderLookup.@NotNull Provider pRegistries) {
+        protected void saveAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
             super.saveAdditional(pTag, pRegistries);
             if (!this.trySaveLootTable(pTag)) {
                 ContainerHelper.saveAllItems(pTag, this.items, pRegistries);
@@ -109,7 +114,7 @@ public class CrateBlock extends BaseEntityBlock {
         }
 
         @Override
-        protected void loadAdditional(@NotNull CompoundTag pTag, HolderLookup.@NotNull Provider pRegistries) {
+        protected void loadAdditional(CompoundTag pTag, HolderLookup.Provider pRegistries) {
             super.loadAdditional(pTag, pRegistries);
             this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
             if (!this.tryLoadLootTable(pTag)) {
@@ -124,23 +129,23 @@ public class CrateBlock extends BaseEntityBlock {
         }
 
         @Override
-        protected @NotNull NonNullList<ItemStack> getItems() {
+        protected NonNullList<ItemStack> getItems() {
             return this.items;
         }
 
         @Override
-        protected void setItems(@NotNull NonNullList<ItemStack> pItems) {
+        protected void setItems(NonNullList<ItemStack> pItems) {
             this.items = pItems;
             this.initCap();
         }
 
         @Override
-        protected @NotNull Component getDefaultName() {
+        protected Component getDefaultName() {
             return Component.translatable("container.bedrock_platform.crate");
         }
 
         @Override
-        protected @NotNull AbstractContainerMenu createMenu(int pId, @NotNull Inventory pPlayer) {
+        protected AbstractContainerMenu createMenu(int pId, Inventory pPlayer) {
             return ChestMenu.sixRows(pId, pPlayer, this);
         }
     }

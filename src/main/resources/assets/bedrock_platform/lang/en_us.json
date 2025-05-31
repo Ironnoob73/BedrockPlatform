@@ -5,7 +5,6 @@
   "item.bedrock_platform.obsidian_wrench.tooltip": "Used to destroy most functional blocks and indestructible blocks provided by this mod.",
   "item.bedrock_platform.obsidian_wrench.tooltip_0": "Directly use on a block:",
   "item.bedrock_platform.obsidian_wrench.tooltip_1": "Attempts to restore the blocks converted by this mod to the original blocks and return the raw materials.",
-  "item.bedrock_platform.obsidian_wrench.tooltip_2": "Sneak and use on a block:",
   "item.bedrock_platform.obsidian_wrench.tooltip_3": "Attempts to destroy and obtain the block. Can enchant Silk Touch to destroy blocks such as Ender Chests that require Silk Touch.",
   "item.bedrock_platform.obsidian_wrench.tooltip_4": "Destroyed by lava burning or other actions:",
   "item.bedrock_platform.obsidian_wrench.tooltip_5": "One Crying Obsidian, one End Crystal, and one Sculk Shrieker will be returned.",
@@ -17,6 +16,7 @@
   "block.bedrock_platform.cyan_strong_interaction_tile": "Cyan Strong Interaction Tile",
   "block.bedrock_platform.purple_strong_interaction_tile": "Purple Strong Interaction Tile",
   "block.bedrock_platform.solid_end_void": "Solid End Void",
+  "block.bedrock_platform.solid_end_void.tooltip": "If you encounter rendering problems, you can change the rendering method in the mod configuration.",
   "block.bedrock_platform.ghast_tear_glass": "Ghast Tear Glass",
   "block.bedrock_platform.encapsulated_end_portal_frame": "Encapsulated End Portal Frame",
 
@@ -102,9 +102,13 @@
   "block.bedrock_platform.geode_tinted_blue_glass": "Geode Tinted Blue Glass",
   
   "container.bedrock_platform.crate": "Crate",
+  "container.bedrock_platform.crate.tooltip": "Have 54 storage slots",
 
   "block.bedrock_platform.kelp_block": "Kelp Block",
+  "block.bedrock_platform.kelp_block.tooltip": "Will turn into a Dried Kelp Block when in the Nether.",
+
   "block.bedrock_platform.permanently_wetted_farmland": "Permanently Wetted Farmland",
+  "block.bedrock_platform.permanently_wetted_farmland.tooltip": "Won't be stepped on to turn into dirt and won't dry up.",
   "block.bedrock_platform.glow_permanently_wetted_farmland": "Glow Permanently Wetted Farmland",
 
   "block.bedrock_platform.stone_torch": "Stone Torch",
@@ -175,6 +179,9 @@
   "block.bedrock_platform.precise_nether_portal.out_border": "The corresponding position exceeds the world border!",
   "block.bedrock_platform.precise_nether_portal.invalid": "The Portal are not available in this dimension!",
   "block.bedrock_platform.precise_nether_portal.invalid_target": "Invalid target dimension!",
+
+  "item.bedrock_platform.saw_blade_comb": "Saw Blade Comb",
+  "item.bedrock_platform.saw_blade_comb.tooltip": "Also known as razor, flint, and sieve.",
 
   "block.bedrock_platform.amethyst_lantern": "Amethyst Lantern",
   "block.bedrock_platform.exposed_amethyst_lantern": "Exposed Amethyst Lantern",
@@ -265,6 +272,13 @@
   "recipe.bedrock_platform.block_reduction.title": "Block Reduction",
 
   "tooltip.bedrock_platform.shift": "Press <Shift> for more information",
+  "tooltip.bedrock_platform.sneak_and_use": "Sneak and use on a block:",
+  "item.bedrock_platform.saw_blade_comb.tooltip_1": "Light a fire",
+  "item.bedrock_platform.saw_blade_comb.tooltip_2": "Directly use on Suspicious Sand, Suspicious Gravel and other brush-able blocks:",
+  "item.bedrock_platform.saw_blade_comb.tooltip_3": "Get the items in the block immediately",
+  "item.bedrock_platform.saw_blade_comb.tooltip_4": "When used on an Armadillo:",
+  "item.bedrock_platform.saw_blade_comb.tooltip_5": "Obtain Armadillo Scute (consumes only one durability)",
+  "item.bedrock_platform.saw_blade_comb.tooltip_6": "If not mentioned, it functions the same as the tool it was crafted from.",
 
   "death.attack.strongInteractionExplosion": "%1$s dedicated his life to the use of strong interacting materials.",
 

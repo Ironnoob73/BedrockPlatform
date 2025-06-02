@@ -33,6 +33,7 @@ public class BPBlocks {
     public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
     static BlockBehaviour.StatePredicate block_never = (pState, pLevel, pPos) -> false;
+    static BlockBehaviour.StatePredicate block_always = (pState, pLevel, pPos) -> true;
     public static BlockBehaviour.Properties bedrockLike(){
         return BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
@@ -172,16 +173,16 @@ public class BPBlocks {
 
     public static final DeferredBlock<Block> GEODE_TINTED_WHITE_GLASS = registerWithItem("geode_tinted_white_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.SNOW)
-                    .noOcclusion()));
+                    .isViewBlocking(block_always).noOcclusion()));
     public static final DeferredBlock<Block> GEODE_TINTED_BLACK_GLASS = registerWithItem("geode_tinted_black_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)
-                    .noOcclusion()));
+                    .isViewBlocking(block_always).noOcclusion()));
     public static final DeferredBlock<Block> GEODE_TINTED_GRAY_GLASS = registerWithItem("geode_tinted_gray_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)
-                    .noOcclusion()));
+                    .isViewBlocking(block_always).noOcclusion()));
     public static final DeferredBlock<Block> GEODE_TINTED_BLUE_GLASS = registerWithItem("geode_tinted_blue_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)
-                    .noOcclusion()));
+                    .isViewBlocking(block_always).noOcclusion()));
 
     public static final DeferredBlock<Block> KELP_BLOCK = registerWithTooltipItem("kelp_block",
             ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)),

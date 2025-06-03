@@ -105,7 +105,7 @@
   "container.bedrock_platform.crate.tooltip": "Have 54 storage slots",
 
   "block.bedrock_platform.kelp_block": "Kelp Block",
-  "block.bedrock_platform.kelp_block.tooltip": "Will turn into a Dried Kelp Block when in the Nether.",
+  "block.bedrock_platform.kelp_block.tooltip": "Will turn into Dried Kelp Block when in the Nether.",
 
   "block.bedrock_platform.permanently_wetted_farmland": "Permanently Wetted Farmland",
   "block.bedrock_platform.permanently_wetted_farmland.tooltip": "Won't be stepped on to turn into dirt and won't dry up.",

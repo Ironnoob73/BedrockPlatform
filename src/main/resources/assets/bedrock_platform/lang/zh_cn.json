@@ -105,7 +105,7 @@
   "container.bedrock_platform.crate.tooltip": "具有54格存储空间",
 
   "block.bedrock_platform.kelp_block": "海带块",
-  "block.bedrock_platform.kelp_block.tooltip": "放置于下界时将变为干干海带块",
+  "block.bedrock_platform.kelp_block.tooltip": "放置于下界时将变为干海带块",
 
   "block.bedrock_platform.permanently_wetted_farmland": "永久湿润耕地",
   "block.bedrock_platform.permanently_wetted_farmland.tooltip": "不会被踩坏，不会干涸。",

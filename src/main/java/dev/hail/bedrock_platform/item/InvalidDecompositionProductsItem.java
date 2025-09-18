@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
@@ -17,11 +18,11 @@ public class InvalidDecompositionProductsItem extends Item {
     }
 
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
+    public void appendHoverText(@NotNull ItemStack pStack, Level pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
         List<Component> list = Lists.newArrayList();
         list.add(Component.translatable("item.bedrock_platform.ineffective_decomposition_products.tooltip").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
-        if(pTooltipFlag.hasShiftDown()){
+        if(pTooltipFlag.){
             list.add(Component.empty());
             list.add(Component.translatable("item.bedrock_platform.ineffective_decomposition_products.tooltip_0").withStyle(ChatFormatting.GRAY));
             list.add(CommonComponents.space().append(Component.translatable("item.bedrock_platform.ineffective_decomposition_products.tooltip_1").withStyle(ChatFormatting.RED)));

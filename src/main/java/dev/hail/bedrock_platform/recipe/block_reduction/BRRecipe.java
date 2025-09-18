@@ -3,7 +3,10 @@ package dev.hail.bedrock_platform.recipe.block_reduction;
 import dev.hail.bedrock_platform.BedrockPlatform;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.RegistryAccess;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -11,12 +14,12 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.registries.DeferredRegister;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
 
-public record BRRecipe(BlockState inputState, Ingredient decompositionProducts, ItemStack result, BlockState resultState) implements Recipe<BRRInput> {
+public record BRRecipe(BlockState inputState, Ingredient decompositionProducts, ItemStack result, BlockState resultState) implements Recipe<Container> {
     @Override
     public @NotNull NonNullList<Ingredient> getIngredients() {
         NonNullList<Ingredient> list = NonNullList.create();
@@ -30,18 +33,23 @@ public record BRRecipe(BlockState inputState, Ingredient decompositionProducts, 
     }
 
     @Override
-    public boolean matches(@NotNull BRRInput input, @NotNull Level level) {
+    public boolean matches(@NotNull Container input, @NotNull Level level) {
         return this.inputState == input.state();
     }
 
     @Override
-    public @NotNull ItemStack getResultItem(HolderLookup.@NotNull Provider registries) {
+    public @NotNull ItemStack getResultItem(@NotNull RegistryAccess registries) {
         return this.result;
     }
 
     @Override
-    public @NotNull ItemStack assemble(@NotNull BRRInput input, HolderLookup.@NotNull Provider registries) {
+    public @NotNull ItemStack assemble(@NotNull Container input, @NotNull RegistryAccess registries) {
         return this.result.copy();
+    }
+
+    @Override
+    public ResourceLocation getId() {
+        return null;
     }
 
     public @NotNull BlockState assembleBlock(HolderLookup.@NotNull Provider registries) {

@@ -3,12 +3,8 @@ package dev.hail.bedrock_platform.item;
 import dev.hail.bedrock_platform.entity.NetherBoat;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.BoatItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
@@ -25,16 +21,12 @@ public class NetherBoatItem extends BoatItem {
         this.hasChest = pHasChest;
     }
     @Override
-    public @NotNull Boat getBoat(@NotNull Level pLevel, HitResult pHitResult, @NotNull ItemStack pStack, @NotNull Player pPlayer) {
+    public @NotNull Boat getBoat(@NotNull Level pLevel, HitResult pHitResult) {
         Vec3 vec3 = pHitResult.getLocation();
-        Boat boat = this.hasChest ? new NetherBoat.NetherChestBoat(pLevel, vec3.x, vec3.y, vec3.z) : new NetherBoat(pLevel, vec3.x, vec3.y, vec3.z);
-        if (pLevel instanceof ServerLevel serverlevel) {
-            EntityType.<Boat>createDefaultStackConfig(serverlevel, pStack, pPlayer).accept(boat);
-        }
-        return boat;
+        return this.hasChest ? new NetherBoat.NetherChestBoat(pLevel, vec3.x, vec3.y, vec3.z) : new NetherBoat(pLevel, vec3.x, vec3.y, vec3.z);
     }
     @Override
-    public void appendHoverText(@NotNull ItemStack pStack, Item.@NotNull TooltipContext pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
+    public void appendHoverText(@NotNull ItemStack pStack, Level pContext, @NotNull List<Component> pTooltipComponents, @NotNull TooltipFlag pTooltipFlag){
         super.appendHoverText(pStack, pContext, pTooltipComponents, pTooltipFlag);
         pTooltipComponents.add(Component.translatable("item.bedrock_platform.nether_boat.tooltip").withStyle(ChatFormatting.GRAY));
     }

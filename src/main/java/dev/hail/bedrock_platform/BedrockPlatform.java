@@ -24,27 +24,27 @@ import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.ModLoadingContext;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.gui.ConfigurationScreen;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
-import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.AddPackFindersEvent;
-import net.neoforged.neoforge.event.server.ServerStartingEvent;
-import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.neoforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.neoforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.neoforge.client.gui.ConfigurationScreen;
+import net.minecraftforge.neoforge.client.gui.IConfigScreenFactory;
+import net.minecraftforge.neoforge.common.NeoForge;
+import net.minecraftforge.neoforge.event.AddPackFindersEvent;
+import net.minecraftforge.neoforge.event.server.ServerStartingEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 @Mod(BedrockPlatform.MODID)
@@ -53,30 +53,30 @@ public class BedrockPlatform
     public static final String MODID = "bedrock_platform";
     public static final Logger LOGGER = LogUtils.getLogger();
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("bedrock_platform_tab", () -> CreativeModeTab.builder()
+    public static final RegistryObject<CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("bedrock_platform_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("bedrock_platform.name"))
-            .icon(() -> BPBlocks.BEDROCK_PLATFORM.asItem().getDefaultInstance())
+            .icon(() -> BPBlocks.BEDROCK_PLATFORM.get().asItem().getDefaultInstance())
             .displayItems((parameters, output) -> {
                 output.accept(BPItems.OBSIDIAN_WRENCH.get());
-                output.accept(BPBlocks.BEDROCK_PLATFORM.asItem());
-                output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM.asItem());
-                output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM.asItem());
+                output.accept(BPBlocks.BEDROCK_PLATFORM.get().asItem());
+                output.accept(BPBlocks.LUMINOUS_BEDROCK_PLATFORM.get().asItem());
+                output.accept(BPBlocks.TWILL_BEDROCK_PLATFORM.get().asItem());
                 output.accept(BPBlocks.ORANGE_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.CYAN_SI_BLOCK_SET.getTile().asItem());
                 output.accept(BPBlocks.PURPLE_SI_BLOCK_SET.getTile().asItem());
-                output.accept(BPBlocks.SOLID_END_VOID.asItem());
-                output.accept(BPBlocks.GHAST_TEAR_GLASS.asItem());
-                output.accept(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME.asItem());
-                output.accept(BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().asItem());
+                output.accept(BPBlocks.SOLID_END_VOID.get().asItem());
+                output.accept(BPBlocks.GHAST_TEAR_GLASS.get().asItem());
+                output.accept(BPBlocks.ENCAPSULATED_END_PORTAL_FRAME.get().asItem());
+                output.accept(BPBlocks.BLACK_SI_BLOCK_SET.getBaseBlock().get().asItem());
                 output.accept(BPItems.SCULK_RIB.get());
-                output.accept(BPBlocks.SCULK_RIB_BLOCK.asItem());
-                output.accept(BPBlocks.FILLED_SCULK_RIB_BLOCK.asItem());
+                output.accept(BPBlocks.SCULK_RIB_BLOCK.get().asItem());
+                output.accept(BPBlocks.FILLED_SCULK_RIB_BLOCK.get().asItem());
                 output.accept(BPItems.ENCHANT_DUST.get());
                 output.accept(BPItems.BLUE_ICE_CUBE.get());
                 output.accept(BPBlocks.GEODE_MOSAIC_TILE.getBaseBlock());
-                output.accept(BPBlocks.KELP_BLOCK.asItem());
-                output.accept(BPBlocks.PERMANENTLY_WETTED_FARMLAND.asItem());
-                output.accept(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.asItem());
+                output.accept(BPBlocks.KELP_BLOCK.get().asItem());
+                output.accept(BPBlocks.PERMANENTLY_WETTED_FARMLAND.get().asItem());
+                output.accept(BPBlocks.GLOW_PERMANENTLY_WETTED_FARMLAND.get().asItem());
                 output.accept(BPBlocks.STONE_TORCH.getItem());
                 output.accept(BPBlocks.DEEPSLATE_TORCH.getItem());
                 output.accept(BPBlocks.AMETHYST_CANDLE.getItem());
@@ -311,7 +311,7 @@ public class BedrockPlatform
     public void onServerStarting(ServerStartingEvent event)
     {
     }
-    @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
         @SubscribeEvent

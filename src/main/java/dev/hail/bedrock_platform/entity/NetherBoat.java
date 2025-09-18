@@ -11,11 +11,11 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.material.EmptyFluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.neoforged.fml.common.asm.enumextension.EnumProxy;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -39,12 +39,13 @@ public class NetherBoat extends Boat {
     }
     @Override
     public void floatBoat() {
-        double d0 = -this.getGravity();
+        double d0 = -0.04F;
         double d1 = 0.0;
+        double d2 = 0.0D;
         this.invFriction = 0.05F;
         if (this.oldStatus == Boat.Status.IN_AIR && this.status != Boat.Status.IN_AIR && this.status != Boat.Status.ON_LAND) {
             this.waterLevel = this.getY(1.0);
-            double d2 = (double)(this.getWaterLevelAbove() - this.getBbHeight()) + 0.101;
+            d2 = (double)(this.getWaterLevelAbove() - this.getBbHeight()) + 0.101;
             if (this.level().noCollision(this, this.getBoundingBox().move(0.0, d2 - this.getY(), 0.0))) {
                 this.setPos(this.getX(), d2, this.getZ());
                 this.setDeltaMovement(this.getDeltaMovement().multiply(1.0, 0.0, 1.0));
@@ -73,7 +74,7 @@ public class NetherBoat extends Boat {
             this.deltaRotation = this.deltaRotation * this.invFriction;
             if (d1 > 0.0) {
                 Vec3 vec31 = this.getDeltaMovement();
-                this.setDeltaMovement(vec31.x, (vec31.y + d1 * (this.getDefaultGravity() / 0.65)) * 0.75, vec31.z);
+                this.setDeltaMovement(vec31.x, (vec31.y + d2 * 0.06153846016296973D) * 0.75, vec31.z);
             }
         }
     }
@@ -125,12 +126,13 @@ public class NetherBoat extends Boat {
 
         @Override
         public void floatBoat() {
-            double d0 = -this.getGravity();
+            double d0 = -0.04F;
             double d1 = 0.0;
+            double d2 = 0.0D;
             this.invFriction = 0.05F;
             if (this.oldStatus == Boat.Status.IN_AIR && this.status != Boat.Status.IN_AIR && this.status != Boat.Status.ON_LAND) {
                 this.waterLevel = this.getY(1.0);
-                double d2 = (double)(this.getWaterLevelAbove() - this.getBbHeight()) + 0.101;
+                d2 = (double)(this.getWaterLevelAbove() - this.getBbHeight()) + 0.101;
                 if (this.level().noCollision(this, this.getBoundingBox().move(0.0, d2 - this.getY(), 0.0))) {
                     this.setPos(this.getX(), d2, this.getZ());
                     this.setDeltaMovement(this.getDeltaMovement().multiply(1.0, 0.0, 1.0));
@@ -159,7 +161,7 @@ public class NetherBoat extends Boat {
                 this.deltaRotation = this.deltaRotation * this.invFriction;
                 if (d1 > 0.0) {
                     Vec3 vec31 = this.getDeltaMovement();
-                    this.setDeltaMovement(vec31.x, (vec31.y + d1 * (this.getDefaultGravity() / 0.65)) * 0.75, vec31.z);
+                    this.setDeltaMovement(vec31.x, (vec31.y + d2 * 0.06153846016296973D) * 0.75, vec31.z);
                 }
             }
         }
@@ -198,12 +200,7 @@ public class NetherBoat extends Boat {
         }
     }
 
-    public static final EnumProxy<Boat.Type> CRIMSON = new EnumProxy<>(Boat.Type.class,
-            (Supplier<Block>)()-> Blocks.CRIMSON_PLANKS, "bedrock_platform:crimson",
-            BPItems.CRIMSON_BOAT, BPItems.CRIMSON_CHEST_BOAT,
-            (Supplier<Item>)()-> Items.STICK, false);
-    public static final EnumProxy<Boat.Type> WARPED = new EnumProxy<>(Boat.Type.class,
-            (Supplier<Block>)()-> Blocks.WARPED_BUTTON, "bedrock_platform:warped",
-            BPItems.WARPED_BOAT, BPItems.WARPED_CHEST_BOAT,
-            (Supplier<Item>)()-> Items.STICK, false);
+    public static final EnumProperty<Boat.Type> CRIMSON = EnumProperty.create("bedrock_platform:crimson",Boat.Type.class);
+    public static final EnumProperty<Boat.Type> WARPED = EnumProperty.create("bedrock_platform:warped", Boat.Type.class);
+
 }

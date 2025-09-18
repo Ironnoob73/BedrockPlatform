@@ -4,7 +4,7 @@ import dev.hail.bedrock_platform.block.light.SolidTorchBlock;
 import dev.hail.bedrock_platform.block.light.amethyst.AmethystCandleBlock;
 import dev.hail.bedrock_platform.block.light.amethyst.AmethystCandleLogic;
 import dev.hail.bedrock_platform.block.light.amethyst.TorchBlockSet;
-import dev.hail.bedrock_platform.block.light.amethyst.WaxedAmethystLanternBlockSet;
+//import dev.hail.bedrock_platform.block.light.amethyst.WaxedAmethystLanternBlockSet;
 import dev.hail.bedrock_platform.block.solid_end.SolidEndVoid;
 import dev.hail.bedrock_platform.block.solid_end.SolidEndVoidBE;
 import dev.hail.bedrock_platform.item.BPItems;
@@ -13,33 +13,36 @@ import dev.hail.bedrock_platform.item.PreciseNetherPortalItem;
 import dev.hail.bedrock_platform.item.SimpleTooltipBlockItem;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Supplier;
 
 import static dev.hail.bedrock_platform.BedrockPlatform.MODID;
 
 public class BPBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(Registries.BLOCK_ENTITY_TYPE, MODID);
     static BlockBehaviour.StatePredicate block_never = (pState, pLevel, pPos) -> false;
+    static BlockBehaviour.StateArgumentPredicate<EntityType<?>> block_never_e = (pState, pLevel, pPos, pEntityType) -> false;
     static BlockBehaviour.StatePredicate block_always = (pState, pLevel, pPos) -> true;
     public static BlockBehaviour.Properties bedrockLike(){
         return BlockBehaviour.Properties.of()
                     .mapColor(MapColor.STONE)
                     .instrument(NoteBlockInstrument.BASEDRUM)
                     .strength(-1.0F, 3600000.0F)
-                    .isValidSpawn(Blocks::never);
+                    .isValidSpawn(block_never_e);
     }
     public static BlockBehaviour.Properties sculkRibLike(){
         return BlockBehaviour.Properties.of()
@@ -49,26 +52,26 @@ public class BPBlocks {
                 .strength(55.0F, 1200.0F)
                 .requiresCorrectToolForDrops()
                 .sound(SoundType.BONE_BLOCK)
-                .isValidSpawn(Blocks::never);
+                .isValidSpawn(block_never_e);
     }
     public static BlockBehaviour.Properties geodeSeries(){
         return BlockBehaviour.Properties.of()
                 .instrument(NoteBlockInstrument.BASEDRUM)
-                .isValidSpawn(Blocks::never)
+                .isValidSpawn(block_never_e)
                 .strength(25.0F, 100.0F)
                 .sound(SoundType.DEEPSLATE);
     }
 
-    public static final DeferredBlock<Block> BEDROCK_PLATFORM = registerWithItem("bedrock_platform",
+    public static final RegistryObject<Block> BEDROCK_PLATFORM = registerWithItem("bedrock_platform",
             bedrockLike(), new Item.Properties().rarity(Rarity.UNCOMMON).fireResistant());
-    public static final DeferredBlock<Block> LUMINOUS_BEDROCK_PLATFORM = registerWithItem("luminous_bedrock_platform",
+    public static final RegistryObject<Block> LUMINOUS_BEDROCK_PLATFORM = registerWithItem("luminous_bedrock_platform",
             bedrockLike().mapColor(MapColor.QUARTZ).lightLevel(l->15),
             new Item.Properties().rarity(Rarity.RARE).fireResistant());
-    public static final DeferredBlock<Block> TWILL_BEDROCK_PLATFORM = registerWithItem("twill_bedrock_platform",
+    public static final RegistryObject<Block> TWILL_BEDROCK_PLATFORM = registerWithItem("twill_bedrock_platform",
             bedrockLike().mapColor(MapColor.TERRACOTTA_YELLOW),
             new Item.Properties().rarity(Rarity.RARE).fireResistant());
 
-    public static final DeferredBlock<Block> SOLID_END_VOID = registerWithTooltipItem("solid_end_void",
+    public static final RegistryObject<Block> SOLID_END_VOID = registerWithTooltipItem("solid_end_void",
             ()->new SolidEndVoid(bedrockLike().mapColor(MapColor.COLOR_BLACK).lightLevel(l->15)),
             new Item.Properties().rarity(Rarity.EPIC),"block.bedrock_platform.solid_end_void.tooltip");
     @SuppressWarnings("DataFlowIssue")
@@ -76,23 +79,23 @@ public class BPBlocks {
             "solid_end_void_entity",
             () -> BlockEntityType.Builder.of(SolidEndVoidBE::new, SOLID_END_VOID.get()).build(null));
 
-    public static final DeferredBlock<Block> GHAST_TEAR_GLASS = registerWithItem("ghast_tear_glass",()->new TransparentBlock(
-            BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+    public static final RegistryObject<Block> GHAST_TEAR_GLASS = registerWithItem("ghast_tear_glass",()->new GlassBlock(
+            BlockBehaviour.Properties.copy(Blocks.GLASS)
                     .strength(0.3F, 50.0F)
                     .instrument(NoteBlockInstrument.HAT)
                     .mapColor(MapColor.COLOR_GRAY)
                     .noOcclusion()
                     .lightLevel(l->7)
-                    .isValidSpawn(Blocks::never)
+                    .isValidSpawn(block_never_e)
                     .isRedstoneConductor(block_never)
                     .isSuffocating(block_never)
                     .isViewBlocking(block_never)));
-    public static final DeferredBlock<Block> ENCAPSULATED_END_PORTAL_FRAME = registerWithRareItem("encapsulated_end_portal_frame",
+    public static final RegistryObject<Block> ENCAPSULATED_END_PORTAL_FRAME = registerWithRareItem("encapsulated_end_portal_frame",
             ()->new EncapsulatedEndPortalFrame(bedrockLike()
                     .mapColor(MapColor.COLOR_PURPLE)
                     .sound(SoundType.GLASS).noOcclusion()));
-    public static final DeferredBlock<Block> SCULK_RIB_BLOCK = registerWithItem("sculk_rib_block",()->new SculkRibBlock(sculkRibLike()));
-    public static final DeferredBlock<Block> FILLED_SCULK_RIB_BLOCK = registerWithItem("filled_sculk_rib_block",sculkRibLike());
+    public static final RegistryObject<Block> SCULK_RIB_BLOCK = registerWithItem("sculk_rib_block",()->new SculkRibBlock(sculkRibLike()));
+    public static final RegistryObject<Block> FILLED_SCULK_RIB_BLOCK = registerWithItem("filled_sculk_rib_block",sculkRibLike());
 
     public static final StrongInteractionBlockSet RED_SI_BLOCK_SET = StrongInteractionBlockSet
             .builder("red",MapColor.TERRACOTTA_RED).defaultSet().build();
@@ -123,9 +126,9 @@ public class BPBlocks {
             .builder("geode_white_smooth_tile", MapColor.SNOW).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_WHITE_BRICKS = DecoVariantBlockSet
             .builder("geode_white_bricks", MapColor.SNOW).defaultSet().build();
-    public static final DeferredBlock<Block> GEODE_WHITE_PILLAR = registerWithItem("geode_white_pillar",
+    public static final RegistryObject<Block> GEODE_WHITE_PILLAR = registerWithItem("geode_white_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.SNOW)));
-    public static final DeferredBlock<Block> GEODE_WHITE_CRATE = registerWithTooltipItem("geode_white_crate",
+    public static final RegistryObject<Block> GEODE_WHITE_CRATE = registerWithTooltipItem("geode_white_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.SNOW)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_BLACK_TILES = DecoVariantBlockSet
             .builder("geode_black_tiles", MapColor.COLOR_BLACK).defaultSet().build();
@@ -133,9 +136,9 @@ public class BPBlocks {
             .builder("geode_black_smooth_tile", MapColor.COLOR_BLACK).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLACK_BRICKS = DecoVariantBlockSet
             .builder("geode_black_bricks", MapColor.COLOR_BLACK).defaultSet().build();
-    public static final DeferredBlock<Block> GEODE_BLACK_PILLAR = registerWithItem("geode_black_pillar",
+    public static final RegistryObject<Block> GEODE_BLACK_PILLAR = registerWithItem("geode_black_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)));
-    public static final DeferredBlock<Block> GEODE_BLACK_CRATE = registerWithTooltipItem("geode_black_crate",
+    public static final RegistryObject<Block> GEODE_BLACK_CRATE = registerWithTooltipItem("geode_black_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_GRAY_TILES = DecoVariantBlockSet
             .builder("geode_gray_tiles", MapColor.COLOR_GRAY).defaultSet().build();
@@ -143,9 +146,9 @@ public class BPBlocks {
             .builder("geode_gray_smooth_tile", MapColor.COLOR_GRAY).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_GRAY_BRICKS = DecoVariantBlockSet
             .builder("geode_gray_bricks", MapColor.COLOR_GRAY).defaultSet().build();
-    public static final DeferredBlock<Block> GEODE_GRAY_PILLAR = registerWithItem("geode_gray_pillar",
+    public static final RegistryObject<Block> GEODE_GRAY_PILLAR = registerWithItem("geode_gray_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)));
-    public static final DeferredBlock<Block> GEODE_GRAY_CRATE = registerWithTooltipItem("geode_gray_crate",
+    public static final RegistryObject<Block> GEODE_GRAY_CRATE = registerWithTooltipItem("geode_gray_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_BLUE_TILES = DecoVariantBlockSet
             .builder("geode_blue_tiles", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
@@ -153,9 +156,9 @@ public class BPBlocks {
             .builder("geode_blue_smooth_tile", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
     public static final DecoVariantBlockSet GEODE_BLUE_BRICKS = DecoVariantBlockSet
             .builder("geode_blue_bricks", MapColor.COLOR_LIGHT_BLUE).defaultSet().build();
-    public static final DeferredBlock<Block> GEODE_BLUE_PILLAR = registerWithItem("geode_blue_pillar",
+    public static final RegistryObject<Block> GEODE_BLUE_PILLAR = registerWithItem("geode_blue_pillar",
             ()->new RotatedPillarBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)));
-    public static final DeferredBlock<Block> GEODE_BLUE_CRATE = registerWithTooltipItem("geode_blue_crate",
+    public static final RegistryObject<Block> GEODE_BLUE_CRATE = registerWithTooltipItem("geode_blue_crate",
             ()->new CrateBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)),"container.bedrock_platform.crate.tooltip");
     public static final DecoVariantBlockSet GEODE_GRAY_WHITE_TILES = DecoVariantBlockSet
             .builder("geode_gray_white_tiles", MapColor.COLOR_GRAY).defaultSet().build();
@@ -171,27 +174,27 @@ public class BPBlocks {
                     GEODE_BLUE_CRATE.get())
                     .build(null));
 
-    public static final DeferredBlock<Block> GEODE_TINTED_WHITE_GLASS = registerWithItem("geode_tinted_white_glass",
+    public static final RegistryObject<Block> GEODE_TINTED_WHITE_GLASS = registerWithItem("geode_tinted_white_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.SNOW)
                     .isViewBlocking(block_always).noOcclusion()));
-    public static final DeferredBlock<Block> GEODE_TINTED_BLACK_GLASS = registerWithItem("geode_tinted_black_glass",
+    public static final RegistryObject<Block> GEODE_TINTED_BLACK_GLASS = registerWithItem("geode_tinted_black_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_BLACK)
                     .isViewBlocking(block_always).noOcclusion()));
-    public static final DeferredBlock<Block> GEODE_TINTED_GRAY_GLASS = registerWithItem("geode_tinted_gray_glass",
+    public static final RegistryObject<Block> GEODE_TINTED_GRAY_GLASS = registerWithItem("geode_tinted_gray_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_GRAY)
                     .isViewBlocking(block_always).noOcclusion()));
-    public static final DeferredBlock<Block> GEODE_TINTED_BLUE_GLASS = registerWithItem("geode_tinted_blue_glass",
+    public static final RegistryObject<Block> GEODE_TINTED_BLUE_GLASS = registerWithItem("geode_tinted_blue_glass",
             ()->new TintedGlassBlock(geodeSeries().mapColor(MapColor.COLOR_LIGHT_BLUE)
                     .isViewBlocking(block_always).noOcclusion()));
 
-    public static final DeferredBlock<Block> KELP_BLOCK = registerWithTooltipItem("kelp_block",
-            ()->new KelpBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DRIED_KELP_BLOCK)),
+    public static final RegistryObject<Block> KELP_BLOCK = registerWithTooltipItem("kelp_block",
+            ()->new KelpBlock(BlockBehaviour.Properties.copy(Blocks.DRIED_KELP_BLOCK)),
             "block.bedrock_platform.kelp_block.tooltip");
-    public static final DeferredBlock<Block> PERMANENTLY_WETTED_FARMLAND = registerWithTooltipItem("permanently_wetted_farmland",
-            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND)),
+    public static final RegistryObject<Block> PERMANENTLY_WETTED_FARMLAND = registerWithTooltipItem("permanently_wetted_farmland",
+            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.copy(Blocks.FARMLAND)),
             "block.bedrock_platform.permanently_wetted_farmland.tooltip");
-    public static final DeferredBlock<Block> GLOW_PERMANENTLY_WETTED_FARMLAND = registerWithItem("glow_permanently_wetted_farmland",
-            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FARMLAND).lightLevel(l->8)));
+    public static final RegistryObject<Block> GLOW_PERMANENTLY_WETTED_FARMLAND = registerWithItem("glow_permanently_wetted_farmland",
+            ()->new PermanentlyWettedFarmlandBlock(BlockBehaviour.Properties.copy(Blocks.FARMLAND).lightLevel(l->8)));
 
     public static final TorchBlockSet STONE_TORCH = TorchBlockSet
             .builder("stone", false,
@@ -225,6 +228,7 @@ public class BPBlocks {
                             BlockBehaviour.Properties.of().noCollission().instabreak().lightLevel(AmethystCandleLogic::getLight)
                                     .sound(SoundType.AMETHYST)
                     )).build();
+    /*
     public static final WaxedAmethystLanternBlockSet AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("",WeatheringCopper.WeatherState.UNAFFECTED,Blocks.COPPER_GRATE).build();
     public static final WaxedAmethystLanternBlockSet EXPOSED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
@@ -233,178 +237,180 @@ public class BPBlocks {
             .builder("weathered_",WeatheringCopper.WeatherState.WEATHERED,Blocks.WEATHERED_COPPER_GRATE).build();
     public static final WaxedAmethystLanternBlockSet OXIDIZED_AMETHYST_LANTERN = WaxedAmethystLanternBlockSet
             .builder("oxidized_",WeatheringCopper.WeatherState.OXIDIZED,Blocks.OXIDIZED_COPPER_GRATE).build();
+     */
 
-    public static final DeferredBlock<Block> OAK_PLATFORM = registerWithPlatItem("oak_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    public static final RegistryObject<Block> OAK_PLATFORM = registerWithPlatItem("oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_OAK_PLATFORM = registerWithPlatItem("transparent_oak_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_OAK_PLATFORM = registerWithPlatItem("transparent_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> BIRCH_PLATFORM = registerWithPlatItem("birch_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS)
+    public static final RegistryObject<Block> BIRCH_PLATFORM = registerWithPlatItem("birch_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_BIRCH_PLATFORM = registerWithPlatItem("transparent_birch_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BIRCH_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_BIRCH_PLATFORM = registerWithPlatItem("transparent_birch_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.BIRCH_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> SPRUCE_PLATFORM = registerWithPlatItem("spruce_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)
+    public static final RegistryObject<Block> SPRUCE_PLATFORM = registerWithPlatItem("spruce_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_SPRUCE_PLATFORM = registerWithPlatItem("transparent_spruce_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_SPRUCE_PLATFORM = registerWithPlatItem("transparent_spruce_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.SPRUCE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> JUNGLE_PLATFORM = registerWithPlatItem("jungle_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
+    public static final RegistryObject<Block> JUNGLE_PLATFORM = registerWithPlatItem("jungle_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_JUNGLE_PLATFORM = registerWithPlatItem("transparent_jungle_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.JUNGLE_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_JUNGLE_PLATFORM = registerWithPlatItem("transparent_jungle_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.JUNGLE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> DARK_OAK_PLATFORM = registerWithPlatItem("dark_oak_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS)
+    public static final RegistryObject<Block> DARK_OAK_PLATFORM = registerWithPlatItem("dark_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_DARK_OAK_PLATFORM = registerWithPlatItem("transparent_dark_oak_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.DARK_OAK_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_DARK_OAK_PLATFORM = registerWithPlatItem("transparent_dark_oak_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.DARK_OAK_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> ACACIA_PLATFORM = registerWithPlatItem("acacia_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS)
+    public static final RegistryObject<Block> ACACIA_PLATFORM = registerWithPlatItem("acacia_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_ACACIA_PLATFORM = registerWithPlatItem("transparent_acacia_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.ACACIA_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_ACACIA_PLATFORM = registerWithPlatItem("transparent_acacia_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.ACACIA_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> MANGROVE_PLATFORM = registerWithPlatItem("mangrove_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS)
+    public static final RegistryObject<Block> MANGROVE_PLATFORM = registerWithPlatItem("mangrove_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_MANGROVE_PLATFORM = registerWithPlatItem("transparent_mangrove_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MANGROVE_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_MANGROVE_PLATFORM = registerWithPlatItem("transparent_mangrove_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.MANGROVE_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> CHERRY_PLATFORM = registerWithPlatItem("cherry_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS)
+    public static final RegistryObject<Block> CHERRY_PLATFORM = registerWithPlatItem("cherry_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_CHERRY_PLATFORM = registerWithPlatItem("transparent_cherry_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHERRY_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_CHERRY_PLATFORM = registerWithPlatItem("transparent_cherry_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CHERRY_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> STONE_PLATFORM = registerWithPlatItem("stone_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
+    public static final RegistryObject<Block> STONE_PLATFORM = registerWithPlatItem("stone_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CHISELED_STONE_BRICKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_STONE_PLATFORM = registerWithPlatItem("transparent_stone_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CHISELED_STONE_BRICKS)
+    public static final RegistryObject<Block> TRANSPARENT_STONE_PLATFORM = registerWithPlatItem("transparent_stone_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CHISELED_STONE_BRICKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> CRIMSON_PLATFORM = registerWithPlatItem("crimson_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS)
+    public static final RegistryObject<Block> CRIMSON_PLATFORM = registerWithPlatItem("crimson_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_CRIMSON_PLATFORM = registerWithPlatItem("transparent_crimson_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CRIMSON_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_CRIMSON_PLATFORM = registerWithPlatItem("transparent_crimson_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.CRIMSON_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> WARPED_PLATFORM = registerWithPlatItem("warped_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+    public static final RegistryObject<Block> WARPED_PLATFORM = registerWithPlatItem("warped_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> TRANSPARENT_WARPED_PLATFORM = registerWithPlatItem("transparent_warped_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WARPED_PLANKS)
+    public static final RegistryObject<Block> TRANSPARENT_WARPED_PLATFORM = registerWithPlatItem("transparent_warped_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.WARPED_PLANKS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
-    public static final DeferredBlock<Block> GLASS_PLATFORM = registerWithPlatItem("glass_platform",
-            ()-> new PlatformBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+    public static final RegistryObject<Block> GLASS_PLATFORM = registerWithPlatItem("glass_platform",
+            ()-> new PlatformBlock(BlockBehaviour.Properties.copy(Blocks.GLASS)
                     .noCollission()
                     .dynamicShape()
                     .isRedstoneConductor(block_never)));
 
-    public static final DeferredBlock<Block> PRECISE_NETHER_PORTAL = BLOCKS.register("precise_nether_portal",
-            ()->new PreciseNetherPortal(BlockBehaviour.Properties.ofFullCopy(Blocks.OBSIDIAN)
+    public static final RegistryObject<Block> PRECISE_NETHER_PORTAL = BLOCKS.register("precise_nether_portal",
+            ()->new PreciseNetherPortal(BlockBehaviour.Properties.copy(Blocks.OBSIDIAN)
                     .noCollission()
                     .sound(SoundType.METAL)
                     .lightLevel(p -> 11)
                     .pushReaction(PushReaction.BLOCK)));
-    public static final DeferredItem<Item> PRECISE_NETHER_PORTAL_ITEM = BPItems.ITEMS.register("precise_nether_portal",
+    public static final RegistryObject<Item> PRECISE_NETHER_PORTAL_ITEM = BPItems.ITEMS.register("precise_nether_portal",
             () ->  new PreciseNetherPortalItem(PRECISE_NETHER_PORTAL.get(),new Item.Properties()));
 
-    public static final DeferredBlock<Block> BOUNCE_PAD = registerWithItem("bounce_pad",
+    public static final RegistryObject<Block> BOUNCE_PAD = registerWithItem("bounce_pad",
             ()->new BouncePadBlock(BlockBehaviour.Properties.of().noCollission().noOcclusion()));
 
-    public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
-        BPItems.ITEMS.registerSimpleBlockItem(object);
+    public static <B extends Block> RegistryObject<B> registerWithItem(String id, Supplier<B> block) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), new Item.Properties()));
         return object;
     }
-    public static DeferredBlock<Block> registerWithItem(String id, BlockBehaviour.Properties block) {
-        DeferredBlock<Block> object = BLOCKS.register(id, () -> new Block(block));
-        BPItems.ITEMS.registerSimpleBlockItem(object);
+    public static RegistryObject<Block> registerWithItem(String id, BlockBehaviour.Properties block) {
+        RegistryObject<Block> object = BLOCKS.register(id, () -> new Block(block));
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), new Item.Properties()));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithItem(String id, Supplier<B> block, Item.Properties item) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
-        BPItems.ITEMS.registerSimpleBlockItem(object, item);
+    public static <B extends Block> RegistryObject<B> registerWithItem(String id, Supplier<B> block, Item.Properties item) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), item));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithPlatItem(String id, Supplier<B> block) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
+    public static <B extends Block> RegistryObject<B> registerWithPlatItem(String id, Supplier<B> block) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
         BPItems.ITEMS.register(id, () -> new PlatformItem(object.get(), new Item.Properties()));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithTooltipItem(String id, Supplier<B> block, String tooltip) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
+    public static <B extends Block> RegistryObject<B> registerWithTooltipItem(String id, Supplier<B> block, String tooltip) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
         BPItems.ITEMS.register(id, () -> new SimpleTooltipBlockItem(object.get(), new Item.Properties(), tooltip));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithTooltipItem(String id, Supplier<B> block, Item.Properties item, String tooltip) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
+    public static <B extends Block> RegistryObject<B> registerWithTooltipItem(String id, Supplier<B> block, Item.Properties item, String tooltip) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
         BPItems.ITEMS.register(id, () -> new SimpleTooltipBlockItem(object.get(), item, tooltip));
         return object;
     }
-    public static DeferredBlock<Block> registerWithItem(String id, BlockBehaviour.Properties block, Item.Properties item) {
-        DeferredBlock<Block> object = BLOCKS.register(id, () -> new Block(block));
-        BPItems.ITEMS.registerSimpleBlockItem(object, item);
+    public static RegistryObject<Block> registerWithItem(String id, BlockBehaviour.Properties block, Item.Properties item) {
+        RegistryObject<Block> object = BLOCKS.register(id, () -> new Block(block));
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), item));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithRareItem(String id, Supplier<B> block) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
-        BPItems.ITEMS.registerSimpleBlockItem(object, new Item.Properties().rarity(Rarity.RARE));
+    public static <B extends Block> RegistryObject<B> registerWithRareItem(String id, Supplier<B> block) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), new Item.Properties().rarity(Rarity.RARE)));
         return object;
     }
-    public static <B extends Block> DeferredBlock<B> registerWithUncommonItem(String id, Supplier<B> block) {
-        DeferredBlock<B> object = BLOCKS.register(id, block);
-        BPItems.ITEMS.registerSimpleBlockItem(object, new Item.Properties().rarity(Rarity.UNCOMMON));
+    public static <B extends Block> RegistryObject<B> registerWithUncommonItem(String id, Supplier<B> block) {
+        RegistryObject<B> object = BLOCKS.register(id, block);
+        BPItems.ITEMS.register(id, () -> new BlockItem(object.get(), new Item.Properties().rarity(Rarity.UNCOMMON)));
         return object;
     }
+
 }
